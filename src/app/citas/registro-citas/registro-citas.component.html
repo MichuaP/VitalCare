@@ -1,0 +1,24 @@
+<body>
+    <div class="info">
+        <h1>Registro de citas</h1>
+        <h5>Selecciona una especialidad</h5>
+    </div>
+    <div class="selEspecialidad">
+        <p>desplegable de especialidades aquí</p>
+    </div>
+    <div class="doctores">
+        <p>Selecciona un Médico</p>
+        <div class="card-group">
+            @for (x of misMedicos; track x;){
+                <div class="card">
+                    <img src="{{x.foto}}" alt="" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title">{{x.nombre}}</h5>
+                        <p class="card-text">{{x.especialidad}}</p>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+</body>
