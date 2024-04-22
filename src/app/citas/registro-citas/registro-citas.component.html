@@ -1,24 +1,85 @@
 <body>
-    <div class="info">
+    <div class="info container">
         <h1>Registro de citas</h1>
-        <h5>Selecciona una especialidad</h5>
+        <p>Llene la siguiente infromación para realizar la cita</p>
     </div>
-    <div class="selEspecialidad">
-        <p>desplegable de especialidades aquí</p>
+    <div class="formulario1 container">
+        <h5>Información del paciente</h5>
+        <form class="row g-3">
+            <div class="col-md-6">
+                <label for="nomCita" class="form-label">Nombres</label>
+                <input type="text" class="form-control" id="nomCita" required>
+            </div>
+            <div class="col-md-6">
+                <label for="apeCita" class="form-label">Apellidos</label>
+                <input type="text" class="form-control" id="apeCita" required>
+            </div>
+            <div class="col-12">
+                <label for="telCita" class="form-label">Teléfono</label>
+                <input type="tel" class="form-control" id="telCita" required>
+            </div>
+        </form>
     </div>
-    <div class="doctores">
-        <p>Selecciona un Médico</p>
-        <div class="card-group">
-            @for (x of misMedicos; track x;){
-                <div class="card">
-                    <img src="{{x.foto}}" alt="" class="card-img-top">
-                    <div class="card-body">
-                        <h5 class="card-title">{{x.nombre}}</h5>
-                        <p class="card-text">{{x.especialidad}}</p>
-                    </div>
-                </div>
+    
+    <!-- Mostrar especialidades disponibles -->
+    <div class="selEspecialidad container">
+        <h5>Información de la cita</h5>
+        <label for="" class="form-label">Especialidad</label>
+        <select class="form-select" #espe (change)="espSeleccionada(espe.value)" id="">
+            <option selected disabled >Seleccionar...</option>
+            @for (y of misMedicos; track y;){
+                <!-- interpolación -->
+                <option value="{{y.especialidad}}">{{y.especialidad}} </option>
             }
-        </div>
+        </select>
     </div>
+    <!-- Mostramos los doctores de la especialidad seleccionada -->
+    @if(especialidad){
+        <br>
+        <div class="doctores container">
+            <h5>Seleccione un Médico</h5>
+            <div class="card-group" style="width: 18rem;">
+                @for (x of misMedicos; track x;){
+                    @if(x.especialidad===especialidad){
+                        <div class="card">
+                            <img src="{{x.foto}}" alt="" class="card-img-top">
+                            <div class="card-body">
+                                <h5 class="card-title">{{x.nombre}}</h5>
+                                <p class="card-text">{{x.especialidad}}</p>
+                                <p class="card-text">{{x.universidad}}</p>
+                                <!-- Si se ha seleccionado algo -->
+                                @if(especialidad){
+                                    <button (click)="docSeleccionado(x)" class="btn btn-primary">Seleccionar</button>
+                                }
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    }
+    <br>
+    <div class="formulario2 container">
+        <form class="row g-3">
+            <div class="col-md-6">
+                <label for="especialidadCita" class="form-label">Especialidad</label>
+                <input type="text" disabled class="form-control" id="especialidadCita" value="{{medico.especialidad}}">
+            </div>
+            <div class="col-md-6">
+                <label for="medicoCita" class="form-label">Médico asignado</label>
+                <input type="text" disabled class="form-control" id="medicoCita" value="{{medico.nombre}}">
+            </div>
+            <div class="col-md-6">
+                <label for="fechaCita" class="form-label">Fecha</label>
+                <input type="date" class="form-control" id="fechaCita" required>
+            </div>
+            <div class="col-md-6">
+                <label for="horaCita" class="form-label">Hora</label>
+                <input type="time" class="form-control" id="horaCita" required>
+            </div>
+        </form>
+    </div>
+    
+    
 
 </body>

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Medico } from '../../medico';
+import { Cita, Medico } from '../../medico';
 import { MedicoService } from '../../shared/medico.service';
 
 @Component({
@@ -10,21 +10,9 @@ import { MedicoService } from '../../shared/medico.service';
   styleUrl: './registro-citas.component.css'
 })
 export class RegistroCitasComponent {
-  // cliente!: Cliente;
-  // grupos!: Grupo[];
-
-  // constructor(private clientesService: ClientesService){}
-
-  // ngOnInit(){
-  //   this.cliente = this.clientesService.nuevoCliente();
-  //   this.grupos = this.clientesService.getGrupos();
-  // }
-
-  // nuevoCliente(): void{
-  //   this.clientesService.agregarCliente(this.cliente);
-  //   this.cliente = this.clientesService.nuevoCliente();
-  // }
-
+  
+  especialidad:any="";
+  medico:any="";
   misMedicos:Medico[]=[];
 
   //Inyectamos el servicio en el constructor
@@ -36,6 +24,28 @@ export class RegistroCitasComponent {
     console.log("ngOnInit de citas 1");
     this.misMedicos=this.miservicio.getMedicos();
     console.log(this.misMedicos);
+  }
+
+  //Función que recibe la especialidad seleccionada
+  espSeleccionada(value:string): void {
+		this.especialidad = value;
+    console.log(this.especialidad);
+	}
+
+  //Función que recibe al doctor seleccionado
+  docSeleccionado(doctor:any):void{
+    this.medico = doctor;
+  }
+
+  miCita!:Cita;
+
+  nuevaCita(): void{
+    //  this.clientesService.agregarCliente(this.cliente);
+    // this.miCita
+  }
+
+  seleccionada(select:string){
+    console.log("lo seleccionado es:"+select);
   }
 
 }
