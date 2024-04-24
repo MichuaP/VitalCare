@@ -18,3 +18,16 @@ export interface Cita{
     fecha:string;
     hora:string;
 }
+
+export interface Servicio {
+    nombreServicio: String;
+    descripcion: String;
+    costo: String;
+    img: String;
+  }
+  
+  export interface Especialidad {
+    nombreEspecialidad: String;
+    descripcion: String;
+    icono: String;
+  }
