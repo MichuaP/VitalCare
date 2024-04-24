@@ -1,0 +1,67 @@
+<body>
+    <div class="container-outside">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-7">
+                <h1 class="title-container">Los mejores <span class="highlight">servicios</span> de atención médica
+                    disponibles</h1>
+                <br>
+                <p class="text-container">Experimente atención médica de primer nivel y un tratamiento personalizado
+                    para su bienestar. Confíe en nuestra experiencia para mantenerlo saludable y vibrante.</p>
+                <button class="btn btn-lg">Reservar una cita</button>
+            </div>
+            <div class="col-5">
+                <img src="../../assets/img/doctora.png" alt="" height="700px">
+            </div>
+        </div>
+    </div>
+</div>
+    <br><br>
+    <div class="container-subtitle">
+        <div class="title-services">Servicios</div>
+    </div>
+    <br>
+    <h1 class="section-servicios">El servicio de mejor calidad que puede obtener</h1>
+    <br><br>
+    <div class="container text-center">
+        <div class="row">
+            @for (s of misServicios; track s) {
+            <div class="col-4 d-flex align-items-stretch">
+                <div class="card h-90" style="width: auto;">
+                    <img src="{{s.img}}" class="card-img-top" alt="...">
+                    <div class="card-body d-flex flex-column">
+                        <h2 class="card-title">{{s.nombreServicio}}</h2>
+                        <p class="card-text flex-grow-1">{{s.descripcion}}</p>
+                        <p class="card-price"><small>{{s.costo}}</small></p>
+                    </div>
+                </div>
+            </div>
+            }
+        </div>
+    </div>
+    <br>
+    <div class="container-subtitle">
+        <div class="title-services">Especialidades</div>
+    </div>
+    <br>
+    <h1 class="section-servicios">Especialidades con los mejores médicos a tu servicio</h1>
+    <br><br>
+    <div class="container text-center especialidades">
+        <div class="row">
+            @for (e of misEspecialidades; track e; let i = $index) {
+            <div class="col-3 d-flex align-items-stretch">
+                <div class="card" style="width: auto;">
+                    <div class="circle-icon">
+                        <img src="{{e.icono}}" alt="...">
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">{{e.nombreEspecialidad}}</h5>
+                        <p class="card-text">{{e.descripcion}}</p>
+                    </div>
+                </div>
+            </div>
+        }
+        </div>
+    </div>
+    <br><br>
+</body>

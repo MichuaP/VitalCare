@@ -1,0 +1,131 @@
+.container-outside {
+    background-color: #43ba7f1a;
+}
+
+.title-container {
+    font-size: 60px;
+    font-weight: bold;
+}
+
+.text-container {
+    font-size: 22px;
+}
+
+.highlight {
+    color: #43ba7f;
+}
+
+.btn-lg {
+    background-color: #43ba7f;
+    color: white;
+    font-size: 20px;
+    padding: 25px 32px;
+    border-radius: 40px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.btn:hover {
+    background-color: #193126;
+}
+
+.container-subtitle {
+    text-align: center;
+}
+
+.title-services {
+    display: inline-block;
+    text-align: center;
+    background-color: #43ba7f1a;
+    padding: 4px 16px;
+    font-size: 20px;
+    color: #238f5a;
+    font-weight: bold;
+    border-radius: 18px;
+}
+
+.section-servicios {
+    text-align: center;
+    width: 600px;
+    margin: 0 auto;
+    font-weight: bold;
+}
+
+.card {
+    border-radius: 16px;
+    margin: 5px;
+    margin-bottom: 30px;
+    transition: box-shadow 0.5s ease;
+    cursor: pointer;
+}
+
+.card-img-top {
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.card-title {
+    color: black;
+    transition: color 0.3s ease, opacity 0.3s ease;
+}
+
+.card-text {
+    color: black;
+    font-size: 17px;
+}
+
+.card-price {
+    font-style: italic;
+    font-size: 15px;
+    color: #238f5a;
+}
+
+.card-title:hover {
+    color: #43ba7f;
+}
+
+.card:hover {
+    border: white;
+    box-shadow: 0px 0px 30px -3px rgba(0, 0, 0, 0.3);
+}
+
+/* ------------------------------------------------------- */
+
+.circle-icon {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #43ba7f1a;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+
+.circle-icon img {
+    max-width: 45%;
+    max-height: 45%;
+}
+
+.especialidades .card-text {
+    font-size: 16px;
+}
+
+.btn-sm {
+    background-color: #43ba7f;
+    color: white;
+    font-size: 16px;
+    padding: 6px 18px;
+    border-radius: 40px;
+    font-weight: bold;
+}
+
+.especialidades .card {
+    margin-bottom: 10px;
+}
