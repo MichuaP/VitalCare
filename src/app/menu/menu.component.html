@@ -1,0 +1,42 @@
+<nav class="navbar navbar-expand-lg" id="menu">
+    <div class="container-fluid ">
+        <a class="navbar-brand white fw-bold" href="#">
+            <i class="fa-solid fa-hospital logo fa-2xl pe-2"></i>
+            HOSPITAL
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto ms-auto mb-2 mb-lg-0 ">
+                <li class="nav-item">
+                    <a class="nav-link active white" aria-current="page" [routerLink]="['/inicio']">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link white" href="#">Nuestros Médicos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link white" [routerLink]="['/servicios']">Servicios</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link white" href="#">Agendar Cita</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link white" href="#">Nosotros</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link white" href="#">Contacto</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link white" href="#">Desarrolladores</a>
+                </li>
+            </ul>
+            <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search">
+                <button class="btn btn-outline-light" type="submit">Buscar</button>
+            </form>
+        </div>
+    </div>
+</nav>
+<!-- <div id="eslogan">En busca de un futuro más saludable</div> -->

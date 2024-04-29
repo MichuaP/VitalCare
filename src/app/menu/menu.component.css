@@ -1,0 +1,26 @@
+#menu{
+    background-color: #43ba7f;
+    /* background-color: #ecf8f2; */
+    /* background-image: linear-gradient(to bottom, rgba(67,186,127,0.5),rgba(67,186,127,0)); */
+}
+
+.white{
+    /* color: #193126; */
+    color: white;
+    font-weight: bold;
+    /* color: red !important; */
+}
+.active{
+    color: #166b42 !important;
+}
+
+.logo{
+    color: #193126;
+}
+
+#eslogan{
+    text-align: center;
+    color: #166b42;
+    font-weight: bold;
+    padding: 5px 0px;
+}
