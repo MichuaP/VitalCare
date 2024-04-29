@@ -1,0 +1,81 @@
+<body>
+    <div class="container-outside">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-7">
+                    <h1 class="title-container">Consulta tu <span class="highlight">reporte</span> de citas médicas</h1>
+                    <br>
+                    <p class="text-container">Explora tu historial médico y próximas citas para mantener un control
+                        completo de tu salud. Consulta tus citas médicas anteriores y aquellas que están por cumplirse
+                        aquí.</p>
+                </div>
+                <div class="col-5">
+                    <img src="../../assets/img/sign-bg.png" alt="" width="530px" style="opacity: 0.3;">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container reportes">
+        <div class="row align-items-center">
+            <div class="col-7">
+                <p class="section-name">Historial de citas médicas <span class="highlight">personal</span></p>
+            </div>
+            <div class="select-container col-5">
+                <label for="tipo-cita">Selecciona el tipo de citas:</label>
+                <select id="tipo-cita">
+                    <option value="proximas">Citas Próximas</option>
+                    <option value="anteriores">Citas Anteriores</option>
+                </select>
+            </div>
+        </div>
+        <br>
+        <div id="container-list">
+            <!-- @if (!citas.length) { -->
+            <div class="row align-items-center text-center">
+                <div class="col-7 msg">
+                    <p class="text">Ups... ¡No hay citas para mostrar!</p>
+                    <p style="font-size: 20px;">Parece que no hay citas para reportar. ¡No te preocupes, puedes programar una nueva
+                        cita cuando lo necesites! ¡Estamos aquí para ayudarte en cualquier momento!</p>
+                    <button class="btn btn-lg">Reservar una cita</button>
+                </div>
+                <div class="col-5">
+                    <img src="../../assets/img/ups.png" alt="" width="550px">
+                </div>
+            </div>
+
+            <!-- }
+            @else { -->
+            <div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Paciente</th>
+                            <th scope="col">Teléfono</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Costo</th>
+                            <th scope="col">Médico</th>
+                            <th scope="col">Especialidad</th>
+                            <th scope="col">Fecha</th>
+                            <th scope="col">Hora</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                         <!-- @for (cita of citas; track cita) {  -->
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                         <!-- }  -->
+                    </tbody>
+                </table>
+            </div>
+            <!-- } -->
+        </div>
+    </div>
+</body>

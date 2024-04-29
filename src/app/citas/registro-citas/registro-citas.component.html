@@ -25,7 +25,7 @@
     <div class="selEspecialidad container">
         <h5>Información de la cita</h5>
         <label for="" class="form-label">Especialidad</label>
-        <select class="form-select" #espe (change)="espSeleccionada(espe.value)" id="">
+        <select class="form-select" #espe (change)="espSeleccionada(espe.value)">
             <option selected disabled >Seleccionar...</option>
             @for (y of misMedicos; track y;){
                 <!-- interpolación -->
@@ -70,15 +70,35 @@
                 <input type="text" disabled class="form-control" id="medicoCita" value="{{medico.nombre}}">
             </div>
             <div class="col-md-6">
-                <label for="fechaCita" class="form-label">Fecha</label>
-                <input type="date" class="form-control" id="fechaCita" required>
+                <label for="fechaCita" class="form-label">Fecha</label><br>
+                <mat-form-field >
+                    <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker" disabled (dateChange)="fechaSelec($event)">
+                    <mat-datepicker-toggle matIconSuffix [for]="picker" disabled="false"></mat-datepicker-toggle>
+                    <mat-datepicker #picker disabled="false"></mat-datepicker>
+                </mat-form-field>
             </div>
             <div class="col-md-6">
-                <label for="horaCita" class="form-label">Hora</label>
-                <input type="time" class="form-control" id="horaCita" required>
+                <label for="horaCita" class="form-label">Hora</label><br>
+                <mat-form-field>
+                    <mat-label>Hora</mat-label>
+                    <select matNativeControl required #hor (change)="horaSelec(hor.value)">
+                        @for (h of horas; track h.hora){
+                            @if(h.d=="0"){
+                                <option value="{{h.hora}}"> {{h.hora}} </option>
+                            }@else {
+                                <option disabled value="{{h.hora}}"> {{h.hora}} </option>
+                            }
+                            
+                        }
+                    </select>
+                </mat-form-field>
             </div>
         </form>
+        <br>
+        <!-- Funcion que valida los datos (hora ingresada que no esté ocupada)-->
+        <button class="btn btn-primary">Seleccionar</button>
     </div>
+    
     
     
 

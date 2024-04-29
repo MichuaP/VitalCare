@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterModule, RouterOutlet } from '@angular/router';
 import { ServiciosComponent } from "./servicios/servicios.component";
 import { MenuComponent } from "./menu/menu.component";
 import { HomeComponent } from "./home/home.component";
@@ -10,7 +10,7 @@ import { FooterComponent } from "./footer/footer.component";
     standalone: true,
     templateUrl: './app.component.html',
     styleUrl: './app.component.css',
-    imports: [RouterOutlet, ServiciosComponent, MenuComponent, HomeComponent, FooterComponent]
+    imports: [RouterOutlet, RouterModule, ServiciosComponent, MenuComponent, HomeComponent, FooterComponent]
 })
 export class AppComponent {
   title = 'Mini2_AngularTW';
