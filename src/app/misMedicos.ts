@@ -4,7 +4,7 @@ export const CMEDICOS:Medico[]=[
         {
             nombre:"Dr.House",
             especialidad:"Diagnóstico clínico",
-            foto:"assets/img/house.jpeg",
+            foto:"assets/img/doctores/house.jpeg",
             cedula:"67395822 98697124",
             universidad:"Harvard",
             lugarespecialidad:"Harvard",
@@ -14,7 +14,7 @@ export const CMEDICOS:Medico[]=[
         {
             nombre:"Santiago García Pérez",
             especialidad:"Medicina general",
-            foto:"assets/img/santiagog.jpg",
+            foto:"assets/img/doctores/santiagog.jpg",
             cedula:"1548296",
             universidad:"UNAM",
             lugarespecialidad:"Médica Sur",
@@ -24,7 +24,7 @@ export const CMEDICOS:Medico[]=[
         {
             nombre:"Valentina Rodríguez Martínez",
             especialidad:"Oftalmología",
-            foto:"assets/img/valentinar.jpg",
+            foto:"assets/img/doctores/valentinar.jpg",
             cedula:"2873560",
             universidad:"UP",
             lugarespecialidad:"Centro Médico ABC",
@@ -34,7 +34,7 @@ export const CMEDICOS:Medico[]=[
         {
             nombre:"Mateo López Sánchez",
             especialidad:"Cardiología",
-            foto:"assets/img/mateol.jpeg",
+            foto:"assets/img/doctores/mateol.jpeg",
             cedula:"3984621",
             universidad:"UANL",
             lugarespecialidad:"IMSS",
@@ -44,7 +44,7 @@ export const CMEDICOS:Medico[]=[
         {
             nombre:"Sofía Fernández González",
             especialidad:"Dermatología",
-            foto:"assets/img/sofiaf.jpg",
+            foto:"assets/img/doctores/sofiaf.jpg",
             cedula:"4701853",
             universidad:"IPN",
             lugarespecialidad:"Hospital Civil de Guadalajara",
@@ -54,7 +54,7 @@ export const CMEDICOS:Medico[]=[
         {
             nombre:"Sebastián Martínez López",
             especialidad:"Ginecología y obstetricia",
-            foto:"assets/img/sebastianm.jpg",
+            foto:"assets/img/doctores/sebastianm.jpg",
             cedula:"5138072",
             universidad:"UDEM",
             lugarespecialidad:"Hospital General Dr. Manuel Gea González",
@@ -64,7 +64,7 @@ export const CMEDICOS:Medico[]=[
         {
             nombre:"Isabella Pérez Rodríguez",
             especialidad:"Neurología",
-            foto:"assets/img/isabellap.jpg",
+            foto:"assets/img/doctores/isabellap.jpg",
             cedula:"6249018",
             universidad:"UDLAP",
             lugarespecialidad:"Hospital Ángeles -Loma",
@@ -74,7 +74,7 @@ export const CMEDICOS:Medico[]=[
         {
             nombre:"Leonardo Torres García",
             especialidad:"Pediatría",
-            foto:"assets/img/leonardot.jpg",
+            foto:"assets/img/doctores/leonardot.jpg",
             cedula:"7350842",
             universidad:"UDG",
             lugarespecialidad:"Christus Muguerza",
@@ -84,7 +84,7 @@ export const CMEDICOS:Medico[]=[
         {
             nombre:"Emilia Ruiz Martínez",
             especialidad:"Oncología",
-            foto:"assets/img/emiliar.jpg",
+            foto:"assets/img/doctores/emiliar.jpg",
             cedula:"8561230",
             universidad:"UAM",
             lugarespecialidad:"Hospital Español",
@@ -94,7 +94,7 @@ export const CMEDICOS:Medico[]=[
         {
             nombre:"Gabriel Díaz Pérez",
             especialidad:"Ortopedia y traumatología",
-            foto:"assets/img/gabrield.jpg",
+            foto:"assets/img/doctores/gabrield.jpg",
             cedula:"9426751",
             universidad:"BUAP",
             lugarespecialidad:"Hospital Zambrano Hellion TecSalud",
@@ -104,7 +104,7 @@ export const CMEDICOS:Medico[]=[
         {
             nombre:"Lucía Gómez Sánchez",
             especialidad:"Endocrinología",
-            foto:"assets/img/luciag.png",
+            foto:"assets/img/doctores/luciag.png",
             cedula:"1079536",
             universidad:"UAG",
             lugarespecialidad:"Hospital San Javier Guadalajara",
@@ -114,7 +114,7 @@ export const CMEDICOS:Medico[]=[
         {
             nombre:"Juan Herrera Martínez",
             especialidad:"Psiquiatría",
-            foto:"assets/img/juanh.jpg",
+            foto:"assets/img/doctores/juanh.jpg",
             cedula:"2198673",
             universidad:"UNAM",
             lugarespecialidad:"Centro Médico Dalinde",
@@ -124,7 +124,7 @@ export const CMEDICOS:Medico[]=[
         {
             nombre:"Valeria Castro Rodríguez",
             especialidad:"Geriatría",
-            foto:"assets/img/valeriac.png",
+            foto:"assets/img/doctores/valeriac.png",
             cedula:"3285019",
             universidad:"UP",
             lugarespecialidad:"Hospital San José TecSalud",
@@ -134,7 +134,7 @@ export const CMEDICOS:Medico[]=[
         {
             nombre:"Diego Jiménez Pérez",
             especialidad:"Medicina general",
-            foto:"assets/img/diegoj.png",
+            foto:"assets/img/doctores/diegoj.png",
             cedula:"4318974",
             universidad:"UAA",
             lugarespecialidad:"Centro Médico Puerta de Hierro Andares",
@@ -144,7 +144,7 @@ export const CMEDICOS:Medico[]=[
         {
             nombre:"Elena Ramírez Sánchez",
             especialidad:"Oftalmología",
-            foto:"assets/img/elenear.png",
+            foto:"assets/img/doctores/elenear.png",
             cedula:"5483120",
             universidad:"UANL",
             lugarespecialidad:"Hospital San Ángel Inn Universidad",
@@ -154,7 +154,7 @@ export const CMEDICOS:Medico[]=[
         {
             nombre:"Alejandro Morales Martínez",
             especialidad:"Cardiología",
-            foto:"assets/img/alejandrom.jpg",
+            foto:"assets/img/doctores/alejandrom.jpg",
             cedula:"6740293",
             universidad:"IPN",
             lugarespecialidad:"Hospitaria",
@@ -164,7 +164,7 @@ export const CMEDICOS:Medico[]=[
         {
             nombre:"María Nuñez Rodríguez",
             especialidad:"Dermatología",
-            foto:"assets/img/marian.png",
+            foto:"assets/img/doctores/marian.png",
             cedula:"7895631",
             universidad:"UDEM",
             lugarespecialidad:"Hospital Miguel Hidalgo",
@@ -174,7 +174,7 @@ export const CMEDICOS:Medico[]=[
         {
             nombre:"Nicolás Ortiz Pérez",
             especialidad:"Ginecología y obstetricia",
-            foto:"assets/img/nicolaso.png",
+            foto:"assets/img/doctores/nicolaso.png",
             cedula:"8372450",
             universidad:"UAA",
             lugarespecialidad:"Hospital Miguel Hidalgo",
@@ -184,7 +184,7 @@ export const CMEDICOS:Medico[]=[
         {
             nombre:"Victoria Flores Sánchez",
             especialidad:"Neurología",
-            foto:"assets/img/victoriaf.png",
+            foto:"assets/img/doctores/victoriaf.png",
             cedula:"9450137",
             universidad:"UDLAP",
             lugarespecialidad:"Hospital San Javier",
@@ -194,7 +194,7 @@ export const CMEDICOS:Medico[]=[
         {
             nombre:"Matías Herrera Rivas",
             especialidad:"Pediatría",
-            foto:"assets/img/matiash.jpg",
+            foto:"assets/img/doctores/matiash.jpg",
             cedula:"1065324",
             universidad:"UDG",
             lugarespecialidad:"Hospital Real San José",
@@ -204,7 +204,7 @@ export const CMEDICOS:Medico[]=[
         {
             nombre:"Catalina Rojas Espinoza",
             especialidad:"Oncología",
-            foto:"assets/img/catalinar.jpg",
+            foto:"assets/img/doctores/catalinar.jpg",
             cedula:"2187506",
             universidad:"UAG",
             lugarespecialidad:"Hospital Ángeles",
@@ -214,7 +214,7 @@ export const CMEDICOS:Medico[]=[
         {
             nombre:"Nicolás Medina Salazar",
             especialidad:"Ortopedia y traumatología",
-            foto:"assets/img/nicolasm.jpg",
+            foto:"assets/img/doctores/nicolasm.jpg",
             cedula:"3721485",
             universidad:"UAM",
             lugarespecialidad:"Facultad de Medicina UANL",
@@ -224,7 +224,7 @@ export const CMEDICOS:Medico[]=[
         {
             nombre:"Valentina León Flores",
             especialidad:"Endocrinología",
-            foto:"assets/img/valentinal.jpg",
+            foto:"assets/img/doctores/valentinal.jpg",
             cedula:"4862357",
             universidad:"BUAP",
             lugarespecialidad:"Hospital Civil de Culiacán",
@@ -234,7 +234,7 @@ export const CMEDICOS:Medico[]=[
         {
             nombre:"Martín Silva Mendoza",
             especialidad:"Psiquiatría",
-            foto:"assets/img/martins.jpg",
+            foto:"assets/img/doctores/martins.jpg",
             cedula:"5958372",
             universidad:"UNAM",
             lugarespecialidad:"Hospital del Niño DIF",
@@ -244,7 +244,7 @@ export const CMEDICOS:Medico[]=[
         {
             nombre:"Antonella Soto Cruz",
             especialidad:"Geriatría",
-            foto:"assets/img/antonellas.jpg",
+            foto:"assets/img/doctores/antonellas.jpg",
             cedula:"6294703",
             universidad:"UAA",
             lugarespecialidad:"Hospital Español",

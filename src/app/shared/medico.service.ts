@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Medico } from '../medico';
+import { Cita, Medico } from '../medico';
 import { CMEDICOS } from '../misMedicos';
 
 @Injectable({
@@ -10,17 +10,23 @@ export class MedicoService {
   // Obtener array CMEDICOS
   private medicos:Medico[]=CMEDICOS;
 
-  constructor() { }
+  //array de citas de localstorage
+  citas!: Cita[];
+
+  constructor() {this.citas = JSON.parse(localStorage.getItem("citas") || '[]');}
 
   // Obtener los médicos
   getMedicos():Medico[]{
     return this.medicos;
   }
 
-  // Obtener un médico
-  getUnMedico(posicion:number):Medico{
-    return this.medicos[posicion];
+  //Agregar una cita al localStorage
+  agregarCita(cita: Cita){
+    this.citas.push(cita);
+    localStorage.setItem('citas', JSON.stringify(this.citas));
   }
+
+  //Agregar la hora ocupada a localstorage
 
   // Buscar por nombre de medico
   // searchUnMedico(nomMedico:string):number{
