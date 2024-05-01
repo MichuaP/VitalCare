@@ -3,103 +3,102 @@
         <h1>Registro de citas</h1>
         <p>Llene la siguiente infromación para realizar la cita</p>
     </div>
-    <div class="formulario1 container">
-        <h5>Información del paciente</h5>
-        <form class="row g-3">
+    <form class="container" [formGroup]="citaForm">
+        <div class="formulario1 container row g-3">
+            <h5>Información del paciente</h5>
             <div class="col-md-6">
                 <label for="nomCita" class="form-label">Nombres</label>
-                <input type="text" class="form-control" id="nomCita" required>
+                <input type="text" class="form-control" id="nomCita" required formControlName="nombre" [(ngModel)]="nombrePac">
             </div>
             <div class="col-md-6">
                 <label for="apeCita" class="form-label">Apellidos</label>
-                <input type="text" class="form-control" id="apeCita" required>
+                <input type="text" class="form-control" id="apeCita" required formControlName="apellidos" [(ngModel)]="apellidosPac">
             </div>
             <div class="col-12">
                 <label for="telCita" class="form-label">Teléfono</label>
-                <input type="tel" class="form-control" id="telCita" required>
-            </div>
-        </form>
-    </div>
-    
-    <!-- Mostrar especialidades disponibles -->
-    <div class="selEspecialidad container">
-        <h5>Información de la cita</h5>
-        <label for="" class="form-label">Especialidad</label>
-        <select class="form-select" #espe (change)="espSeleccionada(espe.value)">
-            <option selected disabled >Seleccionar...</option>
-            @for (y of misMedicos; track y;){
-                <!-- interpolación -->
-                <option value="{{y.especialidad}}">{{y.especialidad}} </option>
-            }
-        </select>
-    </div>
-    <!-- Mostramos los doctores de la especialidad seleccionada -->
-    @if(especialidad){
-        <br>
-        <div class="doctores container">
-            <h5>Seleccione un Médico</h5>
-            <div class="card-group" style="width: 18rem;">
-                @for (x of misMedicos; track x;){
-                    @if(x.especialidad===especialidad){
-                        <div class="card">
-                            <img src="{{x.foto}}" alt="" class="card-img-top">
-                            <div class="card-body">
-                                <h5 class="card-title">{{x.nombre}}</h5>
-                                <p class="card-text">{{x.especialidad}}</p>
-                                <p class="card-text">{{x.universidad}}</p>
-                                <!-- Si se ha seleccionado algo -->
-                                @if(especialidad){
-                                    <button (click)="docSeleccionado(x)" class="btn btn-primary">Seleccionar</button>
-                                }
-                            </div>
-                        </div>
-                    }
-                }
+                <input type="tel" class="form-control" id="telCita" required formControlName="telefono" [(ngModel)]="telefonoPac">
             </div>
         </div>
-    }
-    <br>
-    <div class="formulario2 container">
-        <form class="row g-3">
-            <div class="col-md-6">
-                <label for="especialidadCita" class="form-label">Especialidad</label>
-                <input type="text" disabled class="form-control" id="especialidadCita" value="{{medico.especialidad}}">
-            </div>
-            <div class="col-md-6">
-                <label for="medicoCita" class="form-label">Médico asignado</label>
-                <input type="text" disabled class="form-control" id="medicoCita" value="{{medico.nombre}}">
-            </div>
-            <div class="col-md-6">
-                <label for="fechaCita" class="form-label">Fecha</label><br>
-                <mat-form-field >
-                    <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker" disabled (dateChange)="fechaSelec($event)">
-                    <mat-datepicker-toggle matIconSuffix [for]="picker" disabled="false"></mat-datepicker-toggle>
-                    <mat-datepicker #picker disabled="false"></mat-datepicker>
-                </mat-form-field>
-            </div>
-            <div class="col-md-6">
-                <label for="horaCita" class="form-label">Hora</label><br>
-                <mat-form-field>
-                    <mat-label>Hora</mat-label>
-                    <select matNativeControl required #hor (change)="horaSelec(hor.value)">
-                        @for (h of horas; track h.hora){
-                            @if(h.d=="0"){
-                                <option value="{{h.hora}}"> {{h.hora}} </option>
-                            }@else {
-                                <option disabled value="{{h.hora}}"> {{h.hora}} </option>
-                            }
-                            
-                        }
-                    </select>
-                </mat-form-field>
-            </div>
-        </form>
-        <br>
-        <!-- Funcion que valida los datos (hora ingresada que no esté ocupada)-->
-        <button class="btn btn-primary">Seleccionar</button>
-    </div>
-    
-    
-    
 
+        <!-- Mostrar especialidades disponibles -->
+        <div class="selEspecialidad container">
+            <h5>Información de la cita</h5>
+            <label for="" class="form-label">Especialidad</label>
+            <select class="form-select" #espe (change)="espSeleccionada(espe.value)" formControlName="especialidad">
+                <option selected disabled>Seleccionar...</option>
+                @for (y of misMedicos; track y;){
+                    <!-- interpolación -->
+                    <option value="{{y.especialidad}}">{{y.especialidad}} </option>
+                }
+            </select>
+        </div>
+        <!-- Mostramos los doctores de la especialidad seleccionada -->
+        @if(especialidad){
+            <br>
+            <div class="doctores container">
+                <h5>Seleccione un Médico</h5>
+                <div class="card-group" style="width: 18rem;">
+                    @for (x of misMedicos; track x;){
+                        @if(x.especialidad===especialidad){
+                            <div class="card">
+                                <img src="{{x.foto}}" alt="" class="card-img-top" width="100px">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{x.nombre}}</h5>
+                                    <p class="card-text">{{x.especialidad}}</p>
+                                    <p class="card-text">{{x.universidad}}</p>
+                                    <!-- Si se ha seleccionado algo -->
+                                    @if(especialidad){
+                                        <a (click)="docSeleccionado(x, misMedicos.indexOf(x))" class="btn btn-primary">Seleccionar</a>
+                                    }
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        }
+        <br>
+        <div class="formulario2 container">
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <label for="especialidadCita" class="form-label">Especialidad</label>
+                    <input type="text" disabled class="form-control" id="especialidadCita"
+                        value="{{medicoAux.especialidad}}">
+                </div>
+                <div class="col-md-6">
+                    <label for="medicoCita" class="form-label">Médico asignado</label>
+                    <input type="text" disabled class="form-control" id="medicoCita" value="{{medicoAux.nombre}}">
+                </div>
+                <div class="col-md-6">
+                    <label for="fechaCita" class="form-label">Fecha</label><br>
+                    <mat-form-field>
+                        <input formControlName="fecha" matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker"
+                            (dateChange)="fechaSelec($event)" readonly>
+                        <mat-datepicker-toggle matIconSuffix [for]="picker" disabled="false"></mat-datepicker-toggle>
+                        <mat-datepicker #picker disabled="false"></mat-datepicker>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                    <label for="horaCita" class="form-label">Hora</label><br>
+                    <mat-form-field>
+                        <mat-label>Hora</mat-label>
+                        <select matNativeControl required #hor (change)="horaSelec(hor.value)" formControlName="hora">
+                            <!-- Se recorre el array de fechas ocupadas y se compara con la obtenida en la fecha -->
+                            @if (fechaSelected) {
+                                @for (h of hours; track h) {
+                                    <!-- hOcupada es función que desactiva las horas ocupadas -->
+                                    <option [disabled]="hOcupada(fechaSelected, h)" value="{{h}}"> {{h}} </option>
+                                }
+                            } @else {
+                                <option disabled value="">Ingrese una fecha para ver los horarios disponibles</option>
+                            }
+                        </select>
+                    </mat-form-field>
+                </div>
+            </div>
+            <br>
+            <!-- Funcion que valida el llenado completo del formulario-->
+            <button (click)="checkData()" class="btn btn-primary">Aceptar</button>
+        </div>
+    </form>
 </body>
