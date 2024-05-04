@@ -1,33 +1,33 @@
-export interface Medico{
-    nombre:string;
-    especialidad:string;
-    foto:string;
-    cedula:string;
-    universidad:string;
-    lugarespecialidad:string;
-    telefono:string;
-    correo:string;
+export interface Medico {
+  nombre: string;
+  especialidad: string;
+  foto: string;
+  cedula: string;
+  universidad: string;
+  lugarespecialidad: string;
+  telefono: string;
+  correo: string;
 }
 
-export interface Cita{
-    nombrePaciente:string;
-    telefono:string;
-    costo:string;
-    nombreDoctor:string;
-    especialidad:string;
-    fecha:string;
-    hora:string;
+export interface Cita {
+  nombrePaciente: string;
+  telefono: string;
+  costo: string;
+  nombreDoctor: string;
+  especialidad: string;
+  fecha: string;
+  hora: string;
 }
 
 export interface Servicio {
-    nombreServicio: String;
-    descripcion: String;
-    costo: String;
-    img: String;
-  }
-  
-  export interface Especialidad {
-    nombreEspecialidad: String;
-    descripcion: String;
-    icono: String;
-  }
+  nombreServicio: String;
+  descripcion: String;
+  costo: String;
+  img: String;
+}
+
+export interface Especialidad {
+  nombreEspecialidad: String;
+  descripcion: String;
+  icono: String;
+}

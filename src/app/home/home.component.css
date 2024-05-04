@@ -115,6 +115,10 @@
     width: fit-content;
 }
 
+.btn-custom:hover {
+    background-color: #193126;
+}
+
 .btn-custom i{
     padding-left: 10px;
 }

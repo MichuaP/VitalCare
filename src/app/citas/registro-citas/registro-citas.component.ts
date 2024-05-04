@@ -187,10 +187,10 @@ export class RegistroCitasComponent {
         showDenyButton: true,
         denyButtonColor:"#3085d6",
         denyButtonText:"Ir a inicio",
-        confirmButtonText: "Si,ir a mis citas",
+        confirmButtonText: "Si, ir a mis citas",
       }).then((result) => {
          if (result.isConfirmed) {
-          this.router.navigate(['/reporte']);
+          this.router.navigate(['/reportes']);
         } else if (result.isDenied) {
           this.router.navigate(['/inicio']);
         }
