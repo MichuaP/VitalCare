@@ -18,7 +18,12 @@ export class SearchComponent {
   miEspecialidad:Especialidad = {
     nombreEspecialidad: "",
     descripcion: "",
-    icono: ""
+    icono: "",
+    informacion: "",
+    img: "",
+    patologias: "",
+    img2: "",
+    acudir: ""
   };
 
   constructor(private serviciosClinica: ServiciosClinicaService, private activatedRoute: ActivatedRoute) {
