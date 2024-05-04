@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { Especialidad, Servicio } from '../medico';
 import { ServiciosClinicaService } from '../shared/servicios-clinica.service';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-servicios',
   standalone: true,
-  imports: [],
+  imports: [RouterModule],
   templateUrl: './servicios.component.html',
   styleUrl: './servicios.component.css'
 })

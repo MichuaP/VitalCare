@@ -1,0 +1,35 @@
+import { Component } from '@angular/core';
+import { UnaespecialidadComponent } from '../unaespecialidad/unaespecialidad.component';
+import { Especialidad } from '../medico';
+import { ActivatedRoute } from '@angular/router';
+import { ServiciosClinicaService } from '../shared/servicios-clinica.service';
+
+@Component({
+  selector: 'app-search',
+  standalone: true,
+  imports: [UnaespecialidadComponent],
+  templateUrl: './search.component.html',
+  styleUrl: './search.component.css'
+})
+export class SearchComponent {
+  nombreEsp: string = "";
+  indice: number = 0;
+
+  miEspecialidad:Especialidad = {
+    nombreEspecialidad: "",
+    descripcion: "",
+    icono: ""
+  };
+
+  constructor(private serviciosClinica: ServiciosClinicaService, private activatedRoute: ActivatedRoute) {
+    this.activatedRoute.params.subscribe(parms => {
+      this.nombreEsp = parms['nombreEsp'];
+      this.indice = this.serviciosClinica.searchUnaEspecialidad(this.nombreEsp);
+      console.log(this.indice);
+
+      if(this.indice != -1) {
+        this.miEspecialidad = this.serviciosClinica.getUnaEspecialidad(this.indice);
+      }
+    })
+  }
+}

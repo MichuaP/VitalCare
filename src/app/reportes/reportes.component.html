@@ -23,7 +23,7 @@
             <div class="select-container col-5">
                 <label for="tipo-cita">Selecciona el tipo de citas:</label>
                 <select id="tipo-cita" (change)="tipoCita($event)">
-                    <option value="todas" >Todas las Citas</option>
+                    <option value="todas" selected>Todas las Citas</option>
                     <option value="proximas">Citas Próximas</option>
                     <option value="anteriores">Citas Anteriores</option>
                 </select>
@@ -63,7 +63,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @for (cita of obtenerCitasSegunTipo(); track cita;) {
+                        @for (cita of citas; track cita;) {
                         <tr>
                             <td>{{ cita.nombrePaciente }}</td>
                             <td>{{ cita.telefono }}</td>

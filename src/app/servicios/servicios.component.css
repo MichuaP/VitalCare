@@ -128,6 +128,13 @@
     padding: 6px 18px;
     border-radius: 40px;
     font-weight: bold;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.btn-sm:hover {
+    background-color: #193126;
+    transform: scale(1.05);
 }
 
 .especialidades .card {

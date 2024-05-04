@@ -1,0 +1,9 @@
+@if(indice == -1) {
+    <div class="container">
+        <p>No contamos con la especialidad de {{nombreEsp}}</p>
+    </div>
+    
+}
+@else {
+    <app-unaespecialidad [especialidad]="miEspecialidad"></app-unaespecialidad>
+}
