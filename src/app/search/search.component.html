@@ -1,7 +1,17 @@
 @if(indice == -1) {
+    <div [ngStyle]="{ 'display': 'flex', 'align-items': 'center', 'height': '85vh' }">
     <div class="container">
-        <p>No contamos con la especialidad de {{nombreEsp}}</p>
+        <div class="row align-items-center">
+            <div class="col-5">
+                <img src="../../assets/img/ups.png" alt="" width="550px">
+            </div>
+            <div class="col-7">
+                <p [ngStyle]="{ 'font-size.px': '40', 'padding-left.px': '40', 'font-weight': 'bold' }">Lo siento, no se encontraron resultados para la especialidad <span [ngStyle]="{ 'color': '#43ba7f' }">{{nombreEsp}}</span>.</p>
+                <p [ngStyle]="{ 'font-size.px': '30', 'padding-left.px': '40' }">¿Quieres intentarlo de nuevo con otra especialidad?</p>
+            </div>
+        </div>
     </div>
+</div>
     
 }
 @else {

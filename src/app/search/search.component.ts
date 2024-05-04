@@ -3,11 +3,12 @@ import { UnaespecialidadComponent } from '../unaespecialidad/unaespecialidad.com
 import { Especialidad } from '../medico';
 import { ActivatedRoute } from '@angular/router';
 import { ServiciosClinicaService } from '../shared/servicios-clinica.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-search',
   standalone: true,
-  imports: [UnaespecialidadComponent],
+  imports: [UnaespecialidadComponent, CommonModule],
   templateUrl: './search.component.html',
   styleUrl: './search.component.css'
 })
