@@ -30,4 +30,9 @@ export interface Especialidad {
   nombreEspecialidad: String;
   descripcion: String;
   icono: String;
+  informacion: String;
+  patologias: String;
+  img: String;
+  img2: String;
+  acudir: String;
 }
