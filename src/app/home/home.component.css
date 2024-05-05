@@ -171,3 +171,24 @@
     text-align: center;
     color: #193126;
 }
+
+#video-container{
+    padding: 30px;
+    padding-bottom: 0;
+}
+#video{
+    padding: 30px;
+}
+#video-texto{
+    background-image: url(../../assets/img/abrazo.png);
+    background-repeat: no-repeat;
+    background-position-y: bottom;
+    background-position-x: right;
+    font-weight: bold;
+    color: rgb(66, 63, 63);
+    font-size: 50px;
+}
+
+iframe{
+    box-shadow: 0 0 20px #193126;
+}
