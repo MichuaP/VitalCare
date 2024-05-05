@@ -1,0 +1,31 @@
+.col-card{
+    position: absolute; 
+    left: 0%; 
+    top: 10px;
+}
+
+.card{
+    box-shadow: 0 0 15px #ddd8d8;
+}
+
+.card:hover{
+    z-index: 5;
+    -webkit-transform:scale(1.1);transform:scale(1.1);
+    transition: 1s;
+}
+
+.card-text{
+    margin-bottom: 9px;
+}
+.contenedor{
+    margin: 0;
+    padding: 30px 50px;
+}
+
+.card-title{
+    color: #238f5a;
+}
+
+.verde{
+    color: #193126;
+}
