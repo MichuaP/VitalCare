@@ -41,10 +41,6 @@ label {
     cursor: pointer;
 }
 
-#tipo-cita option {
-    border-radius: 18px;
-}
-
 /* ----------------------------------------------------------------- */
 
 .reportes .text {
@@ -60,10 +56,14 @@ label {
     background-color: #43ba7f;
     color: white;
     font-size: 20px;
-    padding: 25px 32px;
+    padding: 20px 27px;
     border-radius: 40px;
     font-weight: bold;
     margin-top: 20px;
+}
+
+.btn i{
+    padding-left: 10px;
 }
 
 .btn:hover {

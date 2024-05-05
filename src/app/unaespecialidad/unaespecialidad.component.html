@@ -1,0 +1,41 @@
+<body>
+    <div [ngStyle]="{ 'background-color': '#43ba7f1a' }">
+        <div [ngStyle]="{ 'padding-top.px': '30', 'padding-bottom.px': '40', 'overflow': 'hidden'}">
+            <div class="row align-items-center">
+                <div class="text-center">
+                    <div [ngStyle]="circulo">
+                        <img src="{{especialidad.icono}}" alt="">
+                    </div>
+                    <h1 [ngStyle]="{ 'font-size.px': tam, 'font-weight': estilo }">Detalles de <span
+                            [ngStyle]="{ color: highlight }">{{especialidad.nombreEspecialidad}}</span></h1>
+                    <br>
+                    <a [routerLink]="['/servicios']" [ngStyle]="presentacionBtn" (mouseenter)="onMouseEnter()"
+                        (mouseleave)="onMouseLeave()"><i class="fa-solid fa-arrow-left fa-xl"
+                            [ngStyle]="{ 'padding-right.px': '10' }"></i>Regresar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row align-items-center" [ngStyle]="{ 'padding-top.px': '40', 'padding-bottom.px': '40' }">
+            <div class="col-6">
+                <img src="{{especialidad.img}}" alt="" [ngStyle]="imgStyle">
+            </div>
+            <div class="col-6">
+                <h2 [ngStyle]="{ 'font-weight': estilo }">¿Qué es la especialidad de <span [ngStyle]="{ color: highlight }">{{especialidad.nombreEspecialidad}}</span>?</h2>
+                <p [ngStyle]="{ 'font-size.px': tam2 }">{{especialidad.informacion}}</p>
+            </div>
+        </div>
+        <h2 [ngStyle]="{ 'font-weight': estilo }">¿Qué <span [ngStyle]="{ color: highlight }">patologías</span> trata?</h2>
+        <p [ngStyle]="{'font-size.px': tam2 }">{{especialidad.patologias}}</p>
+        <div class="row align-items-center" [ngStyle]="{ 'padding-top.px': '40', 'padding-bottom.px': '40' }">
+            <div class="col-6">
+                <h2 [ngStyle]="{ 'font-weight': estilo }">¿En qué <span [ngStyle]="{ color: highlight }">casos</span> se debe acudir a esta especialidad?</h2>
+                <p [ngStyle]="{ 'font-size.px': tam2 }">{{especialidad.acudir}}</p>
+            </div>
+            <div class="col-6">
+                <img src="{{especialidad.img2}}" alt="" [ngStyle]="imgStyle">
+            </div>
+        </div>
+    </div>
+</body>

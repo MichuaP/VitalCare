@@ -1,105 +1,192 @@
 <body>
-    <div class="info container">
-        <h1>Registro de citas</h1>
-        <p>Llene la siguiente infromación para realizar la cita</p>
-    </div>
-    <div class="formulario1 container">
-        <h5>Información del paciente</h5>
-        <form class="row g-3">
-            <div class="col-md-6">
-                <label for="nomCita" class="form-label">Nombres</label>
-                <input type="text" class="form-control" id="nomCita" required>
-            </div>
-            <div class="col-md-6">
-                <label for="apeCita" class="form-label">Apellidos</label>
-                <input type="text" class="form-control" id="apeCita" required>
-            </div>
-            <div class="col-12">
-                <label for="telCita" class="form-label">Teléfono</label>
-                <input type="tel" class="form-control" id="telCita" required>
-            </div>
-        </form>
-    </div>
-    
-    <!-- Mostrar especialidades disponibles -->
-    <div class="selEspecialidad container">
-        <h5>Información de la cita</h5>
-        <label for="" class="form-label">Especialidad</label>
-        <select class="form-select" #espe (change)="espSeleccionada(espe.value)">
-            <option selected disabled >Seleccionar...</option>
-            @for (y of misMedicos; track y;){
-                <!-- interpolación -->
-                <option value="{{y.especialidad}}">{{y.especialidad}} </option>
-            }
-        </select>
-    </div>
-    <!-- Mostramos los doctores de la especialidad seleccionada -->
-    @if(especialidad){
-        <br>
-        <div class="doctores container">
-            <h5>Seleccione un Médico</h5>
-            <div class="card-group" style="width: 18rem;">
-                @for (x of misMedicos; track x;){
-                    @if(x.especialidad===especialidad){
-                        <div class="card">
-                            <img src="{{x.foto}}" alt="" class="card-img-top">
-                            <div class="card-body">
-                                <h5 class="card-title">{{x.nombre}}</h5>
-                                <p class="card-text">{{x.especialidad}}</p>
-                                <p class="card-text">{{x.universidad}}</p>
-                                <!-- Si se ha seleccionado algo -->
-                                @if(especialidad){
-                                    <button (click)="docSeleccionado(x)" class="btn btn-primary">Seleccionar</button>
-                                }
-                            </div>
-                        </div>
-                    }
-                }
+    <div class="container-top">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-7">
+                    <h1 class="title-container">La mejor atención solo en <span class="highlight">Vital Care</span></h1>
+                    <br>
+                    <p class="text-container">En nuestra clínica, nos enorgullece contar con los <span class="highlight">mejores especialistas médicos</span>. 
+                        Nuestro equipo de profesionales altamente calificados está aquí para cuidar de ti y de tu familia en cada etapa de tu vida..</p>
+                </div>
+                <div class="col-5">
+                    <img src="../../assets/img/doctoresEspe.png" alt="" width="600px" >
+                </div>
+                
             </div>
         </div>
-    }
-    <br>
-    <div class="formulario2 container">
-        <form class="row g-3">
-            <div class="col-md-6">
-                <label for="especialidadCita" class="form-label">Especialidad</label>
-                <input type="text" disabled class="form-control" id="especialidadCita" value="{{medico.especialidad}}">
-            </div>
-            <div class="col-md-6">
-                <label for="medicoCita" class="form-label">Médico asignado</label>
-                <input type="text" disabled class="form-control" id="medicoCita" value="{{medico.nombre}}">
-            </div>
-            <div class="col-md-6">
-                <label for="fechaCita" class="form-label">Fecha</label><br>
-                <mat-form-field >
-                    <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker" disabled (dateChange)="fechaSelec($event)">
-                    <mat-datepicker-toggle matIconSuffix [for]="picker" disabled="false"></mat-datepicker-toggle>
-                    <mat-datepicker #picker disabled="false"></mat-datepicker>
-                </mat-form-field>
-            </div>
-            <div class="col-md-6">
-                <label for="horaCita" class="form-label">Hora</label><br>
-                <mat-form-field>
-                    <mat-label>Hora</mat-label>
-                    <select matNativeControl required #hor (change)="horaSelec(hor.value)">
-                        @for (h of horas; track h.hora){
-                            @if(h.d=="0"){
-                                <option value="{{h.hora}}"> {{h.hora}} </option>
-                            }@else {
-                                <option disabled value="{{h.hora}}"> {{h.hora}} </option>
-                            }
+    </div>
+    <div class="container-formulario container">
+        <form class="" [formGroup]="citaForm">
+            <div class="container-paciente row">
+                <div class="col-8">
+                    <div class="row">
+                        <div class="col-12">
+                            <h1 class="section-name">Registro de citas médicas</h1>
+                            <p class="style-text">Por favor, <span class="highlight"> completa el formulario </span>  a continuación para apartar tu cita médica con nuestros especialistas. </p>
+                        </div>
+                        <br>
+                        <div class="col-12">
+                            <h5>Información del paciente</h5>
+                        </div>
+                        <div class="col-6">
+                            <label for="nomCita" class="form-label">Nombres</label>
+                            <input type="text" class="form-control" id="nomCita" required formControlName="nombre" [(ngModel)]="nombrePac">
+                        </div>
+                        <div class="col-6">
+                            <label for="apeCita" class="form-label">Apellidos</label>
+                            <input type="text" class="form-control" id="apeCita" required formControlName="apellidos" [(ngModel)]="apellidosPac">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <label for="telCita" class="form-label">Teléfono</label>
+                            <input type="tel" class="form-control" id="telCita" required formControlName="telefono" [(ngModel)]="telefonoPac">
+                        </div>
+                    </div>
+                    <!-- Mostrar especialidades disponibles -->
+                    <div class="container-doctor row">
+                        <div class="col-12"><br>
+                            <h5>Información de la cita</h5>
+                            <label for="" class="form-label">Servicio requerido</label>
+                            <select class="form-select" #espe (change)="espSeleccionada(espe.value)" formControlName="especialidad">
+                                <option selected disabled>Seleccionar...</option>
+                                @for (y of especialidades; track y;){
+                                    <!-- interpolación -->
+                                    <option value="{{y}}">{{y}} </option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class=" row">
+                        <div class="col-6">
+                            <label for="especialidadCita" class="form-label">Especialidad</label>
+                            <input type="text" disabled class="form-control" id="especialidadCita"
+                                value="{{medicoAux.especialidad}}">
+                        </div>
+                        <div class="col-6">
+                            <label for="medicoCita" class="form-label">Médico asignado</label>
+                            <input type="text" disabled class="form-control" id="medicoCita" value="{{medicoAux.nombre}}">
+                        </div>
+                    </div>
+                    <div class="row container-FH">
+                        <div class="col-md-6">
+                            <label for="fechaCita" class="form-label">Fecha</label><br>
+                            <mat-form-field>
+                                <input formControlName="fecha" matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker"
+                                    (dateChange)="fechaSelec($event)" readonly>
+                                <mat-datepicker-toggle matIconSuffix [for]="picker" disabled="false"></mat-datepicker-toggle>
+                                <mat-datepicker #picker disabled="false"></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="horaCita" class="form-label">Hora</label><br>
+                            <mat-form-field>
+                                <mat-label>Hora</mat-label>
+                        <select matNativeControl required #hor class="form-select" (change)="horaSelec(hor.value)" formControlName="hora">
+                                    <!-- Se recorre el array de fechas ocupadas y se compara con la obtenida en la fecha -->
+                                    @if (fechaSelected) {
+                                        @for (h of hours; track h) {
+                                            <!-- hOcupada es función que desactiva las horas ocupadas -->
+                                            <option [disabled]="hOcupada(fechaSelected, h)" value="{{h}}"> {{h}} </option>
+                                        }
+                                    } @else {
+                                        <option disabled value="">Ingrese una fecha para ver los horarios disponibles</option>
+                                    }
+                                </select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-4 container-side">
+                        <div class="container-resumen">
+                            <div id="titResumen">
+                                <p>Resumen de la cita</p>
+                            </div>
                             
-                        }
-                    </select>
-                </mat-form-field>
+                                <table class="table tabla1">
+                                    @if(especialidad){
+                                        <tr>
+                                            <td>Consulta especialidad</td>
+                                            <td>$700</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Descuento por cita en linea</td>
+                                            <td>-$50</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="font-weight: bold;">Total</td>
+                                            <td style="font-weight: bold;">$650</td>
+                                        </tr>
+                                    }@else {
+                                        <tr>
+                                            <td>Consulta especialidad</td>
+                                            <td>$0</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Descuento por cita en linea</td>
+                                            <td>$0</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="font-weight: bold;">Total</td>
+                                            <td style="font-weight: bold;">$0</td>
+                                        </tr>
+                                    }
+                                    
+                                </table>
+                                <div class="bot">
+                                    <!-- Funcion que valida el llenado completo del formulario-->
+                                    <button (click)="checkData()" class="btn btn-success btn-outline-light">Confirmar mi cita</button>
+                                </div>
+                        </div>
+                    <div class="row">
+                        <div>
+                            <!-- Mostramos los doctores de la especialidad seleccionada -->
+                            @if(especialidad){
+                                <br>
+                                <div class="doctores">
+                                    <h5>Seleccione un Médico</h5>
+                                    <div id="carouselExample" class="carousel slide">
+                                        <div class="carousel-inner">
+                                            @for (x of misMedicos; track x;){
+                                                @if(x.especialidad===especialidad){
+                                                    <div class="carousel-item active">
+                                                        <div class="card">
+                                                            <img src="{{x.foto}}" alt="" class="card-img-top img-fluid" width="100px">
+                                                            <div class="card-body">
+                                                                <h5 class="card-title">{{x.nombre}}</h5>
+                                                                <p class="card-text">{{x.especialidad}}</p>
+                                                                <p class="card-text">{{x.universidad}}</p>
+                                                                <!-- Si se ha seleccionado algo -->
+                                                                @if(especialidad){
+                                                                    <div class="bot">
+                                                                        <a (click)="docSeleccionado(x, misMedicos.indexOf(x))" class="btn btn-success btn-outline-light">Seleccionar</a>
+                                                                    </div>
+                                                                }
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                }
+                                            }
+                                        </div>
+                                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                            <span class="visually-hidden">Previous</span>
+                                        </button>
+                                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                            <span class="visually-hidden">Next</span>
+                                        </button>
+                                    </div>
+                                    <div class="card-group" style="width: 18rem;">
+                                        
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
             </div>
         </form>
-        <br>
-        <!-- Funcion que valida los datos (hora ingresada que no esté ocupada)-->
-        <button class="btn btn-primary">Seleccionar</button>
     </div>
-    
-    
-    
-
 </body>

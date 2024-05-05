@@ -1,17 +1,17 @@
 import { Medico } from "./medico";
 
 export const CMEDICOS:Medico[]=[
-        // {
-        //     nombre:"Dr.House",
-        //     especialidad:"Diagnóstico clínico",
-        //     foto:"assets/img/house.jpeg",
-        //     cedula:"67395822 98697124",
-        //     universidad:"Harvard",
-        //     lugarespecialidad:"Harvard",
-        //     telefono:"55 895 874 2137",
-        //     correo:"housemedical@gmail.com",
-        //     sexo:"M"
-        // },
+        {
+            nombre:"Dr.House",
+            especialidad:"Diagnóstico clínico",
+            foto:"assets/img/doctores/house.jpeg",
+            cedula:"67395822 98697124",
+            universidad:"Harvard",
+            lugarespecialidad:"Harvard",
+            telefono:"55 895 874 2137",
+            correo:"housemedical@gmail.com",
+            sexo:"M"
+        },
         {
             nombre:"Santiago García Pérez",
             especialidad:"Medicina general",

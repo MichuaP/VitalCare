@@ -115,6 +115,10 @@
     width: fit-content;
 }
 
+.btn-custom:hover {
+    background-color: #193126;
+}
+
 .btn-custom i{
     padding-left: 10px;
 }
@@ -124,7 +128,7 @@
 }
 
 .estadistica{
-    padding: 0px 40px;
+    padding: 0px 50px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -137,6 +141,7 @@
 
 .estadisticas{
     padding: 90px 0px;
+    overflow-x: hidden;
 }
 
 .estadistica div{

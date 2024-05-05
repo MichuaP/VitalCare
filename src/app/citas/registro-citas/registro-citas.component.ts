@@ -1,74 +1,158 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { Cita, Medico } from '../../medico';
 import { MedicoService } from '../../shared/medico.service';
 import {MatDatepickerInputEvent, MatDatepickerModule} from '@angular/material/datepicker';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatNativeDateModule, provideNativeDateAdapter} from '@angular/material/core';
+import {MatNativeDateModule} from '@angular/material/core';
 import {MatSelectModule} from '@angular/material/select'; 
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
+
 
 @Component({
   selector: 'app-registro-citas',
   standalone: true,
-  imports: [MatInputModule, MatFormFieldModule, MatDatepickerModule, MatNativeDateModule, MatSelectModule],
+  imports: [
+    MatInputModule,
+    MatFormFieldModule,
+    MatDatepickerModule, 
+    MatNativeDateModule, 
+    MatSelectModule,
+    ReactiveFormsModule,
+    SweetAlert2Module,
+    CommonModule
+  ],
   templateUrl: './registro-citas.component.html',
   styleUrl: './registro-citas.component.css'
 })
+
 export class RegistroCitasComponent {
   
+  //Formulario
+  citaForm: FormGroup;
   especialidad:any="";
   medico:any="";
+  medicoAux:any="";
   misMedicos:Medico[]=[];
-  miCita!:Cita;
+  nombrePac:string="";
+  telefonoPac:string="";
+  apellidosPac:string="";
 
-  //Fechas
+  //Fechas input material
   fechaAct = new Date();
   fechaInp:any="";
   minDate:Date;
   maxDate:Date;
 
-  //Horas de servicio
-   horas = [
-     {"hora": '07:00', "d":"0"},{"hora": '08:00', "d":"0"},{"hora": '09:00', "d":"0"},
-     {"hora": '10:00', "d":"0"},{"hora": '11:00', "d":"0"},{"hora": '12:00', "d":"0"},
-     {"hora": '13:00', "d":"0"},{"hora": '14:00', "d":"0"},{"hora": '15:00', "d":"0"},
-     {"hora": '16:00', "d":"0"},{"hora": '17:00', "d":"0"},{"hora": '18:00', "d":"0"},
-     {"hora": '19:00', "d":"0"},{"hora": '20:00', "d":"0"}
+  //Fechas formateadas
+  fechaSelected:any="";
+
+  //Estructura del array de fechas ocupadas (localstorage)
+  horas=[
+    {"fecha":"30/4/2024","hora":"12:00"}
+    //dd/mm/yyyy
   ];
 
-  //Inyectamos el servicio en el constructor
-  constructor(public miservicio: MedicoService){
-    console.log("constructor de medicos citas");
-    //Manejo de fechas input material
-    const currentDate = new Date();
-    //Fecha mínima es la fecha actual
-    this.minDate = currentDate;
-    //Fecha máxima es diciembre de este año
-    this.maxDate = new Date(currentDate.getFullYear(), 11, 31);
+  //Horas del servicio
+  hours: string[] = [
+    '7:00', '8:00', '9:00', '10:00', '11:00', '12:00',
+    '13:00', '14:00', '15:00', '16:00', '17:00', '18:00',
+    '19:00', '20:00'
+  ];
+
+  especialidades:string[]=[
+    "Medicina general","Oftalmología", "Cardiología", "Dermatología","Ginecología y obstetricia",
+    "Neurología","Pediatría","Oncología","Ortopedia y traumatología", "Endocrinología",
+    "Psiquiatría","Geriatría"
+  ];
+
+  //Hora seleccionada
+  horaSelected:any="";
+
+  //Cosntructor
+  constructor(public miservicio: MedicoService, private fb: FormBuilder, private router:Router){
+    //Formulario
+    this.citaForm = this.fb.group({
+      nombre: ['', [Validators.required]],
+      apellidos: ['', [Validators.required]],
+      telefono: ['', [Validators.required]],
+      especialidad: ['', [Validators.required]],
+      fecha: ['', [Validators.required]],
+      hora: ['', [Validators.required]],
+    });
+    console.log("constructor de registro de citas");
+    //Establecer fecha actual
+    const fechaFormatAct = new Date(this.fechaAct);
+    console.log("La fecha actual formateada es: "+fechaFormatAct.toLocaleDateString());
+    //Establecer la fecha mínima
+    this.minDate = this.fechaAct;
+    //Establecer la fecha máxima es diciembre de este año
+    this.maxDate = new Date(this.fechaAct.getFullYear(), 11, 31);
   }
 
-  events: string[] = [];
+  //Verificar que todo el formulario se llenó
+  checkData(){
+    if(this.citaForm.valid){
+      Swal.fire({
+        title: "¿Deseas confirmar tu cita?",
+        showDenyButton: true,
+        showCancelButton: true,
+        confirmButtonText: "Confirmar",
+        denyButtonText: `Cancelar`
+      }).then((result) => {
+         if (result.isConfirmed) {
+          this.nuevaCita();
+        } else if (result.isDenied) {
+        }
+      });
+    }else{
+      Swal.fire('¡Porfavor llene todos los campos!', '', 'error');
+    }
+  }
 
+  //Función que recibe la fecha seleccionada
   fechaSelec(event: MatDatepickerInputEvent<Date>) {
-    console.log("la fecha seleccionada es "+ event.value);
+    this.fechaInp= event.value;
+    //Formatear la fecha
+    const fechaFormatInp = new Date(this.fechaInp);
+    this.fechaSelected = fechaFormatInp.toLocaleDateString();
+    console.log("La fecha formateada es: "+this.fechaSelected);
   }
 
+  //Función que recibe la hora seleccionada
   horaSelec(hora:any):void{
-    console.log('Hora seleccionada:'+hora);
+    this.horaSelected=hora;
+    console.log('Hora seleccionada:'+ this.horaSelected);
   }
 
+  //Función que verifica si la hora está ocupada para el día seleccionado
+  hOcupada(fecha: string, hora: string): boolean {
+    for (let f= 0; f < this.horas.length; f++) {
+      if (this.horas[f].fecha === fecha && this.horas[f].hora === hora) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  //ngOnInit
   ngOnInit():void{
     console.log("ngOnInit de citas 1");
     this.misMedicos=this.miservicio.getMedicos();
     console.log(this.misMedicos);
     //Obtenemos datos de local
-    const horasOcu = localStorage.getItem('ocupadas');
-    if (horasOcu) {
-      this.horas = JSON.parse(horasOcu);
-      console.log("Se han recuperado horas del localstorage");
-      console.log('Horas recuperadas del localStorage:', this.horas);
+    const fechasOcupadas = localStorage.getItem('ocupadas');
+    if (fechasOcupadas) {
+      //Si existe en localstorage, se pasa al array de horas
+       this.horas = JSON.parse(fechasOcupadas);
+       console.log("Se han recuperado fechas del localstorage");
+       console.log('Fechas recuperadas del localStorage:', this.horas);
     }else{
-      console.log('No hay horas guardadas en el localStorage.');
+      console.log('No hay fechas guardadas en el localStorage.');
       localStorage.setItem('ocupadas', JSON.stringify(this.horas));
     }
   }
@@ -80,18 +164,47 @@ export class RegistroCitasComponent {
 	}
 
   //Función que recibe al doctor seleccionado
-  docSeleccionado(doctor:any):void{
-    this.medico = doctor;
+  docSeleccionado(doctor:any, indice:number):void{
+    this.medicoAux = doctor;
+    console.log(this.medicoAux);
+    this.medico = this.misMedicos[indice].nombre;
+    console.log("El nombre del medico es:" + this.medico);
   }
 
-  nuevaCita(): void{
-    //  this.clientesService.agregarCliente(this.cliente);
-    // this.miCita
+  //Función para hacer una nueva cita
+  nuevaCita(): void {
+    let newCita:Cita = {
+      nombrePaciente:this.nombrePac,
+      telefono: this.telefonoPac,
+      costo:"$650",
+      nombreDoctor:this.medico,
+      especialidad: this.especialidad,
+      fecha:this.fechaSelected,
+      hora:this.horaSelected
+    };
+    console.log(newCita);//---
+    //Utilizar el servicio para agregar a cita al array de localStorage
+    this.miservicio.agregarCita(newCita);
+    //Agregar las horas ocupadas al array de citas ocupadas
+    this.horas.push({fecha:this.fechaSelected, hora:this.horaSelected});
+    localStorage.setItem('ocupadas', JSON.stringify(this.horas));
+    if(newCita){
+      Swal.fire({
+        icon: "success",
+        title: "Cita reservada con éxito",
+        text:"Puedes pagar al momento de asistir a tu cita",
+        showDenyButton: true,
+        denyButtonColor:"#3085d6",
+        denyButtonText:"Ir a inicio",
+        confirmButtonText: "Ir a mis citas",
+      }).then((result) => {
+         if (result.isConfirmed) {
+          this.router.navigate(['/reportes']);
+        } else if (result.isDenied) {
+          this.router.navigate(['/inicio']);
+        }
+      });
+    }
   }
-
-  seleccionada(select:string){
-    console.log("lo seleccionado es:"+select);
-  }
-  
 
 }
