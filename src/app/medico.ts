@@ -8,6 +8,7 @@ export interface Medico{
     telefono:string;
     correo:string;
     sexo:string;
+}
 
 export interface Cita {
   nombrePaciente: string;
