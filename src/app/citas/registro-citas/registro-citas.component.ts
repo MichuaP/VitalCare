@@ -176,7 +176,7 @@ export class RegistroCitasComponent {
     let newCita:Cita = {
       nombrePaciente:this.nombrePac,
       telefono: this.telefonoPac,
-      costo:"$700",
+      costo:"$650",
       nombreDoctor:this.medico,
       especialidad: this.especialidad,
       fecha:this.fechaSelected,
