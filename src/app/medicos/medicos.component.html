@@ -1,1 +1,27 @@
-<p>medicos works!</p>
+<div class="contenedor">
+    <div class="row row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5" data-masonry='{"percentPosition": true}' style="position: relative; height: 774px;">
+        @for (m of misMedicos;track m; let i = $index){
+            <div class="col mb-4 col-card">
+                <div class="card">
+                    <img src={{m.foto}} class="card-img-top" alt="...">
+                    <div class="card-body">
+                        @if (m.sexo == "M"){
+                            <h5 class="card-title">Dr. {{m.nombre}}</h5>
+                        }
+                        @else {
+                            <h5 class="card-title">Dra. {{m.nombre}}</h5>   
+                        }
+                        <p class="card-text"><span class="fw-bold verde">Especialidad:</span> {{m.especialidad}}</p>
+                        <p class="card-text"><span class="fw-bold verde">Cédula:</span> {{m.cedula}}</p>
+                        <p class="card-text"><span class="fw-bold verde">Universidad:</span> {{m.universidad}}</p>
+                        <p class="card-text"><span class="fw-bold verde">Lugar de Especialidad:</span> {{m.lugarespecialidad}}</p>
+                    </div>
+                    <div class="card-footer">
+                        <div class="text-muted"><i class="fa-solid fa-phone pe-2"></i>{{m.telefono}}</div>
+                        <div class="text-muted"><i class="fa-solid fa-envelope pe-2"></i>{{m.correo}}</div>
+                    </div>
+                </div>
+            </div>
+        }    
+    </div>
+</div>

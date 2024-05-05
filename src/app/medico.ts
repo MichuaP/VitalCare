@@ -1,13 +1,13 @@
-export interface Medico {
-  nombre: string;
-  especialidad: string;
-  foto: string;
-  cedula: string;
-  universidad: string;
-  lugarespecialidad: string;
-  telefono: string;
-  correo: string;
-}
+export interface Medico{
+    nombre:string;
+    especialidad:string;
+    foto:string;
+    cedula:string;
+    universidad:string;
+    lugarespecialidad:string;
+    telefono:string;
+    correo:string;
+    sexo:string;
 
 export interface Cita {
   nombrePaciente: string;

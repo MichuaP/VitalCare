@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Medico } from '../medico';
+import { MedicoService } from '../shared/medico.service';
 
 @Component({
   selector: 'app-medicos',
@@ -8,5 +10,11 @@ import { Component } from '@angular/core';
   styleUrl: './medicos.component.css'
 })
 export class MedicosComponent {
+  misMedicos:Medico[]=[];
 
+  constructor(public miservicio:MedicoService){ }
+
+  ngOnInit():void{
+    this.misMedicos = this.miservicio.getMedicos();
+  }
 }
