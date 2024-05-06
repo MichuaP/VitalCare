@@ -1,3 +1,9 @@
+<div id="texto">
+    <h1>La atención de calidad comienza con <span class="highlight">personas de calidad</span></h1>
+    <p>Nuestros médicos están altamente calificados y provienen de los principales centros académicos de México y el mundo.
+        Desde el comienzo, nuestro equipo desarrolló políticas de calidad para brindar una atención de calidad. Además de la alta calificación y vasta experiencia de nuestros médicos, también están comprometidos a brindar de manera constante una excelente atención a las personas del país.
+    </p>
+</div>
 <div class="contenedor">
     <div class="row row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5" data-masonry='{"percentPosition": true}' style="position: relative; height: 774px;">
         @for (m of misMedicos;track m; let i = $index){
@@ -6,7 +12,7 @@
                     <img src={{m.foto}} class="card-img-top" alt="...">
                     <div class="card-body">
                         @if (m.sexo == "M"){
-                            <h5 class="card-title">Dr. {{m.nombre}}</h5>
+                            <h5 class="card-title highlight">Dr. {{m.nombre}}</h5>
                         }
                         @else {
                             <h5 class="card-title">Dra. {{m.nombre}}</h5>   
