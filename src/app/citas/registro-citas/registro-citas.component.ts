@@ -11,6 +11,7 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { ResumenComponent } from '../resumen/resumen.component';
 
 
 @Component({
@@ -24,13 +25,17 @@ import { CommonModule } from '@angular/common';
     MatSelectModule,
     ReactiveFormsModule,
     SweetAlert2Module,
-    CommonModule
+    CommonModule,
+    ResumenComponent
   ],
   templateUrl: './registro-citas.component.html',
   styleUrl: './registro-citas.component.css'
 })
 
 export class RegistroCitasComponent {
+
+  //Resumen
+  continuar:boolean=false;
   
   //Formulario
   citaForm: FormGroup;
@@ -161,6 +166,7 @@ export class RegistroCitasComponent {
   espSeleccionada(value:string): void {
 		this.especialidad = value;
     console.log(this.especialidad);
+    this.continuar=true;
 	}
 
   //Función que recibe al doctor seleccionado

@@ -9,7 +9,7 @@
                         Nuestro equipo de profesionales altamente calificados está aquí para cuidar de ti y de tu familia en cada etapa de tu vida..</p>
                 </div>
                 <div class="col-5">
-                    <img src="../../assets/img/doctoresEspe.png" alt="" width="600px" >
+                    <img src="assets/img/doctoresEspe.png" alt="" width="600px" >
                 </div>
                 
             </div>
@@ -103,37 +103,8 @@
                             <div id="titResumen">
                                 <p>Resumen de la cita</p>
                             </div>
-                            
-                                <table class="table tabla1">
-                                    @if(especialidad){
-                                        <tr>
-                                            <td>Consulta especialidad</td>
-                                            <td>$700</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Descuento por cita en linea</td>
-                                            <td>-$50</td>
-                                        </tr>
-                                        <tr>
-                                            <td style="font-weight: bold;">Total</td>
-                                            <td style="font-weight: bold;">$650</td>
-                                        </tr>
-                                    }@else {
-                                        <tr>
-                                            <td>Consulta especialidad</td>
-                                            <td>$0</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Descuento por cita en linea</td>
-                                            <td>$0</td>
-                                        </tr>
-                                        <tr>
-                                            <td style="font-weight: bold;">Total</td>
-                                            <td style="font-weight: bold;">$0</td>
-                                        </tr>
-                                    }
-                                    
-                                </table>
+                                <!-- Comunicación padre a hijo (se manda boolean) -->
+                                <app-resumen [continuar]="continuar"></app-resumen>
                                 <div class="bot">
                                     <!-- Funcion que valida el llenado completo del formulario-->
                                     <button (click)="checkData()" class="btn btn-success btn-outline-light">Confirmar mi cita</button>

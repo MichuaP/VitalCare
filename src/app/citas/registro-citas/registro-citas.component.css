@@ -23,9 +23,7 @@
 .min{
     font-size: 15px;
 }
-.tabla1 .min{
-    font-size: 15px;
-}
+
 
 .container-resumen{
     width:300px;
@@ -60,15 +58,6 @@ label{
     font-weight:600;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
-}
-.container-resumen .tabla1{
-
-    /* background-color: aqua; */
-}
-
-.tabla1 td{
-    padding-left: 20px;
-    padding-right: 15px;
 }
 
 .container-resumen .bot{

@@ -1,0 +1,30 @@
+<table class="table tabla1">
+    @if(continuar){
+        <tr>
+            <td>Consulta especialidad</td>
+            <td>$700</td>
+        </tr>
+        <tr>
+            <td>Descuento por cita en linea</td>
+            <td>-$50</td>
+        </tr>
+        <tr>
+            <td style="font-weight: bold;">Total</td>
+            <td style="font-weight: bold;">$650</td>
+        </tr>
+    }@else {
+        <tr>
+            <td>Consulta especialidad</td>
+            <td>$0</td>
+        </tr>
+        <tr>
+            <td>Descuento por cita en linea</td>
+            <td>$0</td>
+        </tr>
+        <tr>
+            <td style="font-weight: bold;">Total</td>
+            <td style="font-weight: bold;">$0</td>
+        </tr>
+    }
+    
+</table>
