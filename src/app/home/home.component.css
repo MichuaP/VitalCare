@@ -115,6 +115,10 @@
     width: fit-content;
 }
 
+.btn-custom:hover {
+    background-color: #193126;
+}
+
 .btn-custom i{
     padding-left: 10px;
 }
@@ -124,7 +128,7 @@
 }
 
 .estadistica{
-    padding: 0px 40px;
+    padding: 0px 50px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -136,7 +140,8 @@
 }
 
 .estadisticas{
-    padding: 90px 0px;
+    padding: 130px 0px;
+    overflow-x: hidden;
 }
 
 .estadistica div{
@@ -165,4 +170,46 @@
     font-size: 20px;
     text-align: center;
     color: #193126;
+}
+
+#video-container{
+    padding: 30px;
+    padding-bottom: 0;
+}
+#video{
+    padding: 30px;
+}
+#video-texto{
+    background-image: url(../../assets/img/abrazo.png);
+    background-repeat: no-repeat;
+    background-position-y: bottom;
+    background-position-x: right;
+    font-weight: bold;
+    color: rgb(66, 63, 63);
+    font-size: 50px;
+}
+
+iframe{
+    box-shadow: 0 0 20px #193126;
+}
+
+#reconocimientos{
+    background-color: #43ba7f1a;
+    text-align: center;
+    padding: 90px 0px 50px 0px;
+}
+
+#reconocimientos img{
+    height: 100px;
+    margin-bottom: 40px;
+}
+
+#reconocimientos h2{
+    font-weight: bold;
+    font-size: 35px;
+}
+
+#reconocimientos p{
+    font-size: 18px;
+    padding-bottom: 20px;
 }

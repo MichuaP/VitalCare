@@ -1,4 +1,4 @@
-import {Medico} from "./medico";
+import { Medico } from "./medico";
 
 export const CMEDICOS:Medico[]=[
         {
@@ -9,7 +9,8 @@ export const CMEDICOS:Medico[]=[
             universidad:"Harvard",
             lugarespecialidad:"Harvard",
             telefono:"55 895 874 2137",
-            correo:"housemedical@gmail.com"
+            correo:"housemedical@gmail.com",
+            sexo:"M"
         },
         {
             nombre:"Santiago García Pérez",
@@ -19,7 +20,8 @@ export const CMEDICOS:Medico[]=[
             universidad:"UNAM",
             lugarespecialidad:"Médica Sur",
             telefono:"449-665-4321",
-            correo:"santiago.garcia@gmail.com"
+            correo:"santiago.garcia@gmail.com",
+            sexo:"M"
         },
         {
             nombre:"Valentina Rodríguez Martínez",
@@ -29,7 +31,8 @@ export const CMEDICOS:Medico[]=[
             universidad:"UP",
             lugarespecialidad:"Centro Médico ABC",
             telefono:"449-776-5432",
-            correo:"valentina.rodriguez@gmail.com"
+            correo:"valentina.rodriguez@gmail.com",
+            sexo:"F"
         },
         {
             nombre:"Mateo López Sánchez",
@@ -39,7 +42,8 @@ export const CMEDICOS:Medico[]=[
             universidad:"UANL",
             lugarespecialidad:"IMSS",
             telefono:"449-887-6543",
-            correo:"mateo.lopez@gmail.com"
+            correo:"mateo.lopez@gmail.com",
+            sexo:"M"
         },
         {
             nombre:"Sofía Fernández González",
@@ -49,7 +53,8 @@ export const CMEDICOS:Medico[]=[
             universidad:"IPN",
             lugarespecialidad:"Hospital Civil de Guadalajara",
             telefono:"449-098-7654",
-            correo:"sofia.fernandez@gmail.com"
+            correo:"sofia.fernandez@gmail.com",
+            sexo:"F"
         },
         {
             nombre:"Sebastián Martínez López",
@@ -59,7 +64,8 @@ export const CMEDICOS:Medico[]=[
             universidad:"UDEM",
             lugarespecialidad:"Hospital General Dr. Manuel Gea González",
             telefono:"449-109-8765",
-            correo:"sebastian.martinez@gmail.com"
+            correo:"sebastian.martinez@gmail.com",
+            sexo:"M"
         },
         {
             nombre:"Isabella Pérez Rodríguez",
@@ -69,7 +75,8 @@ export const CMEDICOS:Medico[]=[
             universidad:"UDLAP",
             lugarespecialidad:"Hospital Ángeles -Loma",
             telefono:"449-210-9876",
-            correo:"isabella.perez@gmail.com"
+            correo:"isabella.perez@gmail.com",
+            sexo:"F"
         },      
         {
             nombre:"Leonardo Torres García",
@@ -79,7 +86,8 @@ export const CMEDICOS:Medico[]=[
             universidad:"UDG",
             lugarespecialidad:"Christus Muguerza",
             telefono:"449-321-0987",
-            correo:"leonardo.torres@gmail.com"
+            correo:"leonardo.torres@gmail.com",
+            sexo:"M"
         },    
         {
             nombre:"Emilia Ruiz Martínez",
@@ -89,7 +97,8 @@ export const CMEDICOS:Medico[]=[
             universidad:"UAM",
             lugarespecialidad:"Hospital Español",
             telefono:"449-432-1098",
-            correo:"emilia.ruiz@gmail.com"
+            correo:"emilia.ruiz@gmail.com",
+            sexo:"F"
         },    
         {
             nombre:"Gabriel Díaz Pérez",
@@ -99,7 +108,8 @@ export const CMEDICOS:Medico[]=[
             universidad:"BUAP",
             lugarespecialidad:"Hospital Zambrano Hellion TecSalud",
             telefono:"449-543-2109",
-            correo:"gabriel.diaz@gmail.com"
+            correo:"gabriel.diaz@gmail.com",
+            sexo:"M"
         },    
         {
             nombre:"Lucía Gómez Sánchez",
@@ -109,7 +119,8 @@ export const CMEDICOS:Medico[]=[
             universidad:"UAG",
             lugarespecialidad:"Hospital San Javier Guadalajara",
             telefono:"449-654-3210",
-            correo:"lucia.gomez@gmail.com"
+            correo:"lucia.gomez@gmail.com",
+            sexo:"F"
         },    
         {
             nombre:"Juan Herrera Martínez",
@@ -119,7 +130,8 @@ export const CMEDICOS:Medico[]=[
             universidad:"UNAM",
             lugarespecialidad:"Centro Médico Dalinde",
             telefono:"449-765-4321",
-            correo:"juan.herrera@gmail.com"
+            correo:"juan.herrera@gmail.com",
+            sexo:"M"
         },   
         {
             nombre:"Valeria Castro Rodríguez",
@@ -129,7 +141,8 @@ export const CMEDICOS:Medico[]=[
             universidad:"UP",
             lugarespecialidad:"Hospital San José TecSalud",
             telefono:"449-876-5432",
-            correo:"valeria.castro@gmail.com"
+            correo:"valeria.castro@gmail.com",
+            sexo:"F"
         },     
         {
             nombre:"Diego Jiménez Pérez",
@@ -139,17 +152,19 @@ export const CMEDICOS:Medico[]=[
             universidad:"UAA",
             lugarespecialidad:"Centro Médico Puerta de Hierro Andares",
             telefono:"449-987-6543",
-            correo:"diego.jimenez@gmail.com"
+            correo:"diego.jimenez@gmail.com",
+            sexo:"M"
         },
         {
             nombre:"Elena Ramírez Sánchez",
             especialidad:"Oftalmología",
-            foto:"assets/img/doctores/elenear.png",
+            foto:"assets/img/doctores/elenar.png",
             cedula:"5483120",
             universidad:"UANL",
             lugarespecialidad:"Hospital San Ángel Inn Universidad",
             telefono:"449-554-3210",
-            correo:"elena.ramirez@gmail.com"
+            correo:"elena.ramirez@gmail.com",
+            sexo:"F"
         },
         {
             nombre:"Alejandro Morales Martínez",
@@ -159,7 +174,8 @@ export const CMEDICOS:Medico[]=[
             universidad:"IPN",
             lugarespecialidad:"Hospitaria",
             telefono:"449-012-3456",
-            correo:"alejandro.morales@gmail.com"
+            correo:"alejandro.morales@gmail.com",
+            sexo:"M"
         },
         {
             nombre:"María Nuñez Rodríguez",
@@ -169,7 +185,8 @@ export const CMEDICOS:Medico[]=[
             universidad:"UDEM",
             lugarespecialidad:"Hospital Miguel Hidalgo",
             telefono:"449-901-2345",
-            correo:"maria.nuñez@gmail.com"
+            correo:"maria.nuñez@gmail.com",
+            sexo:"F"
         },
         {
             nombre:"Nicolás Ortiz Pérez",
@@ -179,7 +196,8 @@ export const CMEDICOS:Medico[]=[
             universidad:"UAA",
             lugarespecialidad:"Hospital Miguel Hidalgo",
             telefono:"449-890-1234",
-            correo:"nicolas.ortiz@gmail.com"
+            correo:"nicolas.ortiz@gmail.com",
+            sexo:"M"
         },
         {
             nombre:"Victoria Flores Sánchez",
@@ -189,7 +207,8 @@ export const CMEDICOS:Medico[]=[
             universidad:"UDLAP",
             lugarespecialidad:"Hospital San Javier",
             telefono:"449-789-0123",
-            correo:"victoria.flores@gmail.com"
+            correo:"victoria.flores@gmail.com",
+            sexo:"F"
         },      
         {
             nombre:"Matías Herrera Rivas",
@@ -199,7 +218,8 @@ export const CMEDICOS:Medico[]=[
             universidad:"UDG",
             lugarespecialidad:"Hospital Real San José",
             telefono:"449-678-9012",
-            correo:"matias.herrera@gmail.com"
+            correo:"matias.herrera@gmail.com",
+            sexo:"M"
         },    
         {
             nombre:"Catalina Rojas Espinoza",
@@ -209,7 +229,8 @@ export const CMEDICOS:Medico[]=[
             universidad:"UAG",
             lugarespecialidad:"Hospital Ángeles",
             telefono:"449-567-8901",
-            correo:"catalina.rojas@gmail.com"
+            correo:"catalina.rojas@gmail.com",
+            sexo:"F"
         },    
         {
             nombre:"Nicolás Medina Salazar",
@@ -219,7 +240,8 @@ export const CMEDICOS:Medico[]=[
             universidad:"UAM",
             lugarespecialidad:"Facultad de Medicina UANL",
             telefono:"449-456-7890",
-            correo:"nicolas.medina@gmail.com"
+            correo:"nicolas.medina@gmail.com",
+            sexo:"M"
         },    
         {
             nombre:"Valentina León Flores",
@@ -229,7 +251,8 @@ export const CMEDICOS:Medico[]=[
             universidad:"BUAP",
             lugarespecialidad:"Hospital Civil de Culiacán",
             telefono:"449-345-6789",
-            correo:"valentina.leon@gmail.com"
+            correo:"valentina.leon@gmail.com",
+            sexo:"F"
         },    
         {
             nombre:"Martín Silva Mendoza",
@@ -239,7 +262,8 @@ export const CMEDICOS:Medico[]=[
             universidad:"UNAM",
             lugarespecialidad:"Hospital del Niño DIF",
             telefono:"449-234-5678",
-            correo:"martin.silva"
+            correo:"martin.silva.com",
+            sexo:"M"
         },   
         {
             nombre:"Antonella Soto Cruz",
@@ -249,6 +273,7 @@ export const CMEDICOS:Medico[]=[
             universidad:"UAA",
             lugarespecialidad:"Hospital Español",
             telefono:"449-123-4567",
-            correo:"antonella.soto@gmail.com"
+            correo:"antonella.soto@gmail.com",
+            sexo:"F"
         }
 ];

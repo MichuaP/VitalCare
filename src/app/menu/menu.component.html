@@ -11,19 +11,22 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto ms-auto mb-2 mb-lg-0 ">
                 <li class="nav-item">
-                    <a class="nav-link active white" aria-current="page" [routerLink]="['/inicio']">Inicio</a>
+                    <a class="nav-link white" [routerLink]="['/inicio']" routerLinkActive="active">Inicio</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link white" href="#">Nuestros Médicos</a>
+                    <a class="nav-link white" [routerLink]="['/nuestrosMedicos']">Nuestros Médicos</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link white" [routerLink]="['/servicios']">Servicios</a>
+                    <a class="nav-link white" [routerLink]="['/servicios']" routerLinkActive="active">Servicios</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link white" href="#">Agendar Cita</a>
+                    <a class="nav-link white" [routerLink]="['/regCitas']" routerLinkActive="active">Agendar Cita</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link white" href="#">Nosotros</a>
+                    <a class="nav-link white" [routerLink]="['/reportes']" routerLinkActive="active">Reporte de Citas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link white" [routerLink]="['/nosotros']">Nosotros</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link white" href="/./src/app/contacto">Contacto</a>
@@ -32,10 +35,10 @@
                     <a class="nav-link white" href="./src/app/equippo">Desarrolladores</a>
                 </li>
             </ul>
-            <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search">
-                <button class="btn btn-outline-light" type="submit">Buscar</button>
-            </form>
+            <div id="buscoEsp" class="d-flex align-items-center">
+                <input class="form-control me-2" placeholder="Buscar Especialidad..." aria-label="Search" #buscarTexto (keyup.enter)="buscarUnaEspecialidad(buscarTexto.value)">
+                <button class="btn btn-outline-light my-2 my-sm-0" type="button" (click)="buscarUnaEspecialidad(buscarTexto.value)">Buscar</button>
+            </div>            
         </div>
     </div>
 </nav>

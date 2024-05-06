@@ -22,4 +22,13 @@ export class ServiciosClinicaService {
   getEspecialidades():Especialidad[] {
     return this.especialidades;
   }
+
+  getUnaEspecialidad(posicion:number):Especialidad {
+    return this.especialidades[posicion];
+  }
+
+  searchUnaEspecialidad(nomEsp: string):number {
+    let index = this.especialidades.findIndex(p=> p.nombreEspecialidad === nomEsp);
+    return index;
+  }
 }

@@ -19,7 +19,7 @@
     background-color: #43ba7f;
     color: white;
     font-size: 20px;
-    padding: 25px 32px;
+    padding: 20px 27px;
     border-radius: 40px;
     font-weight: bold;
     margin-top: 20px;
@@ -27,6 +27,10 @@
 
 .btn:hover {
     background-color: #193126;
+}
+
+.btn i{
+    padding-left: 10px;
 }
 
 .container-subtitle {
@@ -124,8 +128,19 @@
     padding: 6px 18px;
     border-radius: 40px;
     font-weight: bold;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.btn-sm:hover {
+    background-color: #193126;
+    transform: scale(1.05);
 }
 
 .especialidades .card {
     margin-bottom: 10px;
+}
+
+.imgBann {
+    margin-top: 30px;
 }

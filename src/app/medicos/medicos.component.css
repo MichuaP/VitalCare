@@ -1,0 +1,46 @@
+.col-card{
+    position: absolute; 
+    left: 0%; 
+    top: 10px;
+}
+
+.card{
+    box-shadow: 0 0 15px #ddd8d8;
+}
+
+.card:hover{
+    z-index: 5;
+    -webkit-transform:scale(1.1);transform:scale(1.1);
+    transition: 1s;
+}
+
+.card-text{
+    margin-bottom: 9px;
+}
+.contenedor{
+    margin: 0;
+    padding: 30px 50px;
+}
+
+.card-title, .highlight{
+    color: #238f5a;
+}
+
+.verde{
+    color: #193126;
+}
+
+#texto{
+    padding: 50px 140px 20px 140px;
+    text-align: center;
+}
+
+#texto h1{
+    padding-bottom: 20px;
+    font-weight: bold;
+    color: rgb(73, 70, 70);
+}
+
+#texto p{
+    font-size: 18px;
+}

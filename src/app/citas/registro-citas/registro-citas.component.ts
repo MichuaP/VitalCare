@@ -10,6 +10,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 
 @Component({
@@ -22,7 +23,8 @@ import { Router } from '@angular/router';
     MatNativeDateModule, 
     MatSelectModule,
     ReactiveFormsModule,
-    SweetAlert2Module
+    SweetAlert2Module,
+    CommonModule
   ],
   templateUrl: './registro-citas.component.html',
   styleUrl: './registro-citas.component.css'
@@ -60,6 +62,12 @@ export class RegistroCitasComponent {
     '7:00', '8:00', '9:00', '10:00', '11:00', '12:00',
     '13:00', '14:00', '15:00', '16:00', '17:00', '18:00',
     '19:00', '20:00'
+  ];
+
+  especialidades:string[]=[
+    "Medicina general","Oftalmología", "Cardiología", "Dermatología","Ginecología y obstetricia",
+    "Neurología","Pediatría","Oncología","Ortopedia y traumatología", "Endocrinología",
+    "Psiquiatría","Geriatría"
   ];
 
   //Hora seleccionada
@@ -168,7 +176,7 @@ export class RegistroCitasComponent {
     let newCita:Cita = {
       nombrePaciente:this.nombrePac,
       telefono: this.telefonoPac,
-      costo:"$700",
+      costo:"$650",
       nombreDoctor:this.medico,
       especialidad: this.especialidad,
       fecha:this.fechaSelected,
@@ -184,13 +192,14 @@ export class RegistroCitasComponent {
       Swal.fire({
         icon: "success",
         title: "Cita reservada con éxito",
+        text:"Puedes pagar al momento de asistir a tu cita",
         showDenyButton: true,
         denyButtonColor:"#3085d6",
         denyButtonText:"Ir a inicio",
-        confirmButtonText: "Si,ir a mis citas",
+        confirmButtonText: "Ir a mis citas",
       }).then((result) => {
          if (result.isConfirmed) {
-          this.router.navigate(['/reporte']);
+          this.router.navigate(['/reportes']);
         } else if (result.isDenied) {
           this.router.navigate(['/inicio']);
         }
