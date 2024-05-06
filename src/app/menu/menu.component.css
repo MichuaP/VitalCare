@@ -4,6 +4,10 @@
     /* background-image: linear-gradient(to bottom, rgba(67,186,127,0.5),rgba(67,186,127,0)); */
 }
 
+.navbar-brand{
+    font-size: 25px;
+}
+
 .white{
     /* color: #193126; */
     color: white;
