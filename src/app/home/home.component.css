@@ -140,7 +140,7 @@
 }
 
 .estadisticas{
-    padding: 90px 0px;
+    padding: 130px 0px;
     overflow-x: hidden;
 }
 
@@ -191,4 +191,25 @@
 
 iframe{
     box-shadow: 0 0 20px #193126;
+}
+
+#reconocimientos{
+    background-color: #43ba7f1a;
+    text-align: center;
+    padding: 90px 0px 50px 0px;
+}
+
+#reconocimientos img{
+    height: 100px;
+    margin-bottom: 40px;
+}
+
+#reconocimientos h2{
+    font-weight: bold;
+    font-size: 35px;
+}
+
+#reconocimientos p{
+    font-size: 18px;
+    padding-bottom: 20px;
 }

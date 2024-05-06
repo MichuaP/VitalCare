@@ -22,10 +22,25 @@
     padding: 30px 50px;
 }
 
-.card-title{
+.card-title, .highlight{
     color: #238f5a;
 }
 
 .verde{
     color: #193126;
+}
+
+#texto{
+    padding: 50px 140px 20px 140px;
+    text-align: center;
+}
+
+#texto h1{
+    padding-bottom: 20px;
+    font-weight: bold;
+    color: rgb(73, 70, 70);
+}
+
+#texto p{
+    font-size: 18px;
 }
