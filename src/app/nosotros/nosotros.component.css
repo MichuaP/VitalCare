@@ -1,0 +1,106 @@
+.imgPrincipal img{
+    min-height: 93vh;
+    width: 100%;
+    opacity: 0.8;
+}
+.titulo{
+    position: absolute;
+    top: 60px;
+    height: 80vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    z-index: 2;
+}
+.quienesSomos{
+    padding: 20px;
+    max-width: 700px;
+}
+.tecno{
+    padding-bottom: 50px;
+}
+.t1{
+    text-align: center;
+    color: #238f5a;
+    font-weight: bold;
+    font-size: 30px;
+}
+.txt{
+    font-size: 22px;
+}
+.t2{
+    color: #238f5a;
+    font-weight: bold;
+    font-size: 30px;
+    
+    text-align: center;
+}
+.filosofia{
+    margin: 0 auto;
+    padding: 30px;
+    padding-left: 0px;
+    min-height: 100%;
+}
+.highlight{
+    color: #43ba7f;
+}
+.container-QS img{
+    max-width: 100%;
+}
+.container-QS{
+    max-width: 100%;
+}
+.boldtxt{
+    font-style: italic;
+    font-weight: bold;
+}
+.valores{
+    max-width: 100%;
+}
+.valores img{
+    max-width: 100%;
+    padding-left: 50px;
+}
+.mision{
+    max-width: 100%;
+}
+.mision p{
+    font-size: large;
+}
+.mision img{
+    max-width: 100%;
+}
+.vision{
+    max-width: 100%;
+}
+.vision p{
+    max-width: 100%;
+    padding-left: 50px;
+    font-size: large;
+}
+.vision img{
+    max-width: 100%;
+    max-height: 300px;
+    padding-right: 50px;
+    margin-left: 100px;
+}
+.titulo{
+    font-size: 60px;
+    font-weight: bold;
+    color: white;
+    text-shadow: 0px 0px 20px #02130a;
+}
+.container-filosofia{
+    padding: 50px;
+    background-color: #43ba7f1a;
+    height: 500px;
+}
+.container-tecno{
+    padding: 50px;
+}
+.container-certif{
+    padding: 50px;
+    text-align: center;
+}
