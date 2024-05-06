@@ -7,6 +7,8 @@ import { ReportesComponent } from './reportes/reportes.component';
 import { UnaespecialidadComponent } from './unaespecialidad/unaespecialidad.component';
 import { SearchComponent } from './search/search.component';
 import { NosotrosComponent } from './nosotros/nosotros.component';
+import { EquipoComponent } from './equipo/equipo.component';
+import { ContactoComponent } from './contacto/contacto.component';
 
 export const routes: Routes = [
     { path:'regCitas', component: RegistroCitasComponent },
@@ -15,6 +17,8 @@ export const routes: Routes = [
     { path: 'inicio', component: HomeComponent },
     { path: 'nuestrosMedicos', component: MedicosComponent },
     { path: 'reportes', component: ReportesComponent },
+    { path: 'contacto', component: ContactoComponent },
+    { path: 'equipo', component: EquipoComponent },
     { path: 'especialidad/:id', component: UnaespecialidadComponent },
     { path: 'buscador/:nombreEsp', component: SearchComponent },
     {path: '**', pathMatch: 'full', redirectTo: 'inicio'}
