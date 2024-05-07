@@ -13,5 +13,5 @@ import { FooterComponent } from "./footer/footer.component";
     imports: [RouterOutlet, RouterModule, ServiciosComponent, MenuComponent, HomeComponent, FooterComponent]
 })
 export class AppComponent {
-  title = 'Mini2_AngularTW';
+  title = 'VitalCare';
 }
