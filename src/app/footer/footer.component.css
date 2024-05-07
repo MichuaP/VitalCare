@@ -3,6 +3,7 @@
     color: white;
     padding: 30px 10px;
     font-size: 14px;
+    overflow-x: hidden;
 }
 
 ul{

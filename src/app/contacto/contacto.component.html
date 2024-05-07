@@ -1,60 +1,82 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-
 <body>
-    <div>
-
-        <body>
-            <br><br><br><br>
-            <div class="container">
-                <h1>Contacto</h1>
-                <form id="contactForm" action="submit_form.php" method="post">
-                    <label for="name">Nombre:</label>
-                    <input type="text" id="name" name="name" required>
-
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" required>
-
-                    <label for="message">Mensaje:</label>
-                    <textarea id="message" name="message" rows="5" required></textarea>
-
-                    <button type="submit" onclick="submitForm()">Enviar Mensaje</button>
-                </form>
+    <div class="container-outside">
+        <div class="container">
+            <div class="text-center">
+                
+                    <h1 class="title-container">Ponte en <span class="highlight">contacto </span>con VitalCare</h1>
+                    <br>
+                    <p class="text-container">¡Mándanos un mensaje y comienza tu camino hacia una salud óptima!. Visítanos cuantas veces sea necesario, tu salud es nuestra prioridad.</p>
+                    <br>
+                </div>
+                
             </div>
+        </div>
 
-            <script>
-                function submitForm() {
-                    var name = document.getElementById('name').value;
-                    var email = document.getElementById('email').value;
-                    var message = document.getElementById('message').value;
-                    var formData = {
-                        name: name,
-                        email: email,
-                        message: message
-                    };
+    <h1 class="section-contact">¡El servicio de <span class="highlight">mejor calidad</span> que puede obtener!</h1>
+    <div class="container text-center contacto">
+        <div class="row">
+            <div class="col-4">
+                <div class="card" style="width: auto;">
+                    <div class="circle-icon">
+                        <i class="fa-solid fa-location-dot"></i>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">Ubicación</h3>
+                        <p class="card-text">Av. Universidad 940, Ciudad Universitaria, Aguascalientes, Ags.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="card" style="width: auto;">
+                    <div class="circle-icon">
+                        <i class="fa-solid fa-phone"></i>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">Número de Teléfono</h3>
+                        <p class="card-text">(449) 910-7400 <br> (449) 580-2300</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="card" style="width: auto;">
+                    <div class="circle-icon">
+                        <i class="fa-solid fa-envelope"></i>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">Correo Electrónico</h3>
+                        <p class="card-text">VitalCare&#64;hotmail.com <br> VitalCare&#64;hotmail.es</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="container-subtitle">
+            <div class="title-contact">Ponerse en Contacto</div>
+        </div>
+        <h1 class="section-contact">Contáctenos para asistencia personalizada y resoluciones rápidas.</h1>
+    </div>
+    <div class="container">
+        <form class="row g-3">
+            <div class="col-md-6">
+                <input type="text" class="form-control" id="nombre" placeholder="Nombre Completo">
+            </div>
+            <div class="col-md-6">
+                <input type="email" class="form-control" id="email" placeholder="Correo Electrónico">
+            </div>
+            <div class="col-md-6">
+                <input type="text" class="form-control" id="tel" placeholder="Número de Teléfono">
+            </div>
+            <div class="col-md-6">
+                <input type="text" class="form-control" id="asunto" placeholder="Asunto">
+            </div>
+            <div class="mb-3">
 
-                    var xhr = new XMLHttpRequest();
-                    xhr.open('POST', 'submit_form.php', true);
-                    xhr.setRequestHeader('Content-Type', 'application/json');
-                    xhr.onload = function () {
-                        if (xhr.status == 200) {
-                            alert('Mensaje enviado con éxito');
-                        } else {
-                            alert('Hubo un error al enviar el mensaje. Por favor, intenta de nuevo.');
-                        }
-                    };
-                    xhr.send(JSON.stringify(formData));
-                }
-            </script>
-        </body>
-
-
+                <textarea class="form-control" id="textarea" rows="4" placeholder="Escribe tu mensaje..."></textarea>
+            </div>
+            <div class="col-12 d-flex justify-content-center">
+                <button type="submit" class="btn">Enviar</button>
+            </div>
+        </form>
+        <br><br>
     </div>
 </body>
-
-</html>

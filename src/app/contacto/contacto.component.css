@@ -1,42 +1,125 @@
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #f4f4f4;
-  background-size: cover;
+.container-outside {
+  background-color: #43ba7f1a;
+  padding-top: 30px;
 }
-.container {
-  max-width: 800px;
-  margin: 20px auto;
-  padding: 20px;
-  background-color: #fff;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+
+.title-container {
+  font-size: 45px;
+  font-weight: bold;
 }
-h1 {
+
+.text-container {
+  font-size: 22px;
+}
+
+.highlight {
+  color: #43ba7f;
+}
+
+.section-contact {
   text-align: center;
+  width: 600px;
+  margin: 30px auto;
+  font-weight: bold;
 }
-form {
+
+.card {
+  border-radius: 16px;
+  margin: 5px;
+  margin-bottom: 30px;
+  transition: box-shadow 0.5s ease;
+  cursor: pointer;
+  background-color: #43ba7f1a;
+  border: none;
+  padding: 12px;
+}
+
+.card-img-top {
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+}
+
+.card-body {
+  padding: 20px;
+}
+
+.card-title {
+  color: black;
+  font-weight: bold;
+}
+
+.card-text {
+  color: black;
+  font-size: 20px;
+  transition: color 0.3s ease, opacity 0.3s ease;
+}
+
+.card-text:hover {
+  color: #43ba7f;
+}
+
+.card:hover {
+  border: white;
+  box-shadow: 0px 0px 30px -3px rgba(0, 0, 0, 0.3);
+}
+
+.circle-icon {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #43ba7f;
+  margin: 0 auto;
   margin-top: 20px;
 }
-label, input, textarea {
-  display: block;
-  margin-bottom: 10px;
+
+.contacto i {
+  color: white;
+  font-size: 30px;
 }
-input, textarea {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  box-sizing: border-box;
+
+.container-subtitle {
+  text-align: center;
 }
-button {
-  padding: 10px 20px;
-  background-color: #238f5a;
-  color: #fff;
+
+.title-contact {
+  display: inline-block;
+  text-align: center;
+  background-color: #43ba7f1a;
+  padding: 4px 16px;
+  font-size: 20px;
+  color: #238f5a;
+  font-weight: bold;
+  border-radius: 18px;
+}
+
+form {
+  padding-left: 50px;
+  padding-right: 50px;
+  
+}
+
+.form-control {
+  padding: 14px 25px 12px;
+  border-radius: 30px;
+  background-color: rgba(88, 88, 88, .05);
   border: none;
-  border-radius: 5px;
-  cursor: pointer;
+  font-size: 20px;
 }
-button:hover {
-  background-color: #238f5a;
+
+.btn {
+  background-color: #43ba7f;
+  color: white;
+  font-size: 20px;
+  padding: 15px 27px;
+  border-radius: 40px;
+  font-weight: bold;
+  margin: 0 auto;
+}
+
+.btn:hover {
+  background-color: #193126;
 }

@@ -22,8 +22,12 @@
     padding: 30px 50px;
 }
 
-.card-title, .highlight{
+.card-title {
     color: #238f5a;
+}
+
+.highlight {
+    color: #43ba7f;
 }
 
 .verde{
@@ -39,7 +43,7 @@
 #texto h1{
     padding-bottom: 20px;
     font-weight: bold;
-    color: rgb(73, 70, 70);
+    color: black;
 }
 
 #texto p{
