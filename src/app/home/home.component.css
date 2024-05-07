@@ -178,6 +178,7 @@
 }
 #video{
     padding: 30px;
+    text-align: center;
 }
 #video-texto{
     background-image: url(../../assets/img/abrazo.png);
@@ -186,7 +187,7 @@
     background-position-y: bottom;
     background-position-x: right;
     font-weight: bold;
-    color: rgb(66, 63, 63);
+    color: black;
     font-size: 40px;
 }
 
