@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-reportes',
   standalone: true,
-  imports: [],
+  imports: [RouterModule],
   templateUrl: './reportes.component.html',
   styleUrl: './reportes.component.css',
 })
