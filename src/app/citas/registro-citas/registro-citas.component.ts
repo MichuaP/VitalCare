@@ -89,10 +89,8 @@ export class RegistroCitasComponent {
       fecha: ['', [Validators.required]],
       hora: ['', [Validators.required]],
     });
-    console.log("constructor de registro de citas");
     //Establecer fecha actual
     const fechaFormatAct = new Date(this.fechaAct);
-    console.log("La fecha actual formateada es: "+fechaFormatAct.toLocaleDateString());
     //Establecer la fecha mínima
     this.minDate = this.fechaAct;
     //Establecer la fecha máxima es diciembre de este año
@@ -125,13 +123,11 @@ export class RegistroCitasComponent {
     //Formatear la fecha
     const fechaFormatInp = new Date(this.fechaInp);
     this.fechaSelected = fechaFormatInp.toLocaleDateString();
-    console.log("La fecha formateada es: "+this.fechaSelected);
   }
 
   //Función que recibe la hora seleccionada
   horaSelec(hora:any):void{
     this.horaSelected=hora;
-    console.log('Hora seleccionada:'+ this.horaSelected);
   }
 
   //Función que verifica si la hora está ocupada para el día seleccionado
@@ -146,18 +142,13 @@ export class RegistroCitasComponent {
 
   //ngOnInit
   ngOnInit():void{
-    console.log("ngOnInit de citas 1");
     this.misMedicos=this.miservicio.getMedicos();
-    console.log(this.misMedicos);
     //Obtenemos datos de local
     const fechasOcupadas = localStorage.getItem('ocupadas');
     if (fechasOcupadas) {
       //Si existe en localstorage, se pasa al array de horas
        this.horas = JSON.parse(fechasOcupadas);
-       console.log("Se han recuperado fechas del localstorage");
-       console.log('Fechas recuperadas del localStorage:', this.horas);
     }else{
-      console.log('No hay fechas guardadas en el localStorage.');
       localStorage.setItem('ocupadas', JSON.stringify(this.horas));
     }
   }
@@ -165,16 +156,13 @@ export class RegistroCitasComponent {
   //Función que recibe la especialidad seleccionada
   espSeleccionada(value:string): void {
 		this.especialidad = value;
-    console.log(this.especialidad);
     this.continuar=true;
 	}
 
   //Función que recibe al doctor seleccionado
   docSeleccionado(doctor:any, indice:number):void{
     this.medicoAux = doctor;
-    console.log(this.medicoAux);
     this.medico = this.misMedicos[indice].nombre;
-    console.log("El nombre del medico es:" + this.medico);
   }
 
   //Función para hacer una nueva cita
@@ -188,7 +176,6 @@ export class RegistroCitasComponent {
       fecha:this.fechaSelected,
       hora:this.horaSelected
     };
-    console.log(newCita);//---
     //Utilizar el servicio para agregar a cita al array de localStorage
     this.miservicio.agregarCita(newCita);
     //Agregar las horas ocupadas al array de citas ocupadas
