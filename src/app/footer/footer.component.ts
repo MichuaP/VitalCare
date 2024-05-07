@@ -9,5 +9,6 @@ import { RouterModule } from '@angular/router';
   styleUrl: './footer.component.css'
 })
 export class FooterComponent {
+bienvenida: string|undefined;
 
 }
