@@ -1,27 +1,84 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 20px;
-    background-color: #f4f4f4;
+.especialidades .card-text {
+    font-size: 16px;
 }
-.container {
-    max-width: 800px;
-    margin: 0 auto;
-    background-color: #fff;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-}
-h1, h2 {
+
+.title-services {
+    display: inline-block;
     text-align: center;
+    background-color: #43ba7f1a;
+    padding: 4px 16px;
+    font-size: 20px;
+    color: #238f5a;
+    font-weight: bold;
+    border-radius: 18px;
 }
-.team-member {
-    margin-bottom: 20px;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+
+.especialidades{
+    padding: 30px;
 }
-.team-member img {
-    max-width: 100px;
-    border-radius: 50%;
-    margin-right: 20px;
+
+
+.especialidades .card {
+    margin-bottom: 10px;
+}
+
+
+.highlight {
+    color: #43ba7f;
+}
+
+
+.container-subtitle {
+    text-align: center;
+    padding-top: 30px;
+}
+
+
+.section-servicios {
+    text-align: center;
+    width: 600px;
+    margin: 0 auto;
+    font-weight: bold;
+}
+
+.card {
+    border-radius: 16px;
+    margin: 5px;
+    margin-bottom: 30px;
+    transition: box-shadow 0.5s ease;
+    cursor: pointer;
+}
+
+.card-img-top {
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.card-title {
+    color: black;
+    transition: color 0.3s ease, opacity 0.3s ease;
+}
+
+.card-text {
+    color: black;
+    font-size: 17px;
+}
+
+.card-price {
+    font-style: italic;
+    font-size: 15px;
+    color: #238f5a;
+}
+
+.card-title:hover {
+    color: #43ba7f;
+}
+
+.card:hover {
+    border: white;
+    box-shadow: 0px 0px 30px -3px rgba(0, 0, 0, 0.3);
 }

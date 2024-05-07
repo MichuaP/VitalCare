@@ -1,22 +1,23 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Equipo de Desarrollo - Hospital</title>
-</head>
-<body>
-
-    <div class="container">
-        <h1>Equipo de Desarrollo</h1>
-        
-        @for (item of array; track item){
-            <div class="team-member">
-                <img [src]="item.imagen" alt="Desarrollador 1">
-                <h2>{{item.nombre}}</h2>
-                <p>{{item.descripcion}}</p>
-            </div>  
-        }      
+<div>
+    <div class="container-subtitle">
+        <div class="title-services">Conócenos</div>
     </div>
-</body>
-</html>
+    <h1 class="section-servicios">Equipo de Desarrollo</h1>
+    <div class="container text-center especialidades">
+        <div class="row">
+            @for (item of array; track item){
+                <div class="col-4 d-flex align-items-stretch">
+                    <div class="card" style="width: auto;">
+                        <div class="team-member">
+                            <img [src]="item.imagen" alt="desarrolladoras">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">{{item.nombre}}</h5>
+                            <p class="card-text">{{item.descripcion}}</p>
+                        </div>
+                    </div>
+                </div>
+            }  
+        </div>
+    </div>
+</div>
