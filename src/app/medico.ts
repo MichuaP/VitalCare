@@ -37,3 +37,9 @@ export interface Especialidad {
   img2: String;
   acudir: String;
 }
+
+export interface Desarrolladores{
+  nombre:string;
+  descripcion:string,
+  imagen:string;
+}

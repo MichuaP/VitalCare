@@ -10,29 +10,13 @@
     <div class="container">
         <h1>Equipo de Desarrollo</h1>
         
-        <div class="team-member">
-            <img src="../../assets/img/Nadia.png" alt="Desarrollador 1">
-            <h2>Nadia Montserrat Acosta Miranda </h2>
-            <p>¡Hola!, mi nombre es Nadia y actualmente estoy cursando la carrera de Ingeniería en Sistemas Computacionales. En este momento me encuentro inmersa en el estudio de Tecnologías Web, una asignatura que ha capturado completamente mi interés y se ha convertido en mi favorita.</p>
-        </div>
-        
-        <div class="team-member">
-            <img src="/src/assets/img/paula.png" alt="Desarrollador 2">
-            <h2>Paula Michelle Cruz Lira</h2>
-            <p>Hola, soy Paula y estudio ISC en la Universidad Autónoma de Aguascalientes. Usualmente suelo enfocarme más en back-end, pero con Angular disfruto mucho hacer front-end!</p>
-        </div>
-        
-        <div class="team-member">
-            <img src="/src/assets/img/" alt="Desarrollador 3">
-            <h2>Ana Gabriela Sánchez Gutiérrez</h2>
-            <p>Estudiante de ISC en la Universidad Autónoma de Aguascalientes</p>
-        </div>
-
-        <div class="team-member">
-            <img src="/src/assets/img/bar.heic" alt="Desarrollador 3">
-            <h2>Bárbara Jimena Silva Jaime</h2>
-            <p>Hola, mi nombre es Bárbara, soy estudiante de ISC en la Universidad Autónoma de Aguascalientes. Actualmente estoy cursando la materia de programación Web y estoy viendo donde puedo impartir todos mis conocimientos obtenidos</p>
-        </div>
+        @for (item of array; track item){
+            <div class="team-member">
+                <img [src]="item.imagen" alt="Desarrollador 1">
+                <h2>{{item.nombre}}</h2>
+                <p>{{item.descripcion}}</p>
+            </div>  
+        }      
     </div>
 </body>
 </html>
