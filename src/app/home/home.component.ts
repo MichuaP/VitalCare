@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { MenuComponent } from "../menu/menu.component";
 import { DomseguroPipe } from '../domseguro.pipe';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'app-home',
@@ -10,5 +11,5 @@ import { DomseguroPipe } from '../domseguro.pipe';
     imports: [MenuComponent, DomseguroPipe]
 })
 export class HomeComponent {
-    video:string="kkHVpcB4IyU";
+    video:string="kkHVpcB4IyU";       
 }
