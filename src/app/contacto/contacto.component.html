@@ -53,28 +53,13 @@
         </div>
         <h2 class="section-contact">Contáctenos para asistencia personalizada y resoluciones rápidas.</h2>
     </div>
+    <div id="mensaje">
+        @if (name!=""){
+            <p>Hola <span>{{name}}</span>! Gracias por ponerte en contacto con nosotros, alguien de nuestro equipo revisará tu mensaje, espera nuestra respuesta.</p>
+        }
+    </div>
     <div class="container">
-        <form class="row g-3">
-            <div class="col-md-6">
-                <input type="text" class="form-control" id="nombre" placeholder="Nombre Completo">
-            </div>
-            <div class="col-md-6">
-                <input type="email" class="form-control" id="email" placeholder="Correo Electrónico">
-            </div>
-            <div class="col-md-6">
-                <input type="text" class="form-control" id="tel" placeholder="Número de Teléfono">
-            </div>
-            <div class="col-md-6">
-                <input type="text" class="form-control" id="asunto" placeholder="Asunto">
-            </div>
-            <div class="mb-3">
-
-                <textarea class="form-control" id="textarea" rows="4" placeholder="Escribe tu mensaje..."></textarea>
-            </div>
-            <div class="col-12 d-flex justify-content-center">
-                <button type="submit" class="btn">Enviar</button>
-            </div>
-        </form>
+        <app-formulario (propagar)="procesaPropagar($event)"></app-formulario>
         <br><br>
     </div>
 </body>

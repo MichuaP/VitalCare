@@ -1,0 +1,28 @@
+
+form {
+    padding-left: 50px;
+    padding-right: 50px;
+    
+  }
+  
+  .form-control {
+    padding: 14px 25px 12px;
+    border-radius: 30px;
+    background-color: rgba(88, 88, 88, .05);
+    border: none;
+    font-size: 20px;
+  }
+  
+  .btn {
+    background-color: #43ba7f;
+    color: white;
+    font-size: 20px;
+    padding: 15px 27px;
+    border-radius: 40px;
+    font-weight: bold;
+    margin: 0 auto;
+  }
+  
+  .btn:hover {
+    background-color: #193126;
+  }

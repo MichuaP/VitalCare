@@ -1,0 +1,21 @@
+<form class="row g-3">
+    <div class="col-md-6">
+        <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre Completo" [(ngModel)]="nombre">
+    </div>
+    <div class="col-md-6">
+        <input #nombreInput type="email" class="form-control" id="email" placeholder="Correo Electrónico">
+    </div>
+    <div class="col-md-6">
+        <input type="text" class="form-control" id="tel" placeholder="Número de Teléfono">
+    </div>
+    <div class="col-md-6">
+        <input type="text" class="form-control" id="asunto" placeholder="Asunto">
+    </div>
+    <div class="mb-3">
+
+        <textarea class="form-control" id="textarea" rows="4" placeholder="Escribe tu mensaje..."></textarea>
+    </div>
+    <div class="col-12 d-flex justify-content-center">
+        <button type="submit" class="btn" (click)="onPropagar()">Enviar</button>
+    </div>
+</form>
