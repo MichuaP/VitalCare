@@ -7,7 +7,7 @@ import { take } from 'rxjs';
 })
 export class DesarrolladoresService {
 
-  urlAPI:string="https://desarrolladores.free.beeceptor.com/todos";
+  urlAPI:string="https://productos.free.beeceptor.com";
   constructor(private http: HttpClient) { }
 
   retornar(){
