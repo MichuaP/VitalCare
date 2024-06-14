@@ -9,6 +9,7 @@ import { SearchComponent } from './search/search.component';
 import { NosotrosComponent } from './nosotros/nosotros.component';
 import { EquipoComponent } from './equipo/equipo.component';
 import { ContactoComponent } from './contacto/contacto.component';
+import { GraficasComponent } from './graficas/graficas.component';
 
 export const routes: Routes = [
     { path:'regCitas', component: RegistroCitasComponent },
@@ -19,6 +20,7 @@ export const routes: Routes = [
     { path: 'reportes', component: ReportesComponent },
     { path: 'contacto', component: ContactoComponent },
     { path: 'equipo', component: EquipoComponent },
+    { path: 'graficas', component: GraficasComponent },
     { path: 'especialidad/:id', component: UnaespecialidadComponent },
     { path: 'buscador/:nombreEsp', component: SearchComponent },
     {path: '**', pathMatch: 'full', redirectTo: 'inicio'}

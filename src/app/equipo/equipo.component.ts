@@ -1,13 +1,14 @@
 import { Component } from '@angular/core';
 import { Desarrolladores } from '../medico';
 import { DesarrolladoresService } from '../shared/desarrolladores.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
     selector: 'app-equipo',
     standalone: true,
     templateUrl: './equipo.component.html',
     styleUrl: './equipo.component.css',
-    imports: []
+    imports: [CommonModule]
 })
 export class EquipoComponent {
     array:Desarrolladores [] =[];
@@ -31,5 +32,13 @@ export class EquipoComponent {
         console.log("data",data);
         this.array = data.desarrolladores;
         console.log("array", this.array);
+    }
+
+    chunkArray(arr: any[], chunkSize: number): any[][] {
+        let R = [];
+        for (let i = 0; i < arr.length; i += chunkSize) {
+          R.push(arr.slice(i, i + chunkSize));
+        }
+        return R;
     }
 }

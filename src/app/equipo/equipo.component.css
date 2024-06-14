@@ -89,3 +89,23 @@
     height: 520px;
     object-fit: cover;
 }
+
+.acomodar {
+    width: 90%;
+    margin: 0 auto;
+}
+.carousel-control-prev {
+    left: -5%;
+}
+.carousel-control-next {
+    right: -5%;
+}
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  filter: invert(70%);
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+  background-color: transparent;
+}

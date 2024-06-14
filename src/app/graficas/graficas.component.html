@@ -1,0 +1,29 @@
+<section>
+    <div class="grafica">
+        <button (click)="actualizar()" class="btn btn-info mb-3">Generar Graficas</button>
+        <canvas id="chart" width="500">{{ chart }}</canvas>
+    </div>
+    <div class="tabla">
+        <table class="table table-striped">
+            <thead>
+               <tr>
+                  <th></th>
+                  <th colspan="2">Pacientes</th>
+              </tr>
+              <tr>
+                <th>Mes</th>
+                <th>Urgencias</th>
+                <th>General</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let mes of titulos; let i=index">
+                    <td>{{mes}}</td>
+                    <td>{{datos1[i]}}</td>
+                    <td>{{datos2[i]}}</td>
+                </tr>
+            </tbody>
+          </table>
+    </div>
+    
+</section>

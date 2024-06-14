@@ -3,23 +3,37 @@
         <div class="title-services">Conócenos</div>
     </div>
     <h1 class="section-servicios">Equipo de Desarrollo</h1>
-    <div class="container text-center especialidades">
-        <div class="row">
-            @for (item of array; track item){
-                <div class="col-4 d-flex align-items-stretch">
-                    <div class="card" style="width: auto;">
-                        <div class="team-member">
-                            <img [src]="item.imagen" alt="desarrolladoras" class="card-img-top" width="100%">
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title">{{item.nombre}}</h5>
-                            <p class="card-text">{{item.descripcion}}</p>
-                        </div>
+    <div id="carouselExample" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+        <div class="carousel-inner">
+          <ng-container *ngFor="let group of chunkArray(array, 3); let isFirst = first">
+            <div class="carousel-item" [ngClass]="{'active': isFirst}">
+              <div class="row justify-content-center acomodar">
+                <div class="col-4 d-flex align-items-stretch" *ngFor="let item of group">
+                  <div class="card" style="width: auto;">
+                    <div class="team-member">
+                      <img [src]="item.imagen" alt="desarrolladoras" class="card-img-top" width="100%">
                     </div>
+                    <div class="card-body">
+                      <h5 class="card-title">{{item.nombre}}</h5>
+                      <p class="card-text">{{item.descripcion}}</p>
+                    </div>
+                  </div>
                 </div>
-            }  
+              </div>
+            </div>
+          </ng-container>
+          <!-- <img src="../../assets/img/desarrolladores/luis.png" alt=""> -->
         </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
     </div>
+    
     <h6 class="section-servicios">Esta página constituye un proyecto académico.</h6>
     <br><br>
 </div>
