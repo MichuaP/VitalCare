@@ -16,10 +16,10 @@
 }
 section {
     display: flex;
-    margin: 10px;
-    padding: 20px 0;
-    border: 1px solid gray;
+    margin: 20px 0;
+    padding: 50px;
+    /* border: 1px solid gray; */
     background-color: white;
     border-radius: 5px;
-    box-shadow: 7px 7px 0px 0px rgba(128, 128, 128, 0.342);
+    /* box-shadow: 7px 7px 0px 0px rgba(128, 128, 128, 0.342); */
 }
