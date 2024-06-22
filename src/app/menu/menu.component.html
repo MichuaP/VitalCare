@@ -37,10 +37,18 @@
                 <li class="nav-item">
                     <a class="nav-link white" [routerLink]="['/graficas']" routerLinkActive="active">Gráficas</a>
                 </li>
+                <div class="dropdown">
+                    <a class="dropdown-toggle btn" data-toggle="dropdown" href="#" >Dropdown trigger</a>
+                      <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                        <li>Item One</li>
+                        <li>Item Two</li>
+                      </ul>
+                  </div>
             </ul>
             <div id="buscoEsp" class="d-flex align-items-center">
                 <input class="form-control me-2" placeholder="Buscar Especialidad..." aria-label="Search" #buscarTexto (keyup.enter)="buscarUnaEspecialidad(buscarTexto.value)">
                 <button class="btn btn-outline-light my-2 my-sm-0" type="button" (click)="buscarUnaEspecialidad(buscarTexto.value)">Buscar</button>
+                
             </div>            
         </div>
     </div>
