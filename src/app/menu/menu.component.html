@@ -14,7 +14,8 @@
                     <a class="nav-link white" [routerLink]="['/inicio']" routerLinkActive="active">Inicio</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link white" [routerLink]="['/nuestrosMedicos']" routerLinkActive="active">Nuestros Médicos</a>
+                    <a class="nav-link white" [routerLink]="['/nuestrosMedicos']" routerLinkActive="active">Nuestros
+                        Médicos</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link white" [routerLink]="['/servicios']" routerLinkActive="active">Servicios</a>
@@ -23,7 +24,8 @@
                     <a class="nav-link white" [routerLink]="['/regCitas']" routerLinkActive="active">Agendar Cita</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link white" [routerLink]="['/reportes']" routerLinkActive="active">Reporte de Citas</a>
+                    <a class="nav-link white" [routerLink]="['/reportes']" routerLinkActive="active">Reporte de
+                        Citas</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link white" [routerLink]="['/nosotros']" routerLinkActive="active">Nosotros</a>
@@ -34,22 +36,38 @@
                 <li class="nav-item">
                     <a class="nav-link white" [routerLink]="['/equipo']" routerLinkActive="active">Desarrolladoras</a>
                 </li>
+
+                @if(this.Logueado == false){
                 <li class="nav-item">
-                    <a class="nav-link white" [routerLink]="['/graficas']" routerLinkActive="active">Gráficas</a>
+                    <a class="nav-link white" [routerLink]="['/registro']" routerLinkActive="active"><i class="fa-solid fa-right-to-bracket fa-2xl"></i></a>
                 </li>
-                <div class="dropdown">
-                    <a class="dropdown-toggle btn" data-toggle="dropdown" href="#" >Dropdown trigger</a>
-                      <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                        <li>Item One</li>
-                        <li>Item Two</li>
-                      </ul>
-                  </div>
+                }@else{
+                <li class="nav-item dropdown">
+                    <a class="nav-link white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fa-solid fa-circle-user fa-2xl"></i>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" style="font-weight:bold;" [routerLink]="['/graficas']"
+                                routerLinkActive="active">Gráficas</a></li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    </ul>
+                </li>
+                }
+
+
             </ul>
+
+
             <div id="buscoEsp" class="d-flex align-items-center">
-                <input class="form-control me-2" placeholder="Buscar Especialidad..." aria-label="Search" #buscarTexto (keyup.enter)="buscarUnaEspecialidad(buscarTexto.value)">
-                <button class="btn btn-outline-light my-2 my-sm-0" type="button" (click)="buscarUnaEspecialidad(buscarTexto.value)">Buscar</button>
-                
-            </div>            
+                <input class="form-control me-2" placeholder="Buscar Especialidad..." aria-label="Search" #buscarTexto
+                    (keyup.enter)="buscarUnaEspecialidad(buscarTexto.value)">
+                <button class="btn btn-outline-light my-2 my-sm-0" type="button"
+                    (click)="buscarUnaEspecialidad(buscarTexto.value)">Buscar</button>
+            </div>
         </div>
     </div>
 </nav>

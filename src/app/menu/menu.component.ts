@@ -9,7 +9,12 @@ import { Router, RouterModule } from '@angular/router';
   styleUrl: './menu.component.css'
 })
 export class MenuComponent {
-  constructor(private router:Router) { }
+
+  Logueado:boolean;
+
+  constructor(private router:Router) {
+    this.Logueado = false;
+  }
 
   buscarUnaEspecialidad(nombre:string) {
     this.router.navigate(['/buscador',nombre]);

@@ -1,0 +1,124 @@
+.container-top{
+    padding-top: 25px;
+    /*padding-bottom: 30px; */
+    background-color: #43ba7f1a;
+}
+
+.container-Regcitas{
+    padding-top: 30px;
+
+}
+
+.container-side{
+    /* background-color: #43ba7f1a; */
+    margin-top: 30px;
+    margin-bottom: 60px;
+}
+
+.section-name {
+    font-weight: bold;
+    font-size: 40px;
+}
+
+.min{
+    font-size: 15px;
+}
+
+
+.container-resumen{
+    width:300px;
+    height:200px;
+    background-color:  #43ba7f1a;
+    margin: 0 auto;
+    border-radius: 8px;
+}
+
+.style-text{
+    font-size: 22px;
+    padding: 15px;
+    padding-left: 0px;
+}
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  
+  background-color: rgba(0, 0, 0, 0.274);
+}
+
+label{
+    padding-top: 10px;
+}
+.doctores h5{
+    text-align: center;
+}
+.container-resumen #titResumen{
+    background-color: #43ba7f;
+    text-align: center;
+    font-size: 22px;
+    color: white;
+    font-weight:600;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.container-resumen .bot{
+    text-align: center;
+    
+}
+.container-resumen .bot button{
+    background-color: #43ba7f;
+}
+.container-resumen .bot button:hover {
+    background-color: #193126;
+    color: white;
+}
+
+.doctores{
+    padding-top: 20px;
+}
+
+.doctores .bot a{
+    background-color: #43ba7f;
+}
+
+.doctores .bot a:hover {
+    background-color: #193126;
+    color: white;
+}
+
+.card{
+    width: 50%;
+    text-align: center;
+    margin: 0 auto;
+    height: 400px;
+}
+
+.container-FH{
+    padding-bottom: 30px;
+}
+
+.card img{
+    height: 180px;
+}
+.container-formulario{
+    padding-top: 30px;
+}
+
+.highlight {
+    color: #43ba7f;
+}
+
+.title-container {
+    font-size: 55px;
+    font-weight: bold;
+}
+
+.text-container {
+    font-size: 22px;
+    padding-bottom: 30px;
+}
+
+h5{
+    font-size: 20px;
+    font-style: italic;
+    font-weight: 600;
+}
