@@ -12,6 +12,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { CommonModule } from '@angular/common';
 import { ResumenComponent } from '../citas/resumen/resumen.component';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-registro',
@@ -34,13 +35,12 @@ export class RegistroComponent {
   
   //Formulario
   citaForm: FormGroup;
-  especialidad:any="";
-  medico:any="";
-  medicoAux:any="";
-  misMedicos:Medico[]=[];
   nombrePac:string="";
   telefonoPac:string="";
   apellidosPac:string="";
+  correoPac:string="";
+  contrasenaPac:string="";
+  errorMsg:string="";
 
   //Fechas input material
   fechaAct = new Date();
@@ -51,59 +51,38 @@ export class RegistroComponent {
   //Fechas formateadas
   fechaSelected:any="";
 
-  //Estructura del array de fechas ocupadas (localstorage)
-  horas=[
-    {"fecha":"30/4/2024","hora":"12:00"}
-    //dd/mm/yyyy
-  ];
-
-  //Horas del servicio
-  hours: string[] = [
-    '7:00', '8:00', '9:00', '10:00', '11:00', '12:00',
-    '13:00', '14:00', '15:00', '16:00', '17:00', '18:00',
-    '19:00', '20:00'
-  ];
-
-  especialidades:string[]=[
-    "Medicina general","Oftalmología", "Cardiología", "Dermatología","Ginecología y obstetricia",
-    "Neurología","Pediatría","Oncología","Ortopedia y traumatología", "Endocrinología",
-    "Psiquiatría","Geriatría"
-  ];
-
   //Hora seleccionada
   horaSelected:any="";
 
   //Cosntructor
-  constructor(public miservicio: MedicoService, private fb: FormBuilder, private router:Router){
+  constructor(private fb: FormBuilder, private router:Router, public myAuth: AuthService){
     //Formulario
     this.citaForm = this.fb.group({
       nombre: ['', [Validators.required]],
       apellidos: ['', [Validators.required]],
       telefono: ['', [Validators.required]],
-      especialidad: ['', [Validators.required]],
+      correo: ['', [Validators.required]],
+      contraseña: ['', [Validators.required]],
       fecha: ['', [Validators.required]],
-      hora: ['', [Validators.required]],
     });
     //Establecer fecha actual
     const fechaFormatAct = new Date(this.fechaAct);
     //Establecer la fecha mínima
     this.minDate = this.fechaAct;
-    //Establecer la fecha máxima es diciembre de este año
-    this.maxDate = new Date(this.fechaAct.getFullYear(), 11, 31);
   }
 
   //Verificar que todo el formulario se llenó
   checkData(){
     if(this.citaForm.valid){
       Swal.fire({
-        title: "¿Deseas confirmar tu cita?",
+        title: "¿Deseas confirmar tu registro?",
         showDenyButton: true,
         showCancelButton: true,
         confirmButtonText: "Confirmar",
         denyButtonText: `Cancelar`
       }).then((result) => {
          if (result.isConfirmed) {
-          this.nuevaCita();
+          this.registrarPaciente();
         } else if (result.isDenied) {
         }
       });
@@ -120,63 +99,70 @@ export class RegistroComponent {
     this.fechaSelected = fechaFormatInp.toLocaleDateString();
   }
 
-  //Función que recibe la hora seleccionada
-  horaSelec(hora:any):void{
-    this.horaSelected=hora;
-  }
-
-  //Función que verifica si la hora está ocupada para el día seleccionado
-  hOcupada(fecha: string, hora: string): boolean {
-    for (let f= 0; f < this.horas.length; f++) {
-      if (this.horas[f].fecha === fecha && this.horas[f].hora === hora) {
-        return true;
-      }
-    }
-    return false;
-  }
-
   //ngOnInit
   ngOnInit():void{
-    this.misMedicos=this.miservicio.getMedicos();
-    //Obtenemos datos de local
-    const fechasOcupadas = localStorage.getItem('ocupadas');
-    if (fechasOcupadas) {
-      //Si existe en localstorage, se pasa al array de horas
-       this.horas = JSON.parse(fechasOcupadas);
+  }
+
+  validate_email(eml: string): boolean {
+    const expression = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (expression.test(eml)) {
+      // Email es válido
+      return true;
+    } else {
+      alert("The email is not valid");
+      return false;
+    }
+  }
+  
+
+  validate_password(pass:string):boolean{
+    if(pass.length < 6){
+      alert("The password has to be at least 6 characters");
+      return false;
     }else{
-      localStorage.setItem('ocupadas', JSON.stringify(this.horas));
+      return true
     }
   }
 
-  //Función que recibe la especialidad seleccionada
-  espSeleccionada(value:string): void {
-		this.especialidad = value;
-    this.continuar=true;
-	}
-
-  //Función que recibe al doctor seleccionado
-  docSeleccionado(doctor:any, indice:number):void{
-    this.medicoAux = doctor;
-    this.medico = this.misMedicos[indice].nombre;
+  validate_field(field:any):boolean{
+    if(field.length <= 0){
+      alert("A field is missing");
+      return false;
+    }else{
+      return true;
+    }
   }
 
-  //Función para hacer una nueva cita
-  nuevaCita(): void {
-    let newCita:Cita = {
-      nombrePaciente:this.nombrePac,
-      telefono: this.telefonoPac,
-      costo:"$650",
-      nombreDoctor:this.medico,
-      especialidad: this.especialidad,
-      fecha:this.fechaSelected,
-      hora:this.horaSelected
-    };
-    //Utilizar el servicio para agregar a cita al array de localStorage
-    this.miservicio.agregarCita(newCita);
-    //Agregar las horas ocupadas al array de citas ocupadas
-    this.horas.push({fecha:this.fechaSelected, hora:this.horaSelected});
-    localStorage.setItem('ocupadas', JSON.stringify(this.horas));
-    if(newCita){
+  registrarPaciente(): void {
+    console.log(this.nombrePac);
+    console.log(this.correoPac);
+    if(this.validate_password(this.contrasenaPac) && this.validate_email(this.correoPac) && this.validate_field(this.nombrePac)){
+      this.myAuth.register(this.correoPac, this.nombrePac, this.apellidosPac, this.contrasenaPac, this.telefonoPac, this.fechaSelected).subscribe(() => {
+        Swal.fire({
+          title: 'Éxito!',
+          text: 'Se ha registrado tu usuario correctamente. ¡VitalCare te da la bienvenida!.',
+          icon: 'success',
+          confirmButtonText: '¡Genial!',
+        }).then(() => {
+          this.router.navigate(['/inicio']);
+        });
+      },(error) => {
+        // Error al registrar usuario
+        console.error("Error al registrar usuario:", error);
+        if (error.code === "auth/email-already-in-use") {
+          this.errorMsg = "El correo electrónico ya está en uso. Por favor, intente con otro.";
+        } else {
+          this.errorMsg = "Ocurrió un error durante el registro. Por favor, inténtelo de nuevo más tarde.";
+        }
+        Swal.fire({
+          title: 'Error',
+          text: this.errorMsg,
+          icon: 'error',
+          confirmButtonText: 'Continuar',
+        });
+      });
+    }
+    /*if(newCita){
       Swal.fire({
         icon: "success",
         title: "Cita reservada con éxito",
@@ -192,6 +178,6 @@ export class RegistroComponent {
           this.router.navigate(['/inicio']);
         }
       });
-    }
+    }*/
   }
 }
