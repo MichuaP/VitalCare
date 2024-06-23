@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { AuthService } from '../auth.service';
+import { Cita } from '../medico';
 
 @Component({
   selector: 'app-reportes',
@@ -14,14 +16,10 @@ export class ReportesComponent {
   citasAnteriores: any[] = []; // Arreglo para almacenar citas pasadas
   citasProximas: any[] = []; // Arreglo para almacenar citas futuras
 
-  constructor() {
+  constructor(public basedatos: AuthService) {
     // Extraer la fecha actual del sistema
     this.fechaActual = new Date();
     console.log('La fecha actual es: ' + this.fechaActual.toLocaleDateString());
-  }
-
-  getCorreo(){
-    return this.user.loggeduser.correo;
   }
 
   ngOnInit(): void {
@@ -70,5 +68,5 @@ export class ReportesComponent {
     } else if (tipo === 'todas') {
       this.citas = JSON.parse(localStorage.getItem('citas') || '[]'); // Si es "todas", se obtienen todas las citas del localStorage
     }
-}
+  }
 }

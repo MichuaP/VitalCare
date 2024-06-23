@@ -50,35 +50,34 @@
             }
             @else {
                 <!-- @if(cita.nombrePaciente == "vitalcareclinicas@gmail.com") { Administrador -->
-                    @if(this.getCorreo() == "vitalcareclinicas@gmail.com") { <!-- Administrador -->
                 <div>
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Paciente</th>
-                                    <th scope="col">Teléfono</th>
-                                    <th scope="col">Costo</th>
-                                    <th scope="col">Médico</th>
-                                    <th scope="col">Especialidad</th>
-                                    <th scope="col">Fecha</th>
-                                    <th scope="col">Hora</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @for (cita of citas; track cita;) {
-                                <tr>
-                                    <td>{{ cita.nombrePaciente }}</td>
-                                    <td>{{ cita.telefono }}</td>
-                                    <td>{{ cita.costo }}</td>
-                                    <td>{{ cita.nombreDoctor }}</td>
-                                    <td>{{ cita.especialidad }}</td>
-                                    <td>{{ cita.fecha }}</td>
-                                    <td>{{ cita.hora }}</td>
-                                </tr>
-                                }
-                            </tbody>
-                        </table>
-                    </div>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Paciente</th>
+                                <th scope="col">Teléfono</th>
+                                <th scope="col">Costo</th>
+                                <th scope="col">Médico</th>
+                                <th scope="col">Especialidad</th>
+                                <th scope="col">Fecha</th>
+                                <th scope="col">Hora</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for (cita of citas; track cita;) {
+                            <tr>
+                                <td>{{ cita.nombrePaciente }}</td>
+                                <td>{{ cita.telefono }}</td>
+                                <td>{{ cita.costo }}</td>
+                                <td>{{ cita.nombreDoctor }}</td>
+                                <td>{{ cita.especialidad }}</td>
+                                <td>{{ cita.fecha }}</td>
+                                <td>{{ cita.hora }}</td>
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
                 <!-- } -->
 
                 <!-- @else { Usuario -->
@@ -115,39 +114,6 @@
                     </table>
                 </div>
                 <!-- } -->
-                }
-                @else { <!-- Usuario -->
-                <div>
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th scope="col">Paciente</th>
-                                <th scope="col">Teléfono</th>
-                                <th scope="col">Costo</th>
-                                <th scope="col">Médico</th>
-                                <th scope="col">Especialidad</th>
-                                <th scope="col">Fecha</th>
-                                <th scope="col">Hora</th>
-                                <th scope="col">Eliminar</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @for (cita of citas; track cita;) {
-                            <tr>
-                                <td>{{ cita.nombrePaciente }}</td>
-                                <td>{{ cita.telefono }}</td>
-                                <td>{{ cita.costo }}</td>
-                                <td>{{ cita.nombreDoctor }}</td>
-                                <td>{{ cita.especialidad }}</td>
-                                <td>{{ cita.fecha }}</td>
-                                <td>{{ cita.hora }}</td>
-                                <td> <button style="border: none; background-color: #FFFFFF;"> <i class="fa-solid fa-trash-can" style="color: #43ba7f;"></i> </button> </td>
-                            </tr>
-                            }
-                        </tbody>
-                    </table>
-                </div>
-                }
             }
         </div>
     </div>
