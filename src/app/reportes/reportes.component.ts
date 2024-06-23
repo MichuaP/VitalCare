@@ -3,6 +3,7 @@ import { RouterModule } from '@angular/router';
 import { Medico } from '../medico';
 import { MedicoService } from '../shared/medico.service';
 import { CommonModule } from '@angular/common';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-reportes',
@@ -28,11 +29,15 @@ export class ReportesComponent {
   citasAnteriores: any[] = []; // Arreglo para almacenar citas pasadas
   citasProximas: any[] = []; // Arreglo para almacenar citas futuras
 
-  constructor( public miservicio:MedicoService) {
+  constructor( public miservicio:MedicoService, public user: UserService) {
     // Extraer la fecha actual del sistema
     this.fechaActual = new Date();
     console.log('La fecha actual es: ' + this.fechaActual.toLocaleDateString());
     this.medicos = this.miservicio.getMedicos();
+  }
+
+  getCorreo(){
+    return this.user.loggeduser.correo;
   }
 
   ngOnInit(): void {

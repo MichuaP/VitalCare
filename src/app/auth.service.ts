@@ -1,16 +1,16 @@
 import { Injectable, inject, signal } from '@angular/core';
 import { Auth, signInWithPhoneNumber, updateProfile, user } from '@angular/fire/auth';
 import { RecaptchaVerifier, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth';
-import { Database, get, ref, set } from '@angular/fire/database';
+import { Database, get, push, ref, set } from '@angular/fire/database';
 import { Observable, from, map } from 'rxjs';
 import { Paciente } from './paciente';
+import { Cita, FechaOcupada } from './medico';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-
 
   constructor(private firebaseAuth: Auth, private database: Database) {}
 
@@ -73,8 +73,26 @@ export class AuthService {
     return this.firebaseAuth.currentUser.displayName;
   }
 
-  getApellido(){
-    
+  getDatos(): Observable<Paciente[]> {
+    const horasRef = ref(this.database, 'users');
+    const promise = get(horasRef).then((snapshot) => {
+      const fechasOcupadas: Paciente[] = [];
+      if (snapshot.exists()) {
+        //Obtenermos el array
+        snapshot.forEach((childSnapshot) => {
+          const fechas = childSnapshot.val();
+          fechasOcupadas.push({
+            nombre: fechas.nombre,
+            apellido: fechas.apellido,
+            correo: fechas.correo,
+            telefono: fechas.telefono,
+            fecha: fechas.fecha
+          });
+        });
+      }
+      return fechasOcupadas;
+    });
+    return from(promise);
   }
 
   isAuthenticated(): Observable<boolean> {
@@ -174,4 +192,47 @@ export class AuthService {
         return [];
       });
   }
+
+  //Función para registrar un usuario
+  agregarCita(infoCita: Cita): Observable<void> {
+    const citasRef = ref(this.database, 'citas');
+    const nuevaRef = push(citasRef);
+    const promise = set(nuevaRef, {
+      nombrePaciente: infoCita.nombrePaciente,
+      telefono: infoCita.telefono,
+      costo: infoCita.costo,
+      doctor: infoCita.nombreDoctor,
+      especialidad: infoCita.especialidad,
+      fecha: infoCita.fecha,
+      hora: infoCita.hora
+    });
+    return from(promise);
+  }
+
+  getFechasOcupadas(): Observable<FechaOcupada[]> {
+    const horasRef = ref(this.database, 'horasOcupadas');
+    const promise = get(horasRef).then((snapshot) => {
+      const fechasOcupadas: FechaOcupada[] = [];
+      if (snapshot.exists()) {
+        //Obtenermos el array
+        snapshot.forEach((childSnapshot) => {
+          const fechas = childSnapshot.val();
+          fechasOcupadas.push({
+            fecha: fechas.fecha,
+            hora: fechas.hora
+          });
+        });
+      }
+      return fechasOcupadas;
+    });
+    return from(promise);
+  }
+
+  guardarFechasOcupadas(fechaOcupada: FechaOcupada): Observable<void> {
+    const citasRef = ref(this.database, 'horasOcupadas');
+    const nuevaCitaRef = push(citasRef); // Crea una nueva referencia única para la nueva cita
+    const promise = set(nuevaCitaRef, fechaOcupada);
+    return from(promise);
+  }
+
 }

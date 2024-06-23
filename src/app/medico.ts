@@ -48,3 +48,8 @@ export interface Pregunta{
   pregunta:string;
   respuesta:string;
 }
+
+export interface FechaOcupada{
+  fecha: string;
+  hora: string;
+}
