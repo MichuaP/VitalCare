@@ -4,16 +4,12 @@ html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .high-contrast {
-    background-color: black;
-    color: white;
-  }
-  
-  .high-contrast {
-    filter: contrast(180%) brightness(60%);
+    background-color: black !important;
+    color: white !important;
   }
   
   .high-contrast img {
-    filter: contrast(180%) brightness(60%);
+    filter: contrast(180%) brightness(60%) !important;
   }
   
   .large-cursor {
