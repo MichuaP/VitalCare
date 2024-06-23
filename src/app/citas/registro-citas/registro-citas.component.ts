@@ -12,7 +12,10 @@ import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ResumenComponent } from '../resumen/resumen.component';
+import { AngularFireModule } from "@angular/fire/compat";
+import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { AuthService } from '../../auth.service';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -27,7 +30,8 @@ import { AuthService } from '../../auth.service';
     ReactiveFormsModule,
     SweetAlert2Module,
     CommonModule,
-    ResumenComponent
+    ResumenComponent,
+    AngularFireModule
   ],
   templateUrl: './registro-citas.component.html',
   styleUrl: './registro-citas.component.css'
@@ -78,10 +82,9 @@ export class RegistroCitasComponent implements OnInit {
 
   //Hora seleccionada
   horaSelected:any="";
-
+  items: Observable<any[]>;
   //Cosntructor
-  constructor(public miservicio: MedicoService, private fb: FormBuilder, private router:Router, public myAuth: AuthService){
-    this.nombrePac = myAuth.getDisplayName();
+  constructor(public miservicio: MedicoService, private fb: FormBuilder, private router:Router){
     //Formulario
     this.citaForm = this.fb.group({
       nombre: ['', [Validators.required]],
