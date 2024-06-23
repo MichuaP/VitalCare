@@ -19,19 +19,5 @@ export class MedicoService {
   getMedicos():Medico[]{
     return this.medicos;
   }
-
-  //Agregar una cita al localStorage
-  agregarCita(cita: Cita){
-    this.citas.push(cita);
-    localStorage.setItem('citas', JSON.stringify(this.citas));
-  }
-
-  //Agregar la hora ocupada a localstorage
-
-  // Buscar por nombre de medico
-  // searchUnMedico(nomMedico:string):number{
-  //   let index = this.medicos.findIndex(p => p.nombre === nomMedico);
-  //   return index;
-  // }
   
 }
