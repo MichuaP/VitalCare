@@ -84,10 +84,7 @@ export class RegistroCitasComponent implements OnInit {
   horaSelected:any="";
   items: Observable<any[]>;
   //Cosntructor
-  constructor(public miservicio: MedicoService, private fb: FormBuilder, private router:Router, private db: AngularFireDatabase, public myAuth: AuthService){
-    
-    this.items = db.list('users').valueChanges();
-    console.log(this.items);
+  constructor(public miservicio: MedicoService, private fb: FormBuilder, private router:Router, public myAuth: AuthService){
     //Formulario
     this.citaForm = this.fb.group({
       nombre: ['', [Validators.required]],
