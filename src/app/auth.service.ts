@@ -73,6 +73,10 @@ export class AuthService {
     return this.firebaseAuth.currentUser.displayName;
   }
 
+  getApellido(){
+    
+  }
+
   isAuthenticated(): Observable<boolean> {
     return this.user$.pipe(
       map(user => !!user) // Mapeamos el usuario a un booleano

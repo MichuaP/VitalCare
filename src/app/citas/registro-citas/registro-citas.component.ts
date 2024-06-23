@@ -82,7 +82,6 @@ export class RegistroCitasComponent implements OnInit {
   items: Observable<any[]>;
   //Cosntructor
   constructor(public miservicio: MedicoService, private fb: FormBuilder, private router:Router, public basedatos:AuthService){
-  constructor(public miservicio: MedicoService, private fb: FormBuilder, private router:Router, public myAuth: AuthService){
     //Formulario
     this.citaForm = this.fb.group({
       nombre: ['', [Validators.required]],
