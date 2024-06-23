@@ -27,9 +27,11 @@
                     <a class="nav-link white" [routerLink]="['/contacto']" routerLinkActive="active">Contacto</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link white" [routerLink]="['/equipo']" routerLinkActive="active">Desarrolladoras</a>
+                    <a class="nav-link white" [routerLink]="['/ayuda']" routerLinkActive="active">Ayuda</a>
                 </li>
-
+                <li class="nav-item">
+                    <a class="nav-link white" [routerLink]="['/equipo']" routerLinkActive="active">Desarrolladoras</a>
+                </li>                
                 @if(this.Logueado == false){
                 <li class="nav-item dropdown">
                     <a class="nav-link white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -49,6 +51,7 @@
                         </li>
                     </ul>
                 </li>
+                
                 }@else{
                 @if(this.AdminMode){
                 <li class="nav-item dropdown">
@@ -94,8 +97,7 @@
                 </li>
                 }
                 }
-
-
+              
             </ul>
 
 
