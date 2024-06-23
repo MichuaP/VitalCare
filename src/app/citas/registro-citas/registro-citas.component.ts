@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { Cita, Medico } from '../../medico';
+import { Cita, FechaOcupada, Medico } from '../../medico';
 import { MedicoService } from '../../shared/medico.service';
 import {MatDatepickerInputEvent, MatDatepickerModule} from '@angular/material/datepicker';
 import {MatInputModule} from '@angular/material/input';
@@ -61,11 +61,8 @@ export class RegistroCitasComponent implements OnInit {
   //Fechas formateadas
   fechaSelected:any="";
 
-  //Estructura del array de fechas ocupadas (localstorage)
-  horas=[
-    {"fecha":"30/4/2024","hora":"12:00"}
-    //dd/mm/yyyy
-  ];
+  //Estructura del array de fechas ocupadas
+  horas:FechaOcupada[]=[];
 
   //Horas del servicio
   hours: string[] = [
@@ -84,6 +81,7 @@ export class RegistroCitasComponent implements OnInit {
   horaSelected:any="";
   items: Observable<any[]>;
   //Cosntructor
+  constructor(public miservicio: MedicoService, private fb: FormBuilder, private router:Router, public basedatos:AuthService){
   constructor(public miservicio: MedicoService, private fb: FormBuilder, private router:Router, public myAuth: AuthService){
     //Formulario
     this.citaForm = this.fb.group({
@@ -100,6 +98,8 @@ export class RegistroCitasComponent implements OnInit {
     this.minDate = this.fechaAct;
     //Establecer la fecha máxima es diciembre de este año
     this.maxDate = new Date(this.fechaAct.getFullYear(), 11, 31);
+    //Obtener array de horas ocupadas de la base de datos
+    this.obtenerHoras();
   }
 
   //Verificar que todo el formulario se llenó
@@ -158,6 +158,16 @@ export class RegistroCitasComponent implements OnInit {
     }
   }
 
+  //Función que recibe las horas ocupadas (para no seleccionar fecha ocupada)
+  obtenerHoras(){
+    this.basedatos.getFechasOcupadas().subscribe(fechas => {
+      this.horas = fechas;
+      console.log("Fechas ocupadas:", this.horas);
+    }, error => {
+      console.error("Error al obtener fechas ocupadas:", error);
+    });
+  }
+
   //Función que recibe la especialidad seleccionada
   espSeleccionada(value:string): void {
 		this.especialidad = value;
@@ -181,11 +191,14 @@ export class RegistroCitasComponent implements OnInit {
       fecha:this.fechaSelected,
       hora:this.horaSelected
     };
-    //Utilizar el servicio para agregar a cita al array de localStorage
-    this.miservicio.agregarCita(newCita);
-    //Agregar las horas ocupadas al array de citas ocupadas
-    this.horas.push({fecha:this.fechaSelected, hora:this.horaSelected});
-    localStorage.setItem('ocupadas', JSON.stringify(this.horas));
+    let nuevasHoras:FechaOcupada = {
+      fecha:this.fechaSelected,
+      hora:this.horaSelected
+    };
+    //Utilizar el servicio para agregar la cita a la base de datos "citas"
+    this.basedatos.agregarCita(newCita);
+    //Agregar las horas ocupadas a la base de datos "horasOcupadas"
+    this.basedatos.guardarFechasOcupadas(nuevasHoras);
     if(newCita){
       Swal.fire({
         icon: "success",
