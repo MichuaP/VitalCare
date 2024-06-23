@@ -11,9 +11,11 @@ import { EquipoComponent } from './equipo/equipo.component';
 import { ContactoComponent } from './contacto/contacto.component';
 import { GraficasComponent } from './graficas/graficas.component';
 import { AbcComponent } from './abc/abc.component';
+import { RegistroComponent } from './registro/registro.component';
 
 export const routes: Routes = [
     { path:'regCitas', component: RegistroCitasComponent },
+    { path:'registro', component: RegistroComponent },
     { path:'nosotros', component: NosotrosComponent },
     { path: 'servicios', component: ServiciosComponent },
     { path: 'inicio', component: HomeComponent },

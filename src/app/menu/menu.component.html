@@ -14,7 +14,8 @@
                     <a class="nav-link white" [routerLink]="['/inicio']" routerLinkActive="active">Inicio</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link white" [routerLink]="['/nuestrosMedicos']" routerLinkActive="active">Nuestros Médicos</a>
+                    <a class="nav-link white" [routerLink]="['/nuestrosMedicos']" routerLinkActive="active">Nuestros
+                        Médicos</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link white" [routerLink]="['/servicios']" routerLinkActive="active">Servicios</a>
@@ -23,7 +24,8 @@
                     <a class="nav-link white" [routerLink]="['/regCitas']" routerLinkActive="active">Agendar Cita</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link white" [routerLink]="['/reportes']" routerLinkActive="active">Reporte de Citas</a>
+                    <a class="nav-link white" [routerLink]="['/reportes']" routerLinkActive="active">Reporte de
+                        Citas</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link white" [routerLink]="['/nosotros']" routerLinkActive="active">Nosotros</a>
@@ -34,23 +36,104 @@
                 <li class="nav-item">
                     <a class="nav-link white" [routerLink]="['/equipo']" routerLinkActive="active">Desarrolladoras</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link white" [routerLink]="['/graficas']" routerLinkActive="active">Gráficas</a>
+
+                @if(this.Logueado == false){
+                <li class="nav-item dropdown">
+                    <a class="nav-link white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fa-solid fa-right-to-bracket fa-2xl"></i>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" [routerLink]="['/registro']"
+                                routerLinkActive="active">Registrarse</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li>
+                            <button type="button" class="dropdown-item" data-bs-toggle="modal"
+                                data-bs-target="#staticBackdrop">
+                                Iniciar sesión
+                            </button>
+                        </li>
+                    </ul>
                 </li>
-                <div class="dropdown">
-                    <a class="dropdown-toggle btn" data-toggle="dropdown" href="#" >Dropdown trigger</a>
-                      <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                        <li>Item One</li>
-                        <li>Item Two</li>
-                      </ul>
-                  </div>
+                }@else{
+                @if(this.AdminMode){
+                <li class="nav-item dropdown">
+                    <a class="nav-link white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fa-solid fa-circle-user fa-2xl"></i>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" style="font-weight:bold;" [routerLink]="['/graficas']"
+                                routerLinkActive="active">Gráficas</a></li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><button type="button" class="dropdown-item" (click)="Logout()">
+                                Cerrar sesión
+                            </button></li>
+                    </ul>
+                </li>
+                }@else{
+                <li class="nav-item dropdown">
+                    <a class="nav-link white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fa-solid fa-circle-user fa-2xl"></i>
+                    </a>
+                    <ul class="dropdown-menu">
+                        
+                        <li><a class="dropdown-item" style="font-weight:bold;" [routerLink]="['/regCitas']"
+                                routerLinkActive="active">Agendar cita</a></li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><button type="button" class="dropdown-item" (click)="Logout()">
+                                Cerrar sesión
+                            </button></li>
+                    </ul>
+                </li>
+                }
+                }
+
+
             </ul>
+
+
             <div id="buscoEsp" class="d-flex align-items-center">
-                <input class="form-control me-2" placeholder="Buscar Especialidad..." aria-label="Search" #buscarTexto (keyup.enter)="buscarUnaEspecialidad(buscarTexto.value)">
-                <button class="btn btn-outline-light my-2 my-sm-0" type="button" (click)="buscarUnaEspecialidad(buscarTexto.value)">Buscar</button>
-                
-            </div>            
+                <input class="form-control me-2" placeholder="Buscar Especialidad..." aria-label="Search" #buscarTexto
+                    (keyup.enter)="buscarUnaEspecialidad(buscarTexto.value)">
+                <button class="btn btn-outline-light my-2 my-sm-0" type="button"
+                    (click)="buscarUnaEspecialidad(buscarTexto.value)">Buscar</button>
+            </div>
         </div>
     </div>
 </nav>
 <!-- <div id="eslogan">En busca de un futuro más saludable</div> -->
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Iniciar sesión</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                @if(!this.Metodo){
+                <app-login-correo (Usuario)="logueado($event)"></app-login-correo>
+                }@else{
+                <app-login-telefono></app-login-telefono>
+                }
+            </div>
+            <div class="modal-footer">
+                @if(!this.Metodo){
+                <button type="button" class="btn btn-primary" (click)="cambioMetodo()">Iniciar sesión con número de
+                    teléfono</button>
+                }@else{
+                <button type="button" class="btn btn-primary" (click)="cambioMetodo()">Iniciar sesión con
+                    correo</button>
+                }
+            </div>
+        </div>
+    </div>
+</div>

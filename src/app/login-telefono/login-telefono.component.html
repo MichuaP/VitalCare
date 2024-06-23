@@ -1,0 +1,21 @@
+<div class="container">
+        <div class="mb-3">
+            <label for="tel" class="form-label">Telefono</label>
+            <input type="text" class="form-control" id="tel" name="phone" [(ngModel)]="phone" required>
+            <p>Ejemplo: +524492555555</p>
+        </div>
+        <div class="captcha">
+            <div #captchaContainer></div>
+        </div>
+        <br>
+        @if(phone.length>10){
+            <a (click)="enviarCodigo()" class="btn btn-success">Enviar código</a>
+        }
+        <div class="mb-3">
+            <br>
+            <label for="codigo" class="form-label">Codigo de verificación</label>
+            <input type="text" class="form-control" id="tel" name="codigo" [(ngModel)]="codigo" required>
+        </div>
+
+        <a (click)="ingresarTel()" class="btn btn-success">Ingresar</a>
+</div>
