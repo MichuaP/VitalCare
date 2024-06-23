@@ -122,3 +122,31 @@ h5{
     font-style: italic;
     font-weight: 600;
 }
+
+@media (max-width: 1000px) {
+    
+    .container-paciente{
+     display: flex;
+     flex-wrap: wrap;
+    }
+    .container-paciente>div{
+     width: 100%;
+    }
+ 
+    .container-side{
+     display: flex;
+     flex-direction: column-reverse;
+     gap: 50px;
+    }
+ 
+    .align-items-center{
+     display: flex;
+     flex-wrap: wrap;
+    }
+    .align-items-center>div{
+     width: 100%;
+    }
+    .align-items-center>div>img{
+     width: 100%;
+    }
+ }

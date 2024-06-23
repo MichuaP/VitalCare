@@ -41,3 +41,17 @@ a{
     justify-content: center;
     flex-direction: column;
 }
+
+@media (max-width: 1000px) {
+    .row{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .row>div{
+        width: 50%;
+        margin-bottom: 25px;
+    }
+    #logo{
+        width: 100%;
+    }
+}

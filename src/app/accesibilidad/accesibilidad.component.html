@@ -1,0 +1,10 @@
+<div class="accessibility-icon" (click)="toggleMenu()">
+    <img src="../../assets/img/icono_Accesibilidad.png" alt="Icono de accesibilidad">
+  </div>
+  
+  <div class="accessibility-menu" [class.show]="menuVisible">
+    <button (click)="increaseFontSize()" (mouseover)="content($event)">Aumentar Texto</button>
+    <button (click)="decreaseFontSize()" (mouseover)="content($event)">Disminuir Texto</button>
+    <button (click)="toggleHighContrast()" (mouseover)="content($event)">Contraste Alto</button>
+    <button (click)="toggleLargeCursor()" (mouseover)="content($event)">Cursor Grande</button>
+  </div>

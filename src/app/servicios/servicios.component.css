@@ -144,3 +144,23 @@
 .imgBann {
     margin-top: 30px;
 }
+
+
+@media (max-width: 1000px) {
+    
+    .row>div{
+        width: 100%;
+    }
+
+    .imgBann{
+        display: none;
+    }
+
+   .btn-lg{
+        margin-bottom: 30px;
+    }
+
+    .section-servicios{
+        width: 80%;
+    }
+}
