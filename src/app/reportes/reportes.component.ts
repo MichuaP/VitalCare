@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { Cita } from '../medico';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-reportes',
@@ -15,11 +16,15 @@ export class ReportesComponent {
   fechaActual: Date; // Variable para almacenar la fecha actual
   citasAnteriores: any[] = []; // Arreglo para almacenar citas pasadas
   citasProximas: any[] = []; // Arreglo para almacenar citas futuras
-
-  constructor(public basedatos: AuthService) {
+ 
+  constructor(public user: UserService, public basedatos: AuthService) {
     // Extraer la fecha actual del sistema
     this.fechaActual = new Date();
     console.log('La fecha actual es: ' + this.fechaActual.toLocaleDateString());
+  }
+
+  getCorreo(){
+    return this.user.loggeduser.correo;
   }
 
   ngOnInit(): void {
