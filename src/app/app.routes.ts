@@ -10,6 +10,7 @@ import { NosotrosComponent } from './nosotros/nosotros.component';
 import { EquipoComponent } from './equipo/equipo.component';
 import { ContactoComponent } from './contacto/contacto.component';
 import { GraficasComponent } from './graficas/graficas.component';
+import { AbcComponent } from './abc/abc.component';
 import { RegistroComponent } from './registro/registro.component';
 
 export const routes: Routes = [
@@ -23,6 +24,7 @@ export const routes: Routes = [
     { path: 'contacto', component: ContactoComponent },
     { path: 'equipo', component: EquipoComponent },
     { path: 'graficas', component: GraficasComponent },
+    { path: 'abc', component: AbcComponent },
     { path: 'especialidad/:id', component: UnaespecialidadComponent },
     { path: 'buscador/:nombreEsp', component: SearchComponent },
     {path: '**', pathMatch: 'full', redirectTo: 'inicio'}

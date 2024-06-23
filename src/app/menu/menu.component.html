@@ -21,13 +21,6 @@
                     <a class="nav-link white" [routerLink]="['/servicios']" routerLinkActive="active">Servicios</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link white" [routerLink]="['/regCitas']" routerLinkActive="active">Agendar Cita</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link white" [routerLink]="['/reportes']" routerLinkActive="active">Reporte de
-                        Citas</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link white" [routerLink]="['/nosotros']" routerLinkActive="active">Nosotros</a>
                 </li>
                 <li class="nav-item">
@@ -63,9 +56,12 @@
                         <i class="fa-solid fa-circle-user fa-2xl"></i>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" style="font-weight:bold;" [routerLink]="['/graficas']"
-                                routerLinkActive="active">Gráficas</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li><a class="dropdown-item disabled" style="font-weight:bold;">Administración</a></li>
+                        <li><a class="dropdown-item" [routerLink]="['/graficas']" routerLinkActive="active">Gráficas</a>
+                        </li>
+                        <li><a class="dropdown-item" [routerLink]="['/reportes']" routerLinkActive="active">Reporte de citas</a></li>
+                        <li>
+                        <li><a class="dropdown-item" [routerLink]="['/abc']" routerLinkActive="active">ABC</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
@@ -80,10 +76,14 @@
                         <i class="fa-solid fa-circle-user fa-2xl"></i>
                     </a>
                     <ul class="dropdown-menu">
-                        
-                        <li><a class="dropdown-item" style="font-weight:bold;" [routerLink]="['/regCitas']"
-                                routerLinkActive="active">Agendar cita</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li><a class="dropdown-item disabled" style="font-weight:bold;">Bienvenid&#64;
+                                {{myAuth.getDisplayName()}}</a></li>
+                        <li><a class="dropdown-item" [routerLink]="['/regCitas']" routerLinkActive="active">Agendar
+                                cita</a></li>
+                        <li><a class="dropdown-item" [routerLink]="['/regCitas']" routerLinkActive="active">Dar de baja
+                                cita</a></li>
+                        <li><a class="dropdown-item" [routerLink]="['/regCitas']" routerLinkActive="active">Consultar
+                                citas</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
