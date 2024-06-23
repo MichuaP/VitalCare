@@ -2,7 +2,7 @@ import { Injectable, inject, signal } from '@angular/core';
 import { Auth, signInWithPhoneNumber, updateProfile, user } from '@angular/fire/auth';
 import { RecaptchaVerifier, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth';
 import { Database, get, ref, set } from '@angular/fire/database';
-import { Observable, from } from 'rxjs';
+import { Observable, from, map } from 'rxjs';
 import { Paciente } from './paciente';
 
 
@@ -10,6 +10,7 @@ import { Paciente } from './paciente';
   providedIn: 'root'
 })
 export class AuthService {
+
 
   constructor(private firebaseAuth: Auth, private database: Database) {}
 
@@ -42,12 +43,14 @@ export class AuthService {
   }
 
   //Login con email and password
-  login(email:string, password:string):Observable<void>{
+  login(email:string, password:string):Observable<string>{
     const promise = signInWithEmailAndPassword(
       this.firebaseAuth,
       email,
       password,
-    ).then(() => {});
+    ).then((userCredential) => {
+      return userCredential.user.displayName;
+    });
     return from(promise);
   }
 
@@ -55,6 +58,21 @@ export class AuthService {
   logout():Observable<void>{
     const promise = signOut(this.firebaseAuth);
     return from(promise);
+  }
+
+  //Obtener login
+  Obtenerlogin(){
+    if(this.firebaseAuth.authStateReady){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+  isAuthenticated(): Observable<boolean> {
+    return this.user$.pipe(
+      map(user => !!user) // Mapeamos el usuario a un booleano
+    );
   }
 
   //Inicializar captcha
