@@ -12,6 +12,7 @@ import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ResumenComponent } from '../resumen/resumen.component';
+import { AuthService } from '../../auth.service';
 
 
 @Component({
@@ -79,7 +80,8 @@ export class RegistroCitasComponent implements OnInit {
   horaSelected:any="";
 
   //Cosntructor
-  constructor(public miservicio: MedicoService, private fb: FormBuilder, private router:Router){
+  constructor(public miservicio: MedicoService, private fb: FormBuilder, private router:Router, public myAuth: AuthService){
+    this.nombrePac = myAuth.getDisplayName();
     //Formulario
     this.citaForm = this.fb.group({
       nombre: ['', [Validators.required]],
