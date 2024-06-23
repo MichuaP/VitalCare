@@ -2,3 +2,22 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.high-contrast {
+    background-color: black;
+    color: white;
+  }
+  
+  .high-contrast {
+    filter: contrast(180%) brightness(60%);
+  }
+  
+  .high-contrast img {
+    filter: contrast(180%) brightness(60%);
+  }
+  
+  .large-cursor {
+    cursor: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCIgdmlld0JveD0iMCAwIDY0IDY0Ij4KICAgIDxwb2x5Z29uIHBvaW50cz0iMzIsMCAwLDY0IDY0LDY0IiBmaWxsPSJibGFjayIvPgo8L3N2Zz4="),
+      auto;
+  }
+  
