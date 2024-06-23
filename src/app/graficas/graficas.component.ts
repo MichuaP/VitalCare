@@ -11,7 +11,7 @@ import { Chart } from 'chart.js/auto';
 })
 export class GraficasComponent implements OnInit {
   public chart: Chart;
-  public datos1: number[];
+  // public datos1: number[];
   public datos2: number[];
   public titulos: string[];
 
@@ -26,7 +26,7 @@ export class GraficasComponent implements OnInit {
       type: 'bar',
       data: data,
       options: {
-        indexAxis: 'y',
+        indexAxis: 'x',
         elements: {
           bar: {
             borderWidth: 2,
@@ -46,13 +46,13 @@ export class GraficasComponent implements OnInit {
           x: {
             title: {
               display: true,
-              text: 'Pacientes ingresados'
+              text: 'Especialidad asistida'
             }
           },
           y: {
             title: {
               display: true,
-              text: 'Meses'
+              text: 'Pacientes ingresados'
             }
           }
         }
@@ -61,23 +61,23 @@ export class GraficasComponent implements OnInit {
   }
 
   datos() {
-    const labels = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+    const labels = ["Diagnóstico clínico", "Medicina General", "Oftalmología", "Cardiología", "Dermatología", "Ginecología y Obstetricia", "Neurología", "Pediatría", "Oncología", "Ortopedia y Traumatología", "Endocrinología", "Psiquiatría", "Geriatría"];
     this.titulos = labels;
     const valoresRamdom = (num: number) => Array.from({ length: num }, () => Math.floor(Math.random() * 100));
-    this.datos1 = valoresRamdom(labels.length);
+    // this.datos1 = valoresRamdom(labels.length);
     this.datos2 = valoresRamdom(labels.length);
 
     return {
       labels: labels,
       datasets: [
+        // {
+        //   label: 'Urgencias',
+        //   data: this.datos1,
+        //   borderColor: 'rgb(184, 0, 184)',
+        //   backgroundColor: 'rgb(128, 0, 128)',
+        // },
         {
-          label: 'Urgencias',
-          data: this.datos1,
-          borderColor: 'rgb(184, 0, 184)',
-          backgroundColor: 'rgb(128, 0, 128)',
-        },
-        {
-          label: 'General',
+          label: 'Pacientes',
           data: this.datos2,
           borderColor: 'rgb(0, 219, 135)',
           backgroundColor: 'rgb(0, 172, 106)',
