@@ -30,7 +30,7 @@ label {
     font-style: italic;
 }
 
-#tipo-cita {
+#tipo-cita, #tipo-consulta {
     background-color: #43ba7f1a;
     padding: 4px 16px;
     font-size: 20px;
