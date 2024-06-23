@@ -171,6 +171,31 @@ export class AuthService {
       });
   }
 
+  //Obtener los datos de las citas
+  getCitas(): Observable<Cita[]> {
+    const citasRef = ref(this.database, 'citas');
+    const promise = get(citasRef).then((snapshot) => {
+      const citas: Cita[] = [];
+      if (snapshot.exists()) {
+        //Obtenermos el array
+        snapshot.forEach((childSnapshot) => {
+          const citasData = childSnapshot.val();
+          citas.push({
+            nombrePaciente: citasData.nombrePaciente,
+            telefono: citasData.telefono,
+            costo: citasData.costo,
+            nombreDoctor: citasData.doctor,
+            especialidad: citasData.especialidad,
+            fecha: citasData.fecha,
+            hora: citasData.hora
+          });
+        });
+      }
+      return citas;
+    });
+    return from(promise);
+  }
+
   //Función para registrar un usuario
   agregarCita(infoCita: Cita): Observable<void> {
     const citasRef = ref(this.database, 'citas');

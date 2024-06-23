@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { AuthService } from '../auth.service';
+import { Cita } from '../medico';
 
 @Component({
   selector: 'app-reportes',
@@ -9,29 +11,35 @@ import { RouterModule } from '@angular/router';
   styleUrl: './reportes.component.css',
 })
 export class ReportesComponent {
-  citas: any[] = []; // Arreglo para almacenar todas las citas
+  citas: Cita[] = []; //Estructura del array de citas
   fechaActual: Date; // Variable para almacenar la fecha actual
   citasAnteriores: any[] = []; // Arreglo para almacenar citas pasadas
   citasProximas: any[] = []; // Arreglo para almacenar citas futuras
 
-  constructor() {
+  constructor(public basedatos: AuthService) {
     // Extraer la fecha actual del sistema
     this.fechaActual = new Date();
     console.log('La fecha actual es: ' + this.fechaActual.toLocaleDateString());
   }
 
   ngOnInit(): void {
-    this.obtenerCitasLocalStorage(); // Extrae las citas almacenadas en el localStorage
+    this.obtenerCitas(); // Extrae las citas almacenadas en la base de datos
     this.filtrarCitas(); // Se llama a la función para filtrar las citas entre pasadas y futuras
   }
 
-  // Método para obtener las citas almacenadas en el localStorage
-  obtenerCitasLocalStorage() {
-    const citasString = localStorage.getItem('citas');
-    if (citasString) {
-      this.citas = JSON.parse(citasString); // Si hay citas almacenadas, se parsean y se asignan al arreglo de citas
-    }
+  //Método para obtener las citas almacenadas en la base de datos
+  obtenerCitas(){
+    this.basedatos.getCitas().subscribe(citas => {
+      this.citas = citas;
+    }, error => {
+      console.error("Error al obtener las citas:", error);
+    });
   }
+
+  borrarCita(fecha: any, hora: any): void {
+    //this.basedatos.list('/citas').remove(fecha, hora);
+  }
+  
 
   // Método para filtrar las citas entre pasadas y futuras
   filtrarCitas() {
