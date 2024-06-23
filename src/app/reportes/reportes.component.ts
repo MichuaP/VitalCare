@@ -3,6 +3,9 @@ import { RouterModule } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { Cita } from '../medico';
 import { UserService } from '../user.service';
+import { Medico } from '../medico';
+import { MedicoService } from '../shared/medico.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-reportes',
@@ -12,12 +15,31 @@ import { UserService } from '../user.service';
   styleUrl: './reportes.component.css',
 })
 export class ReportesComponent {
+<<<<<<<<< Temporary merge branch 1
   citas: Cita[] = []; //Estructura del array de citas
+=========
+
+  selectedTipoConsulta:any = "todas"
+  medicos:Medico[]=[];
+  especialidades:string[]=[
+    "Medicina general","Oftalmología", "Cardiología", "Dermatología","Ginecología y obstetricia",
+    "Neurología","Pediatría","Oncología","Ortopedia y traumatología", "Endocrinología",
+    "Psiquiatría","Geriatría"
+  ];
+
+
+  citasalmacen: any[] = []; // Arreglo para almacenar todas las citas y no se borren al cambiar la consulta
+  citas: any[] = []; // Arreglo para almacenar todas las citas
+>>>>>>>>> Temporary merge branch 2
   fechaActual: Date; // Variable para almacenar la fecha actual
   citasAnteriores: any[] = []; // Arreglo para almacenar citas pasadas
   citasProximas: any[] = []; // Arreglo para almacenar citas futuras
 
-  constructor(public basedatos: AuthService, public user: UserService) {
+<<<<<<<<< Temporary merge branch 1
+  constructor(public basedatos: AuthService) {
+=========
+  constructor( public miservicio:MedicoService, public user: UserService) {
+>>>>>>>>> Temporary merge branch 2
     // Extraer la fecha actual del sistema
     this.fechaActual = new Date();
     console.log('La fecha actual es: ' + this.fechaActual.toLocaleDateString());
@@ -35,6 +57,16 @@ export class ReportesComponent {
     }, error => {
       console.error("Error al obtener las citas:", error);
     });
+=========
+  // Método para obtener las citas almacenadas en el localStorage
+  obtenerCitasLocalStorage() {
+    const citasString = localStorage.getItem('citas');
+    if (citasString) {
+      this.citas = JSON.parse(citasString); // Si hay citas almacenadas, se parsean y se asignan al arreglo de citas
+      this.citasalmacen = this.citas; //guardar citas en almacen
+      console.log(this.citas)
+    }
+>>>>>>>>> Temporary merge branch 2
   }
 
   borrarCita(fecha: any, hora: any): void {
