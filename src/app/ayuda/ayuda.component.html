@@ -1,0 +1,20 @@
+<div id="encabezado">
+    <div>
+        <h1>¿En qué podemos <span class="highlight">ayudarte</span>?</h1>
+        <p>A continuación te mostramos las respuestas a las preguntas más frecuentes de nuestros clientes, 
+            pero recuerda que siempre puedes contactar con nuestro equipo para lo que necesites.
+        </p>
+    </div>
+    <img src="../../assets/img/Questions-bro.png" alt="">
+</div>
+<div id="preguntas">
+    @for (q of misPreguntas; track q){
+        <div class="faq-container">
+            <div class="text-center">
+                <i class="fa-solid fa-circle-question"></i>
+            </div>
+            <div class="pregunta"> {{q.pregunta}} </div>
+            <div class="respuesta"> {{q.respuesta}} </div>
+        </div>
+    }
+</div>
