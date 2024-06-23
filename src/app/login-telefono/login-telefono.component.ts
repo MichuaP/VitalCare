@@ -1,6 +1,7 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../auth.service';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-login-telefono',
@@ -11,7 +12,7 @@ import { AuthService } from '../auth.service';
 })
 export class LoginTelefonoComponent {
 
-  constructor(public myAuth: AuthService){}
+  constructor(public myAuth: AuthService, public user: UserService){}
   @ViewChild('captchaContainer', { static: false }) captchaContainer!: ElementRef;
 
   ngAfterViewInit(): void {
@@ -26,7 +27,7 @@ export class LoginTelefonoComponent {
   phone:string="";
   codigo:any;
   captchaFlag:boolean=true;
-
+  @Output() Usuario = new EventEmitter<string>();
   
 
   captcha(): void {
@@ -58,6 +59,8 @@ export class LoginTelefonoComponent {
   ingresarTel():void{
     this.myAuth.loginSMS(this.codigo).subscribe(() =>{
       alert("Ingresado");
+      this.user.setUserSMS(this.phone);
+      this.Usuario.emit("OK");
     }, error =>{
       alert("Error al ingresar");
     });
