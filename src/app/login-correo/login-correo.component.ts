@@ -31,7 +31,7 @@ export class LoginCorreoComponent {
           icon: 'success',
           confirmButtonText: 'Continuar',
         }).then(() => {
-          this.router.navigate(['/inicio']);
+          this.router.navigate(['/#']);
         });
       },
       error => {

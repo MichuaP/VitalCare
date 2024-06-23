@@ -18,6 +18,7 @@ export class MenuComponent {
   Logueado:boolean;
   Metodo:boolean;
   AdminMode:boolean;
+  displayName: string;
 
   constructor(private router:Router, public myAuth: AuthService) {
     this.Logueado$ = myAuth.isAuthenticated();
@@ -40,7 +41,8 @@ export class MenuComponent {
   }
 
   logueado(txt: string){
-    if(txt = "AdminVitalCare"){
+    this.displayName = txt;
+    if(txt == "AdminVitalCare"){
       this.AdminMode=true;
     }else{
       this.AdminMode=false;
