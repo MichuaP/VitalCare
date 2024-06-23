@@ -73,8 +73,26 @@ export class AuthService {
     return this.firebaseAuth.currentUser.displayName;
   }
 
-  getApellido(){
-    
+  getDatos(): Observable<Paciente[]> {
+    const horasRef = ref(this.database, 'users');
+    const promise = get(horasRef).then((snapshot) => {
+      const fechasOcupadas: Paciente[] = [];
+      if (snapshot.exists()) {
+        //Obtenermos el array
+        snapshot.forEach((childSnapshot) => {
+          const fechas = childSnapshot.val();
+          fechasOcupadas.push({
+            nombre: fechas.nombre,
+            apellido: fechas.apellido,
+            correo: fechas.correo,
+            telefono: fechas.telefono,
+            fecha: fechas.fecha
+          });
+        });
+      }
+      return fechasOcupadas;
+    });
+    return from(promise);
   }
 
   isAuthenticated(): Observable<boolean> {

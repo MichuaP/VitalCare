@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "Mini2_AngularTW": {
+    "pruebafirebase-adf04": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -53,7 +53,13 @@
             "development": {
               "optimization": false,
               "extractLicenses": false,
-              "sourceMap": true
+              "sourceMap": true,
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.development.ts"
+                }
+              ]
             }
           },
           "defaultConfiguration": "production"
@@ -62,10 +68,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "Mini2_AngularTW:build:production"
+              "buildTarget": "pruebafirebase-adf04:build:production"
             },
             "development": {
-              "buildTarget": "Mini2_AngularTW:build:development"
+              "buildTarget": "pruebafirebase-adf04:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -73,7 +79,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "Mini2_AngularTW:build"
+            "buildTarget": "pruebafirebase-adf04:build"
           }
         },
         "test": {

@@ -80,7 +80,7 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item disabled" style="font-weight:bold;">Bienvenid&#64;
-                                {{myAuth.getDisplayName()}}</a></li>
+                                {{this.getNombre()}}</a></li>
                         <li><a class="dropdown-item" [routerLink]="['/regCitas']" routerLinkActive="active">Agendar
                                 cita</a></li>
                         <li><a class="dropdown-item" [routerLink]="['/regCitas']" routerLinkActive="active">Dar de baja
@@ -124,7 +124,7 @@
                 @if(!this.Metodo){
                 <app-login-correo (Usuario)="logueado($event)"></app-login-correo>
                 }@else{
-                <app-login-telefono></app-login-telefono>
+                <app-login-telefono (Usuario)="logueado($event)"></app-login-telefono>
                 }
             </div>
             <div class="modal-footer">

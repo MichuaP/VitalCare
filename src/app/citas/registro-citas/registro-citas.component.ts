@@ -13,9 +13,12 @@ import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ResumenComponent } from '../resumen/resumen.component';
 import { AngularFireModule } from "@angular/fire/compat";
-import { AngularFireDatabase } from '@angular/fire/compat/database';
+import { AngularFireDatabase, AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { AuthService } from '../../auth.service';
 import { Observable } from 'rxjs';
+import { UserService } from '../../user.service';
+import { environment } from '../../../environments/environment.development';
+import { Paciente } from '../../paciente';
 
 
 @Component({
@@ -31,7 +34,7 @@ import { Observable } from 'rxjs';
     SweetAlert2Module,
     CommonModule,
     ResumenComponent,
-    AngularFireModule
+    AngularFireDatabaseModule
   ],
   templateUrl: './registro-citas.component.html',
   styleUrl: './registro-citas.component.css'
@@ -61,6 +64,17 @@ export class RegistroCitasComponent implements OnInit {
   //Fechas formateadas
   fechaSelected:any="";
 
+  //Recuperar los usuarios
+  users:Paciente[]=[];
+  //Recuperar usuario actual
+  usuario?:Paciente={
+    nombre: "",
+    apellido:"",
+    correo: "",
+    telefono:"",
+    fecha: ""
+  };
+
   //Estructura del array de fechas ocupadas
   horas:FechaOcupada[]=[];
 
@@ -79,10 +93,11 @@ export class RegistroCitasComponent implements OnInit {
 
   //Hora seleccionada
   horaSelected:any="";
-  items: Observable<any[]>;
+
   //Cosntructor
-  constructor(public miservicio: MedicoService, private fb: FormBuilder, private router:Router, public basedatos:AuthService){
+  constructor(public miservicio: MedicoService, private fb: FormBuilder, private router:Router, public basedatos:AuthService, public user: UserService){
     //Formulario
+
     this.citaForm = this.fb.group({
       nombre: ['', [Validators.required]],
       apellidos: ['', [Validators.required]],
@@ -99,6 +114,21 @@ export class RegistroCitasComponent implements OnInit {
     this.maxDate = new Date(this.fechaAct.getFullYear(), 11, 31);
     //Obtener array de horas ocupadas de la base de datos
     this.obtenerHoras();
+    this.UsuarioActual();
+    this.Autorrellenado();
+  }
+
+  UsuarioActual(){
+    this.usuario = this.user.getUser();
+  }
+
+  Autorrellenado(){
+    this.nombrePac = this.usuario.nombre;
+    this.apellidosPac = this.usuario.apellido;
+    this.telefonoPac = this.usuario.telefono;
+    this.citaForm.controls['nombre'].disable();
+    this.citaForm.controls['apellidos'].disable();
+    this.citaForm.controls['telefono'].disable();
   }
 
   //Verificar que todo el formulario se llenó

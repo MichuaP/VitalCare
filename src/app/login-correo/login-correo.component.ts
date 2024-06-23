@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../auth.service';
 import Swal from 'sweetalert2';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-login-correo',
@@ -17,14 +18,15 @@ export class LoginCorreoComponent {
 
   @Output() Usuario = new EventEmitter<string>();
 
-  constructor(public myAuth: AuthService, private router: Router){}
+  constructor(public myAuth: AuthService, private router: Router, public user: UserService){}
 
   ingresar(): void{
     console.log(this.email);
     console.log(this.password);
     if(this.validate_password(this.password) && this.validate_email(this.email) && this.validate_field(this.password)){
       this.myAuth.login(this.email,this.password).subscribe((displayName) => {
-         this.Usuario.emit(displayName);
+        this.user.setUserEmail(this.email);
+        this.Usuario.emit("OK");
          Swal.fire({
           title: 'Inicio de sesión exitoso',
           text: "Bienvenido " + displayName,
