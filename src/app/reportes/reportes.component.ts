@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { Cita } from '../medico';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-reportes',
@@ -16,7 +17,7 @@ export class ReportesComponent {
   citasAnteriores: any[] = []; // Arreglo para almacenar citas pasadas
   citasProximas: any[] = []; // Arreglo para almacenar citas futuras
 
-  constructor(public basedatos: AuthService) {
+  constructor(public basedatos: AuthService, public user: UserService) {
     // Extraer la fecha actual del sistema
     this.fechaActual = new Date();
     console.log('La fecha actual es: ' + this.fechaActual.toLocaleDateString());
@@ -68,5 +69,21 @@ export class ReportesComponent {
     } else if (tipo === 'todas') {
       this.citas = JSON.parse(localStorage.getItem('citas') || '[]'); // Si es "todas", se obtienen todas las citas del localStorage
     }
+  }
+
+  getNombreUsuario() {
+    return this.user.loggeduser.nombre;
+  }
+  getApellidosUsuario() {
+    return this.user.loggeduser.apellido;
+  } 
+  getCorreoUsuario() {
+    return this.user.loggeduser.correo;
+  }
+  getTelefonoUsuario() {
+    return this.user.loggeduser.telefono;
+  }
+  getFechaNacimientoUsuario() {
+    return this.user.loggeduser.fecha;
   }
 }
