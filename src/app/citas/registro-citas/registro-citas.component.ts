@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Cita, Medico } from '../../medico';
 import { MedicoService } from '../../shared/medico.service';
 import {MatDatepickerInputEvent, MatDatepickerModule} from '@angular/material/datepicker';
@@ -32,7 +32,7 @@ import { ResumenComponent } from '../resumen/resumen.component';
   styleUrl: './registro-citas.component.css'
 })
 
-export class RegistroCitasComponent {
+export class RegistroCitasComponent implements OnInit {
 
   //Resumen
   continuar:boolean=false;
