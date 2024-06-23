@@ -43,3 +43,8 @@ export interface Desarrolladores{
   descripcion:string,
   imagen:string;
 }
+
+export interface Pregunta{
+  pregunta:string;
+  respuesta:string;
+}
