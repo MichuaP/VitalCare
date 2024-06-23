@@ -4,13 +4,13 @@
         <img src="assets/img/carousel2.jpg" alt="">
     </div>
     <div id="eslogan">
-        <h1>Construyendo un futuro más saludable</h1>
+        <h1 (mouseover)="content($event)">Construyendo un futuro más saludable</h1>
     </div>
 </div>
 <div class="text-center" id="bienvenida">
-    <h3>Bienvenido a VitalCare</h3>
+    <h3 (mouseover)="content($event)">Bienvenido a VitalCare</h3>
     <hr>
-    <p>
+    <p (mouseover)="content($event)">
         En VitalCare, nuestro compromiso es brindar atención médica de excelencia con compasión y
         dedicación.
         Nos enorgullecemos de ofrecer servicios médicos de alta calidad respaldados por un equipo profesional y unas
@@ -162,16 +162,20 @@
         </p>
     </div>
 </div>
+
 <div id="video-container" class="row">
     <div id="video" class="col">
         <iframe width="550" height="309" [src]="video | domseguro:'https://www.youtube.com/embed/'" title="¡Feliz Día del Médico!" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
     </div>
+
     <div id="video-texto" class="col">
         En <span class="highlight">VitalCare</span> agradecemos <br> el esfuerzo y <br> dedicación <br>de cada uno <br> de nuestros <br>médicos.
     </div>
 </div>
+
 <div id="reconocimientos">
     <h2 class="highlight">Certificaciones, Reconocimientos y Afiliaciones</h2>
+
     <p>Nuestra prioridad es brindar calidad y seguridad. Respaldamos estas acciones con <br> reconocimientos y certificaciones que avalan nuestro servicio de experiencia</p>
     <div class="row">
         <div class="col"><img src="assets/img/certificaciones/cehc.png" alt=""></div>

@@ -7,19 +7,19 @@
         <table class="table table-striped">
             <thead>
                <tr>
-                  <th></th>
-                  <th colspan="2">Pacientes</th>
+                  <!-- <th></th> -->
+                  <th colspan="2" style="text-align: center;">Citas</th> 
               </tr>
               <tr>
-                <th>Mes</th>
-                <th>Urgencias</th>
-                <th>General</th>
+                <th>Especialidad</th>
+                <!-- <th>Urgencias</th> -->
+                <th>Pacientes</th>
               </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let mes of titulos; let i=index">
-                    <td>{{mes}}</td>
-                    <td>{{datos1[i]}}</td>
+                <tr *ngFor="let esp of titulos; let i=index">
+                    <td>{{esp}}</td>
+                    <!-- <td>{{datos1[i]}}</td> -->
                     <td>{{datos2[i]}}</td>
                 </tr>
             </tbody>
