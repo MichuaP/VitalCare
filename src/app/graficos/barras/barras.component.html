@@ -1,18 +1,27 @@
+<div class="container-outside">
+    <div class="container">
+        <div class="text-center">
+            <h1 class="title-container"><span class="highlight">Administración </span>rápida y sencilla</h1>
+            <br>
+            <p class="text-container">Este al tanto del movimiento dentro de VitalCare de una manera rápida por medio de 
+                gráficas estadísticas.
+            </p>
+            <br>
+        </div>
+    </div>
+</div>
 <section>
     <div class="grafica">
-        <!-- <button (click)="actualizar()" class="btn btn-info mb-3">Generar Graficas</button> -->
         <canvas id="chart" width="500">{{ chart }}</canvas>
     </div>
     <div class="tabla">
         <table class="table table-striped">
             <thead>
                <tr>
-                  <!-- <th></th> -->
                   <th colspan="2" style="text-align: center;">Citas</th> 
               </tr>
               <tr>
                 <th>Especialidad</th>
-                <!-- <th>Urgencias</th> -->
                 <th>Pacientes</th>
               </tr>
             </thead>
@@ -24,5 +33,7 @@
             </tbody>
           </table>
     </div>
-    
 </section>
+<app-pie></app-pie>
+<app-line></app-line>
+

@@ -9,10 +9,10 @@ import { SearchComponent } from './search/search.component';
 import { NosotrosComponent } from './nosotros/nosotros.component';
 import { EquipoComponent } from './equipo/equipo.component';
 import { ContactoComponent } from './contacto/contacto.component';
-import { GraficasComponent } from './graficas/graficas.component';
 import { AyudaComponent } from './ayuda/ayuda.component';
 import { AbcComponent } from './abc/abc.component';
 import { RegistroComponent } from './registro/registro.component';
+import { BarrasComponent } from './graficos/barras/barras.component';
 
 export const routes: Routes = [
     { path:'regCitas', component: RegistroCitasComponent },
@@ -24,7 +24,7 @@ export const routes: Routes = [
     { path: 'reportes', component: ReportesComponent },
     { path: 'contacto', component: ContactoComponent },
     { path: 'equipo', component: EquipoComponent },
-    { path: 'graficas', component: GraficasComponent },
+    { path: 'graficos', component: BarrasComponent },
     { path: 'ayuda', component: AyudaComponent },
     { path: 'abc', component: AbcComponent },
     { path: 'especialidad/:id', component: UnaespecialidadComponent },

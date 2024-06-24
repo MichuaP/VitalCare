@@ -1,0 +1,26 @@
+#chart {
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    width: 100% !important;
+    padding: 0 10px;
+}
+.grafica {
+    width: 60%;
+}
+.tabla {
+    width: 40%;
+    padding: 0 20px;
+}
+section {
+    display: flex;
+    margin: 20px 0;
+    padding: 50px;
+    background-color: white;
+    border-radius: 5px;
+}
+.colores {
+    color: rgb(68, 187, 128);
+}

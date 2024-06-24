@@ -1,18 +1,12 @@
 <section>
-    <div class="grafica">
-        <!-- <button (click)="actualizar()" class="btn btn-info mb-3">Generar Graficas</button> -->
-        <canvas id="chart" width="500">{{ chart }}</canvas>
-    </div>
     <div class="tabla">
         <table class="table table-striped">
             <thead>
                <tr>
-                  <!-- <th></th> -->
                   <th colspan="2" style="text-align: center;">Citas</th> 
               </tr>
               <tr>
                 <th>Especialidad</th>
-                <!-- <th>Urgencias</th> -->
                 <th>Pacientes</th>
               </tr>
             </thead>
@@ -24,5 +18,8 @@
             </tbody>
           </table>
     </div>
-    
+    <div class="grafica">
+        <canvas id="chart2" width="500">{{ chart2 }}</canvas>
+    </div>
 </section>
+
