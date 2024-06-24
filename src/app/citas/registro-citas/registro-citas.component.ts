@@ -197,15 +197,21 @@ export class RegistroCitasComponent implements OnInit {
     }
   }
 
-  //Función que recibe las horas ocupadas (para no seleccionar fecha ocupada)
-  obtenerHoras(){
-    this.basedatos.getFechasOcupadas().subscribe(fechas => {
-      this.horas = fechas;
-      console.log("Fechas ocupadas:", this.horas);
-    }, error => {
-      console.error("Error al obtener fechas ocupadas:", error);
+//Función que recibe las horas ocupadas (para no seleccionar fecha ocupada)
+obtenerHoras() {
+  this.basedatos.getFechasOcupadas().subscribe(fechas => {
+    this.horas = fechas;
+    console.log("Fechas ocupadas:", this.horas);
+  }, error => {
+    console.error("Error al obtener fechas ocupadas:", error);
+    Swal.fire({
+      title: 'Error',
+      text: 'Error al obtener fechas ocupadas.',
+      icon: 'error',
+      confirmButtonText: 'Aceptar'
     });
-  }
+  });
+}
 
   //Función que recibe la especialidad seleccionada
   espSeleccionada(value:string): void {

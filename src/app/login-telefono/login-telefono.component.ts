@@ -2,6 +2,7 @@ import { AfterViewInit, Component, ElementRef, EventEmitter, OnInit, Output, Vie
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { UserService } from '../user.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login-telefono',
@@ -37,34 +38,62 @@ export class LoginTelefonoComponent {
       this.captchaFlag = true;
     } else {
       console.log("Captcha container is undefined");
+      Swal.fire({
+        title: 'Error',
+        text: 'El contenedor del Captcha no está definido.',
+        icon: 'error',
+        confirmButtonText: 'Aceptar'
+      });
     }
   }
+  
 
   enviarCodigo(): void {
     //Validamos si existe la cuenta
-    this.myAuth.existe(this.phone).then(existe =>{
+    this.myAuth.existe(this.phone).then(existe => {
       if(existe){
         this.myAuth.sendCode(this.phone).subscribe(() => {
-          alert("Codigo enviado");
-          this.captchaFlag=false;
+          Swal.fire({
+            title: 'Código enviado',
+            text: 'El código ha sido enviado exitosamente.',
+            icon: 'success',
+            confirmButtonText: 'Aceptar'
+          });
+          this.captchaFlag = false;
         }, error => {
-          alert("Error al enviar el codigo");
+          Swal.fire({
+            title: 'Error',
+            text: 'Hubo un error al enviar el código.',
+            icon: 'error',
+            confirmButtonText: 'Aceptar'
+          });
         });
-      }else{
-        this.errorMsg = "Error, no hay una cuenta registrada con este numero de telefono";
+      } else {
+        this.errorMsg = "Error, no hay una cuenta registrada con este número de teléfono";
       }
     });
   }
-
-  ingresarTel():void{
-    this.myAuth.loginSMS(this.codigo).subscribe(() =>{
-      alert("Ingresado");
+  
+  ingresarTel(): void {
+    this.myAuth.loginSMS(this.codigo).subscribe(() => {
+      Swal.fire({
+        title: 'Ingresado',
+        text: 'Ingreso exitoso.',
+        icon: 'success',
+        confirmButtonText: 'Aceptar'
+      });
       this.user.setUserSMS(this.phone);
       this.Usuario.emit("OK");
-    }, error =>{
-      alert("Error al ingresar");
+    }, error => {
+      Swal.fire({
+        title: 'Error',
+        text: 'Error al ingresar.',
+        icon: 'error',
+        confirmButtonText: 'Aceptar'
+      });
     });
   }
+  
 
 
   validate_email(eml: string): boolean {
@@ -73,27 +102,44 @@ export class LoginTelefonoComponent {
       // Email es válido
       return true;
     } else {
-      alert("The email is not valid");
+      Swal.fire({
+        title: 'Email Invalido ',
+        text: 'El email no es valido.',
+        icon: 'error',
+        confirmButtonText: 'OK'
+      });
       return false;
     }
   }
   
+  
 
-  validate_password(pass:string):boolean{
-    if(pass.length < 6){
-      alert("The password has to be at least 6 characters");
+  validate_password(pass: string): boolean {
+    if (pass.length < 6) {
+      Swal.fire({
+        title: 'Password Invalida ',
+        text: 'La password tiene que ser mas larga que 6 caracteres.',
+        icon: 'error',
+        confirmButtonText: 'OK'
+      });
       return false;
-    }else{
-      return true
-    }
-  }
-
-  validate_field(field:any):boolean{
-    if(field.length <= 0){
-      alert("A field is missing");
-      return false;
-    }else{
+    } else {
       return true;
     }
   }
+  
+  validate_field(field: any): boolean {
+    if (field.length <= 0) {
+      Swal.fire({
+        title: 'Campo faltante',
+        text: 'Falta un campo.',
+        icon: 'error',
+        confirmButtonText: 'Aceptar'
+      });
+      return false;
+    } else {
+      return true;
+    }
+  }
+  
 }

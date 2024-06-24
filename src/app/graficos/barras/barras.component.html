@@ -1,0 +1,59 @@
+<div class="container-outside">
+    <div class="container">
+        <div class="text-center">
+            <h1 class="title-container"><span class="highlight">Administración </span>rápida y sencilla</h1>
+            <br>
+            <p class="text-container">Este al tanto del movimiento dentro de VitalCare de una manera rápida por medio de 
+                gráficas estadísticas.
+            </p>
+            <br>
+        </div>
+    </div>
+</div>
+<div>
+    <div class="quienesSomos">
+        <h1 class="t1">Citas Registradas</h1><br>
+        <p class="txt">Conteo de citas registradas de acuerdo a las distintas especialidades que se manejan en VitalCare.</p>
+    </div>
+</div>
+<section>
+    <div class="grafica">
+        <canvas id="chart" width="500">{{ chart }}</canvas>
+    </div>
+    <div class="tabla">
+        <table class="table table-striped">
+            <thead>
+               <tr>
+                  <th colspan="2" style="text-align: center;">Citas registradas</th> 
+              </tr>
+              <tr>
+                <th>Especialidad</th>
+                <th>Pacientes</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let esp of titulos; let i=index">
+                    <td>{{esp}}</td>
+                    <td>{{datos[i]}}</td>
+                </tr>
+            </tbody>
+          </table>
+    </div>
+</section>
+<div>
+    <div class="quienesSomos">
+        <h1 class="t1">Médicos Solicitados</h1><br>
+        <p class="txt">Registro de los médicos más solicitados de VitalCare. Estos gráficos dependen de mismo modo de 
+            las especialidades con más citas registradas, ya que cada una de las especialidades tiene al menos dos 
+            médicos designados.</p>
+    </div>
+</div>
+<app-pie></app-pie>
+<div>
+    <div class="quienesSomos">
+        <h1 class="t1">Registro de Citas Anual 2024</h1><br>
+        <p class="txt">El siguiente gráfico muestra el coneteo de citas registradas de acuerdo a los meses en este 2024.</p>
+    </div>
+</div>
+<app-line></app-line>
+
