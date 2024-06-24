@@ -95,6 +95,7 @@ label{
     border-radius: 40px;
     font-weight: bold;
     margin: 0 auto;
+    cursor: pointer;
 }
 
 .btn:hover {
