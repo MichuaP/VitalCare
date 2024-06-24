@@ -1,7 +1,7 @@
   import { Component } from '@angular/core';
   import { RouterModule } from '@angular/router';
   import { AuthService } from '../auth.service';
-  import { Cita, CitaConID } from '../medico';
+  import { Cita, CitaConID, Medico } from '../medico';
   import { UserService } from '../user.service';
   import { Observable } from 'rxjs';
   import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
@@ -16,6 +16,16 @@
     styleUrl: './reportes.component.css',
   })
   export class ReportesComponent {
+    selectedTipoConsulta:any = "todas"
+    medicos:Medico[]=[];
+    especialidades:string[]=[
+      "Medicina general","Oftalmología", "Cardiología", "Dermatología","Ginecología y obstetricia",
+      "Neurología","Pediatría","Oncología","Ortopedia y traumatología", "Endocrinología",
+      "Psiquiatría","Geriatría"
+    ];
+
+
+    citasalmacen: any[] = []; // Arreglo para almacenar todas las citas y no se borren al cambiar la consulta
     citas: CitaConID[] = []; //Estructura del array de citas
     fechaActual: Date; // Variable para almacenar la fecha actual
     citasAnteriores: CitaConID[] = []; // Arreglo para almacenar citas pasadas
@@ -96,6 +106,45 @@
         this.citas = JSON.parse(localStorage.getItem('citas') || '[]'); // Si es "todas", se obtienen todas las citas del localStorage
       }
     }
+
+    tipoCitaMedicos(event: any) {
+      const selectedMedicoNombre = event.target.value;
+      this.citas = []; // Resetea la lista de citas
+  
+      if (selectedMedicoNombre == 'todas') {
+        this.citas = this.citasalmacen.slice(); // Copia todas las citas
+      } else {
+        this.citasalmacen.forEach(cita => {
+          if (cita.nombreDoctor == selectedMedicoNombre) {
+            this.citas.push(cita);
+          }
+        });
+      }
+    }
+  
+    tipoCitaEspecialidad(event: any) {
+      const selectedMedicoNombre = event.target.value;
+      this.citas = []; // Resetea la lista de citas
+    
+      if (selectedMedicoNombre == 'todas') {
+        this.citas = this.citasalmacen.slice(); // Copia todas las citas
+      } else {
+        this.citasalmacen.forEach(cita => {
+          if (cita.especialidad == selectedMedicoNombre) {
+            this.citas.push(cita);
+          }
+        });
+      }
+      
+    }
+  
+    tipoConsulta(event1: any) {
+      this.citas= [];
+      const tipo = event1.target.value;
+      this.selectedTipoConsulta = tipo;
+      this.citas = this.citasalmacen;
+    }
+    
 
     getNombreUsuario() {
       return this.user.loggeduser.nombre;
