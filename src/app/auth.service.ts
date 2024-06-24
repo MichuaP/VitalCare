@@ -1,10 +1,10 @@
 import { Injectable, inject, signal } from '@angular/core';
 import { Auth, signInWithPhoneNumber, updateProfile, user } from '@angular/fire/auth';
 import { RecaptchaVerifier, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth';
-import { Database, get, push, ref, set } from '@angular/fire/database';
+import { Database, get, push, ref, set, remove } from '@angular/fire/database';
 import { Observable, from, map } from 'rxjs';
 import { Paciente } from './paciente';
-import { Cita, FechaOcupada } from './medico';
+import { Cita, CitaConID, FechaOcupada } from './medico';
 
 
 @Injectable({
@@ -196,15 +196,16 @@ export class AuthService {
   }
 
   //Obtener los datos de las citas
-  getCitas(): Observable<Cita[]> {
+  getCitas(): Observable<CitaConID[]> {
     const citasRef = ref(this.database, 'citas');
     const promise = get(citasRef).then((snapshot) => {
-      const citas: Cita[] = [];
+      const citas: CitaConID[] = [];
       if (snapshot.exists()) {
         //Obtenermos el array
         snapshot.forEach((childSnapshot) => {
           const citasData = childSnapshot.val();
           citas.push({
+            id: childSnapshot.key,
             nombrePaciente: citasData.nombrePaciente,
             telefono: citasData.telefono,
             costo: citasData.costo,
@@ -218,6 +219,23 @@ export class AuthService {
       return citas;
     });
     return from(promise);
+  }
+
+  eliminarCita(id: string): Observable<void> {
+    const citaRef = ref(this.database, `citas/${id}`); //Referencia a eliminar
+
+    return new Observable<void>((observer) => {
+      remove(citaRef)
+        .then(() => {
+          observer.next(); //Operación exitosa
+          observer.complete(); //Completar Observable
+        })
+        .catch((error) => {
+          console.error('Error al eliminar la cita:', error);
+          observer.error(error);
+        });
+    });
+    
   }
 
   //Función para registrar un usuario
