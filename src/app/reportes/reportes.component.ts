@@ -25,7 +25,7 @@
     ];
 
 
-    citasalmacen: any[] = []; // Arreglo para almacenar todas las citas y no se borren al cambiar la consulta
+    citasalmacen: CitaConID[] = []; // Arreglo para almacenar todas las citas y no se borren al cambiar la consulta
     citas: CitaConID[] = []; //Estructura del array de citas
     fechaActual: Date; // Variable para almacenar la fecha actual
     citasAnteriores: CitaConID[] = []; // Arreglo para almacenar citas pasadas
@@ -80,8 +80,11 @@
 
     // Método para filtrar las citas entre pasadas y futuras
     filtrarCitas() {
+      console.log("Entré a FiltrarCitas");
       this.citas.forEach(cita => {
+        console.log("No llega aquí");
         const fechaCita = new Date(cita.fecha); // Se convierte la fecha de la cita en un objeto Date
+        console.log("Fecha de la Cita:" + fechaCita);
         if (fechaCita < this.fechaActual) { // Si la fecha de la cita es anterior a la fecha actual
           this.citasAnteriores.push(cita); // Se añade la cita al arreglo de citas pasadas
           return this.citasAnteriores;
