@@ -34,6 +34,11 @@ export class FormularioComponent {
     }
   }
 
+prueba(){
+  
+}
+
+
   
   nombreValidator(control: AbstractControl): { [key: string]: boolean } | null {
     const nombre = control.value;
@@ -42,6 +47,9 @@ export class FormularioComponent {
     }
     return null;
   }
+
+
+
 
   
   telefonoValidator(control: AbstractControl): { [key: string]: boolean } | null {
