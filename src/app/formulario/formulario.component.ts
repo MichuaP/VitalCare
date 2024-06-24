@@ -5,7 +5,7 @@ import { AbstractControl, FormControl, FormGroup, FormsModule, ReactiveFormsModu
 @Component({
   selector: 'app-formulario',
   standalone: true,
-  imports: [CommonModule ,FormsModule, ReactiveFormsModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule],
   templateUrl: './formulario.component.html',
   styleUrl: './formulario.component.css'
 })
@@ -34,12 +34,11 @@ export class FormularioComponent {
     }
   }
 
-prueba(){
+  prueba(){
   
-}
+  }
 
-
-  
+   
   nombreValidator(control: AbstractControl): { [key: string]: boolean } | null {
     const nombre = control.value;
     if (nombre && nombre.split(' ').length < 2) {
@@ -49,9 +48,6 @@ prueba(){
   }
 
 
-
-
-  
   telefonoValidator(control: AbstractControl): { [key: string]: boolean } | null {
     const tel = control.value;
     const telefonoRegex = /^[0-9]{10}$/; 
@@ -60,4 +56,6 @@ prueba(){
     }
     return null;
   }
+
+
 }
