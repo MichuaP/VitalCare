@@ -1,21 +1,36 @@
-<form class="row g-3">
+<form [formGroup]="formulario" class="row g-3" (ngSubmit)="onPropagar()">
     <div class="col-md-6">
-        <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre Completo" [(ngModel)]="nombre">
+      <input type="text" class="form-control" id="nombre" formControlName="nombre" placeholder="Nombre Completo">
+      <div *ngIf="formulario.controls['nombre'].invalid && formulario.controls['nombre'].touched" class="text-danger">
+        Nombre es requerido y debe incluir al menos dos palabras.
+      </div>
     </div>
     <div class="col-md-6">
-        <input #nombreInput type="email" class="form-control" id="email" placeholder="Correo Electrónico">
+      <input type="email" class="form-control" id="email" formControlName="email" placeholder="Correo Electrónico">
+      <div *ngIf="formulario.controls['email'].invalid && formulario.controls['email'].touched" class="text-danger">
+        Correo electrónico es requerido y debe ser válido.
+      </div>
     </div>
     <div class="col-md-6">
-        <input type="text" class="form-control" id="tel" placeholder="Número de Teléfono">
+      <input type="text" class="form-control" id="tel" formControlName="tel" placeholder="Número de Teléfono">
+      <div *ngIf="formulario.controls['tel'].invalid && formulario.controls['tel'].touched" class="text-danger">
+        Número de teléfono es requerido y debe tener 10 dígitos.
+      </div>
     </div>
     <div class="col-md-6">
-        <input type="text" class="form-control" id="asunto" placeholder="Asunto">
+      <input type="text" class="form-control" id="asunto" formControlName="asunto" placeholder="Asunto">
+      <div *ngIf="formulario.controls['asunto'].invalid && formulario.controls['asunto'].touched" class="text-danger">
+        Asunto es requerido.
+      </div>
     </div>
     <div class="mb-3">
-
-        <textarea class="form-control" id="textarea" rows="4" placeholder="Escribe tu mensaje..."></textarea>
+      <textarea class="form-control" id="textarea" rows="4" formControlName="mensaje" placeholder="Escribe tu mensaje..."></textarea>
+      <div *ngIf="formulario.controls['mensaje'].invalid && formulario.controls['mensaje'].touched" class="text-danger">
+        Mensaje es requerido.
+      </div>
     </div>
     <div class="col-12 d-flex justify-content-center">
-        <button type="submit" class="btn" (click)="onPropagar()">Enviar</button>
+      <button type="submit" class="btn btn-primary">Enviar</button>
     </div>
-</form>
+  </form>
+  
