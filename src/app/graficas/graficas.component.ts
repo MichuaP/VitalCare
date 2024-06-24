@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Chart } from 'chart.js/auto';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-graficas',
@@ -14,6 +15,14 @@ export class GraficasComponent implements OnInit {
   // public datos1: number[];
   public datos2: number[];
   public titulos: string[];
+  constructor(public myAuth: AuthService){
+    var datosfb = this.myAuth.getDatos().subscribe(data =>{
+      console.log(data,"dataengraficas")
+    }, error =>{
+      alert("Error al ingresar");
+    });
+    console.log(datosfb)
+  }
 
   ngOnInit(): void {
     this.crearGraficas();
@@ -66,6 +75,8 @@ export class GraficasComponent implements OnInit {
     const valoresRamdom = (num: number) => Array.from({ length: num }, () => Math.floor(Math.random() * 100));
     // this.datos1 = valoresRamdom(labels.length);
     this.datos2 = valoresRamdom(labels.length);
+
+
 
     return {
       labels: labels,
