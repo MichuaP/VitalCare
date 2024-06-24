@@ -25,6 +25,7 @@
     "@sweetalert2/ngx-sweetalert2": "^12.3.0",
     "bootstrap": "^5.3.3",
     "chart.js": "^4.4.3",
+    "date-fns": "^3.6.0",
     "firebase": "^10.12.2",
     "jquery": "^3.7.1",
     "masonry-layout": "^4.2.2",
