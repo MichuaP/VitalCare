@@ -80,12 +80,12 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item disabled" style="font-weight:bold;">Bienvenid&#64;
-                                {{myAuth.getDisplayName()}}</a></li>
+                                {{this.getNombre()}}</a></li>
                         <li><a class="dropdown-item" [routerLink]="['/regCitas']" routerLinkActive="active">Agendar
                                 cita</a></li>
-                        <li><a class="dropdown-item" [routerLink]="['/regCitas']" routerLinkActive="active">Dar de baja
+                        <li><a class="dropdown-item" [routerLink]="['/reportes']" routerLinkActive="active">Dar de baja
                                 cita</a></li>
-                        <li><a class="dropdown-item" [routerLink]="['/regCitas']" routerLinkActive="active">Consultar
+                        <li><a class="dropdown-item" [routerLink]="['/reportes']" routerLinkActive="active">Consultar
                                 citas</a></li>
                         <li>
                             <hr class="dropdown-divider">
@@ -124,7 +124,7 @@
                 @if(!this.Metodo){
                 <app-login-correo (Usuario)="logueado($event)"></app-login-correo>
                 }@else{
-                <app-login-telefono></app-login-telefono>
+                <app-login-telefono (Usuario)="logueado($event)"></app-login-telefono>
                 }
             </div>
             <div class="modal-footer">
