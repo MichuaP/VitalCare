@@ -41,6 +41,15 @@ label {
     cursor: pointer;
 }
 
+#tipo-consulta {
+    margin-right: 10px;
+}
+
+.select-container {
+    display: flex;
+    justify-content: end;
+}
+
 /* ----------------------------------------------------------------- */
 
 .reportes .text {
