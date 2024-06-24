@@ -20,6 +20,17 @@ export interface Cita {
   hora: string;
 }
 
+export interface CitaConID {
+  id: string;
+  nombrePaciente: string;
+  telefono: string;
+  costo: string;
+  nombreDoctor: string;
+  especialidad: string;
+  fecha: string;
+  hora: string;
+}
+
 export interface Servicio {
   nombreServicio: String;
   descripcion: String;
