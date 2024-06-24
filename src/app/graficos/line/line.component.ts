@@ -28,7 +28,8 @@ export class LineComponent implements OnInit {
 
         data.forEach((cita: any) => {
           let fecha = cita.fecha;
-          let mes = fecha.split('/')[0];
+          let mes = fecha.split('/')[1];
+          console.log(mes, 'MEEEEES')
           if (mesConteo[mes]) {
             mesConteo[mes]++;
           } else {
@@ -41,7 +42,7 @@ export class LineComponent implements OnInit {
         this.titulos = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
         this.meses = ['1','2','3','4','5','6','7','8','9','10','11','12'];
 
-        console.log(this.titulos);
+        // console.log(this.titulos);
 
         console.log("before") //NO QUITAR
 
@@ -69,7 +70,7 @@ export class LineComponent implements OnInit {
             plugins: {
               title: {
                 display: true,
-                text: 'Chart.js Line Chart - stacked=',
+                text: 'Registro anual 2024',
               },
               tooltip: {
                 mode: 'index'
@@ -84,14 +85,14 @@ export class LineComponent implements OnInit {
               x: {
                 title: {
                   display: true,
-                  text: 'Month'
+                  text: 'Meses'
                 }
               },
               y: {
                 stacked: true,
                 title: {
                   display: true,
-                  text: 'Value'
+                  text: 'Citas registradas'
                 }
               }
             }

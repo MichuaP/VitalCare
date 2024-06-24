@@ -45,3 +45,22 @@ section {
   .highlight {
     color: #43ba7f;
   }
+
+
+  .quienesSomos {
+    padding: 20px;
+    width: 70%;
+    margin: 0 auto;
+  }
+  
+  .t1 {
+    text-align: center;
+    color: #238f5a;
+    font-weight: bold;
+    font-size: 1.875rem; /* 30px */
+  }
+  
+  .txt {
+    font-size: 1.175rem; /* 22px */
+    text-align: center;
+  }
