@@ -2,11 +2,15 @@ import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { Cita } from '../medico';
+import { UserService } from '../user.service';
+import { Observable } from 'rxjs';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-reportes',
   standalone: true,
-  imports: [RouterModule],
+  imports: [RouterModule, SweetAlert2Module],
   templateUrl: './reportes.component.html',
   styleUrl: './reportes.component.css',
 })
@@ -15,8 +19,9 @@ export class ReportesComponent {
   fechaActual: Date; // Variable para almacenar la fecha actual
   citasAnteriores: any[] = []; // Arreglo para almacenar citas pasadas
   citasProximas: any[] = []; // Arreglo para almacenar citas futuras
+  eliminar?: Observable<any[]>;
 
-  constructor(public basedatos: AuthService) {
+  constructor(public basedatos: AuthService, public user: UserService) {
     // Extraer la fecha actual del sistema
     this.fechaActual = new Date();
     console.log('La fecha actual es: ' + this.fechaActual.toLocaleDateString());
@@ -37,7 +42,14 @@ export class ReportesComponent {
   }
 
   borrarCita(fecha: any, hora: any): void {
-    //this.basedatos.list('/citas').remove(fecha, hora);
+    if(confirm('¿Estás seguro de eliminar la cita?')) {
+      this.basedatos.eliminarCita(fecha, hora).subscribe(() => {
+        this.obtenerCitas(); //Actualizar Citas
+        alert('La cita se eliminó correctamente.');
+      }, error => {
+        Swal.fire('¡Error al eliminar la cita!', '', 'error');
+      });
+    }
   }
   
 
@@ -69,4 +81,25 @@ export class ReportesComponent {
       this.citas = JSON.parse(localStorage.getItem('citas') || '[]'); // Si es "todas", se obtienen todas las citas del localStorage
     }
   }
+
+  getNombreUsuario() {
+    return this.user.loggeduser.nombre;
+  }
+  getApellidosUsuario() {
+    return this.user.loggeduser.apellido;
+  }
+  getCorreoUsuario() {
+    return this.user.loggeduser.correo;
+  }
+  getTelefonoUsuario() {
+    return this.user.loggeduser.telefono;
+  }
+  getFechaNacimientoUsuario() {
+    return this.user.loggeduser.fecha;
+  }
+
+  getExisteUsuario() {
+    return this.user.login;
+  }
+
 }

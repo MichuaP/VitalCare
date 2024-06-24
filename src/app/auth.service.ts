@@ -110,6 +110,8 @@ export class AuthService {
     });
   }
 
+
+  
   //Funcion para enviar el código al número de telefono
   sendCode(phone: string): Observable<void> {
     if (!this.captchaVerifier) {
