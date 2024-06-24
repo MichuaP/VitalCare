@@ -18,9 +18,8 @@
   export class ReportesComponent {
     citas: CitaConID[] = []; //Estructura del array de citas
     fechaActual: Date; // Variable para almacenar la fecha actual
-    citasAnteriores: any[] = []; // Arreglo para almacenar citas pasadas
-    citasProximas: any[] = []; // Arreglo para almacenar citas futuras
-    eliminar?: Observable<any[]>;
+    citasAnteriores: CitaConID[] = []; // Arreglo para almacenar citas pasadas
+    citasProximas: CitaConID[] = []; // Arreglo para almacenar citas futuras
 
     constructor(public basedatos: AuthService, public user: UserService) {
       // Extraer la fecha actual del sistema
@@ -43,14 +42,30 @@
     }
 
     borrarCita(id: string): void {
-      if(confirm('¿Estás seguro de eliminar la cita?')) {
-        this.basedatos.eliminarCita(id).subscribe(() => {
-          this.obtenerCitas(); //Actualizar Citas
-          alert('La cita se eliminó correctamente.');
-        }, error => {
-          Swal.fire('¡Error al eliminar la cita!', '', 'error');
-        });
-      }
+      Swal.fire({
+        title: "¿Deseas borrar la cita?",
+        showDenyButton: true,
+        showCancelButton: true,
+        confirmButtonText: "Confirmar",
+        denyButtonText: `Cancelar`
+      }).then((result) => {
+        if (result.isConfirmed) {
+          //Eliminar Cita
+          this.basedatos.eliminarCita(id).subscribe(() => {
+            this.obtenerCitas(); //Actualizar Citas
+            Swal.fire({
+              title: '¡Éxito!',
+              text: 'Se ha eliminado la cita correctamente.',
+              icon: 'success',
+              confirmButtonText: 'Continuar',
+            });
+          }, error => {
+            Swal.fire({title: '¡Error!', icon: 'error', confirmButtonText: 'Continuar',});
+          });
+          //
+        } else if (result.isDenied) {
+        }
+      });
     }
 
     // Método para filtrar las citas entre pasadas y futuras
