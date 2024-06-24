@@ -31,7 +31,7 @@
         </div>
         <br>
         <div id="container-list">
-            @if (!citas.length) {
+            @if (!this.getExisteUsuario() || !citas.length || (!this.getExisteCitaUsuario() && this.getCorreoUsuario() != "vitalcareclinicas@gmail.com")) {
             <div class="row align-items-center text-center">
                 <div class="col-7 msg">
                     <p class="text">Ups... ¡No hay citas para mostrar!</p>
@@ -46,10 +46,10 @@
                     <img src="assets/img/ups.png" alt="" width="550px">
                 </div>
             </div>
-
             }
+
             @else {
-                <!-- @if(cita.nombrePaciente == "vitalcareclinicas@gmail.com") { Administrador -->
+                @if(this.getCorreoUsuario() == "vitalcareclinicas@gmail.com") { <!-- Administrador -->
                 <div>
                     <table class="table">
                         <thead>
@@ -78,9 +78,8 @@
                         </tbody>
                     </table>
                 </div>
-                <!-- } -->
-
-                <!-- @else { Usuario -->
+                }
+                @else { <!-- Usuario -->
                 <div>
                     <table class="table">
                         <thead>
@@ -97,23 +96,25 @@
                         </thead>
                         <tbody>
                             @for (cita of citas; track cita;) {
-                            <tr>
-                                <td>{{ cita.nombrePaciente }}</td>
-                                <td>{{ cita.telefono }}</td>
-                                <td>{{ cita.costo }}</td>
-                                <td>{{ cita.nombreDoctor }}</td>
-                                <td>{{ cita.especialidad }}</td>
-                                <td>{{ cita.fecha }}</td>
-                                <td>{{ cita.hora }}</td>
-                                <td> 
-                                    <button (click)="borrarCita(cita.fecha, cita.hora)" style="border: none; background-color: #FFFFFF;"> <i class="fa-solid fa-trash-can" style="color: #43ba7f;"></i> </button> 
-                                </td>
-                            </tr>
+                                @if(this.getTelefonoUsuario() == cita.telefono && this.getNombreUsuario() == cita.nombrePaciente) {
+                                <tr>
+                                    <td>{{ cita.nombrePaciente }}</td>
+                                    <td>{{ cita.telefono }}</td>
+                                    <td>{{ cita.costo }}</td>
+                                    <td>{{ cita.nombreDoctor }}</td>
+                                    <td>{{ cita.especialidad }}</td>
+                                    <td>{{ cita.fecha }}</td>
+                                    <td>{{ cita.hora }}</td>
+                                    <td> 
+                                        <button (click)="borrarCita(cita.id)" style="border: none; background-color: #FFFFFF;"> <i class="fa-solid fa-trash-can" style="color: #43ba7f;"></i> </button> 
+                                    </td>
+                                </tr>
+                                }
                             }
                         </tbody>
                     </table>
                 </div>
-                <!-- } -->
+                }
             }
         </div>
     </div>

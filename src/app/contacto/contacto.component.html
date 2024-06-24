@@ -42,7 +42,7 @@
                     </div>
                     <div class="card-body">
                         <h3 class="card-title">Correo Electrónico</h3>
-                        <p class="card-text">VitalCare&#64;hotmail.com <br> VitalCare&#64;hotmail.es</p>
+                        <p class="card-text">vitalcareclinicas&#64;gmail.com <br> vitalcare.clinica2024&#64;gmail.com</p>
                     </div>
                 </div>
             </div>
@@ -52,14 +52,30 @@
             <div class="title-contact">Ponerse en Contacto</div>
         </div>
         <h2 class="section-contact">Contáctenos para asistencia personalizada y resoluciones rápidas.</h2>
-    </div>
-    <div id="mensaje">
-        @if (name!=""){
-            <p>Hola <span>{{name}}</span>! Gracias por ponerte en contacto con nosotros, alguien de nuestro equipo revisará tu mensaje, espera nuestra respuesta.</p>
-        }
-    </div>
-    <div class="container">
-        <app-formulario (propagar)="procesaPropagar($event)"></app-formulario>
-        <br><br>
+        <div class="row g-3">
+            <div class="col-md-6">
+                <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre Completo"
+                    [(ngModel)]="nombre" required>
+            </div>
+            <div class="col-md-6">
+                <input #nombreInput type="email" class="form-control" id="email" placeholder="Correo Electrónico"
+                    [(ngModel)]="email" required>
+            </div>
+            <div class="col-md-6">
+                <input type="text" class="form-control" id="tel" placeholder="Número de Teléfono" [(ngModel)]="telefono"
+                    required>
+            </div>
+            <div class="col-md-6">
+                <input type="text" class="form-control" id="asunto" placeholder="Asunto" [(ngModel)]="asunto" required>
+            </div>
+            <div class="mb-3">
+
+                <textarea class="form-control" id="textarea" rows="4" placeholder="Escribe tu mensaje..."
+                    [(ngModel)]="mensaje" required></textarea>
+            </div>
+            <div class="col-12 d-flex justify-content-center">
+                <button type="submit" class="btn" (click)="enviarCorreo()">Enviar</button>
+            </div>
+        </div>
     </div>
 </body>
