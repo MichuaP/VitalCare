@@ -30,7 +30,7 @@
                     <a class="nav-link white" [routerLink]="['/ayuda']" routerLinkActive="active">Ayuda</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link white" [routerLink]="['/equipo']" routerLinkActive="active">Desarrolladoras</a>
+                    <a class="nav-link white" [routerLink]="['/equipo']" routerLinkActive="active">Desarrolladores</a>
                 </li>                
                 @if(this.Logueado == false){
                 <li class="nav-item dropdown">
@@ -64,7 +64,7 @@
                         </li>
                         <li><a class="dropdown-item" [routerLink]="['/reportes']" routerLinkActive="active">Reporte de citas</a></li>
                         <li>
-                        <li><a class="dropdown-item" [routerLink]="['/abc']" routerLinkActive="active">ABC</a></li>
+                        <!-- <li><a class="dropdown-item" [routerLink]="['/abc']" routerLinkActive="active">ABC</a></li> -->
                         <li>
                             <hr class="dropdown-divider">
                         </li>
@@ -83,10 +83,7 @@
                                 {{this.getNombre()}}</a></li>
                         <li><a class="dropdown-item" [routerLink]="['/regCitas']" routerLinkActive="active">Agendar
                                 cita</a></li>
-                        <li><a class="dropdown-item" [routerLink]="['/reportes']" routerLinkActive="active">Dar de baja
-                                cita</a></li>
-                        <li><a class="dropdown-item" [routerLink]="['/reportes']" routerLinkActive="active">Consultar
-                                citas</a></li>
+                        <li><a class="dropdown-item" [routerLink]="['/reportes']" routerLinkActive="active">Administrar citas</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>

@@ -19,6 +19,9 @@ import { Observable } from 'rxjs';
 import { UserService } from '../../user.service';
 import { environment } from '../../../environments/environment.development';
 import { Paciente } from '../../paciente';
+import { CorreoService } from '../../correo.service';
+import { QRCodeModule } from 'angularx-qrcode';
+import { SafeUrl } from '@angular/platform-browser';
 
 
 @Component({
@@ -34,7 +37,8 @@ import { Paciente } from '../../paciente';
     SweetAlert2Module,
     CommonModule,
     ResumenComponent,
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule, 
+    QRCodeModule
   ],
   templateUrl: './registro-citas.component.html',
   styleUrl: './registro-citas.component.css'
@@ -75,6 +79,11 @@ export class RegistroCitasComponent implements OnInit {
     fecha: ""
   };
 
+  //Mensaje para el correo
+  mensaje:string="";
+  //Mensaje para el QR
+  mensajeQR:string="";
+  public qrCodeDownloadLink: SafeUrl = "";
   //Estructura del array de fechas ocupadas
   horas:FechaOcupada[]=[];
 
@@ -95,7 +104,7 @@ export class RegistroCitasComponent implements OnInit {
   horaSelected:any="";
 
   //Cosntructor
-  constructor(public miservicio: MedicoService, private fb: FormBuilder, private router:Router, public basedatos:AuthService, public user: UserService){
+  constructor(public miservicio: MedicoService, private fb: FormBuilder, private router:Router, public basedatos:AuthService, public user: UserService, public correoService: CorreoService){
     //Formulario
 
     this.citaForm = this.fb.group({
@@ -209,6 +218,10 @@ export class RegistroCitasComponent implements OnInit {
     this.medico = this.misMedicos[indice].nombre;
   }
 
+  onChangeURL(url: SafeUrl) {
+    this.qrCodeDownloadLink = url;
+  }
+
   //Función para hacer una nueva cita
   nuevaCita(): void {
     let newCita:Cita = {
@@ -228,11 +241,35 @@ export class RegistroCitasComponent implements OnInit {
     this.basedatos.agregarCita(newCita);
     //Agregar las horas ocupadas a la base de datos "horasOcupadas"
     this.basedatos.guardarFechasOcupadas(nuevasHoras);
+    this.mensaje = "Doctor/Doctora que te atenderá: " + this.medico 
+    + "<br>Especialidad: " + this.especialidad + "<br>Fecha de la cita: " + this.fechaSelected 
+    + "<br>Hora de la cita: " + this.horaSelected + "<br>Costo de la cita: $650<br>¡Recuerda llegar puntual a tu cita!<br>" + 
+    "<h1>- VitalCare</h1>";
+    this.mensajeQR = "Informacion de tu cita\nDoctor/Doctora que te atenderá: " + this.medico 
+    + "\nEspecialidad: " + this.especialidad + "\nFecha de la cita: " + this.fechaSelected 
+    + "\nHora de la cita: " + this.horaSelected + "\nCosto de la cita: $650\n¡Recuerda llegar puntual a tu cita!\n" + 
+    "- VitalCare\n";
     if(newCita){
+      this.correoService
+      .sendCita(
+        this.user.loggeduser.nombre + " " + this.user.loggeduser.apellido,
+        this.user.loggeduser.correo,
+        this.user.loggeduser.telefono,
+        "Informacion de tu cita",
+        this.mensaje
+      )
+      .subscribe(
+        (res) => {
+          console.log('¡Correo enviado correctamente!');
+        },
+        (error) => {
+          console.log('Error al enviar el correo:', error);
+        }
+      );
       Swal.fire({
         icon: "success",
         title: "Cita reservada con éxito",
-        text:"Puedes pagar al momento de asistir a tu cita",
+        html:'<div>Puedes pagar al momento de asistir a tu cita. Se te ha enviado un correo electronico con la información de tu cita.</div><div><button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdrop1">Generar codigo QR</button></div>',
         showDenyButton: true,
         denyButtonColor:"#3085d6",
         denyButtonText:"Ir a inicio",
