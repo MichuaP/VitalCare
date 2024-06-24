@@ -22,6 +22,7 @@ import { Paciente } from '../../paciente';
 import { CorreoService } from '../../correo.service';
 import { QRCodeModule } from 'angularx-qrcode';
 import { SafeUrl } from '@angular/platform-browser';
+import { QRService } from '../../qr.service';
 
 
 @Component({
@@ -104,7 +105,7 @@ export class RegistroCitasComponent implements OnInit {
   horaSelected:any="";
 
   //Cosntructor
-  constructor(public miservicio: MedicoService, private fb: FormBuilder, private router:Router, public basedatos:AuthService, public user: UserService, public correoService: CorreoService){
+  constructor(public miservicio: MedicoService, private fb: FormBuilder, private router:Router, public basedatos:AuthService, public user: UserService, public correoService: CorreoService, public qrservice: QRService){
     //Formulario
 
     this.citaForm = this.fb.group({
@@ -245,10 +246,11 @@ export class RegistroCitasComponent implements OnInit {
     + "<br>Especialidad: " + this.especialidad + "<br>Fecha de la cita: " + this.fechaSelected 
     + "<br>Hora de la cita: " + this.horaSelected + "<br>Costo de la cita: $650<br>¡Recuerda llegar puntual a tu cita!<br>" + 
     "<h1>- VitalCare</h1>";
-    this.mensajeQR = "Informacion de tu cita\nDoctor/Doctora que te atenderá: " + this.medico 
-    + "\nEspecialidad: " + this.especialidad + "\nFecha de la cita: " + this.fechaSelected 
-    + "\nHora de la cita: " + this.horaSelected + "\nCosto de la cita: $650\n¡Recuerda llegar puntual a tu cita!\n" + 
-    "- VitalCare\n";
+    this.qrservice.sendConsulta(this.user.loggeduser.nombre, this.fechaSelected, this.horaSelected).subscribe((res) => {
+      this.mensajeQR = res;
+    }, (error) => {
+      this.mensajeQR = "Error en la consulta de la base de datos";
+    });
     if(newCita){
       this.correoService
       .sendCita(
