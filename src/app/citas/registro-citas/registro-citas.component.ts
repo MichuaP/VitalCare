@@ -20,6 +20,8 @@ import { UserService } from '../../user.service';
 import { environment } from '../../../environments/environment.development';
 import { Paciente } from '../../paciente';
 import { CorreoService } from '../../correo.service';
+import { QRCodeModule } from 'angularx-qrcode';
+import { SafeUrl } from '@angular/platform-browser';
 
 
 @Component({
@@ -35,7 +37,8 @@ import { CorreoService } from '../../correo.service';
     SweetAlert2Module,
     CommonModule,
     ResumenComponent,
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule, 
+    QRCodeModule
   ],
   templateUrl: './registro-citas.component.html',
   styleUrl: './registro-citas.component.css'
@@ -78,6 +81,9 @@ export class RegistroCitasComponent implements OnInit {
 
   //Mensaje para el correo
   mensaje:string="";
+  //Mensaje para el QR
+  mensajeQR:string="";
+  public qrCodeDownloadLink: SafeUrl = "";
   //Estructura del array de fechas ocupadas
   horas:FechaOcupada[]=[];
 
@@ -212,6 +218,10 @@ export class RegistroCitasComponent implements OnInit {
     this.medico = this.misMedicos[indice].nombre;
   }
 
+  onChangeURL(url: SafeUrl) {
+    this.qrCodeDownloadLink = url;
+  }
+
   //Función para hacer una nueva cita
   nuevaCita(): void {
     let newCita:Cita = {
@@ -235,6 +245,10 @@ export class RegistroCitasComponent implements OnInit {
     + "<br>Especialidad: " + this.especialidad + "<br>Fecha de la cita: " + this.fechaSelected 
     + "<br>Hora de la cita: " + this.horaSelected + "<br>Costo de la cita: $650<br>¡Recuerda llegar puntual a tu cita!<br>" + 
     "<h1>- VitalCare</h1>";
+    this.mensajeQR = "Informacion de tu cita\nDoctor/Doctora que te atenderá: " + this.medico 
+    + "\nEspecialidad: " + this.especialidad + "\nFecha de la cita: " + this.fechaSelected 
+    + "\nHora de la cita: " + this.horaSelected + "\nCosto de la cita: $650\n¡Recuerda llegar puntual a tu cita!\n" + 
+    "- VitalCare\n";
     if(newCita){
       this.correoService
       .sendCita(
@@ -255,7 +269,7 @@ export class RegistroCitasComponent implements OnInit {
       Swal.fire({
         icon: "success",
         title: "Cita reservada con éxito",
-        text:"Puedes pagar al momento de asistir a tu cita. Se te ha enviado un correo electronico con la información de tu cita.",
+        html:'<div>Puedes pagar al momento de asistir a tu cita. Se te ha enviado un correo electronico con la información de tu cita.</div><div><button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdrop1">Generar codigo QR</button></div>',
         showDenyButton: true,
         denyButtonColor:"#3085d6",
         denyButtonText:"Ir a inicio",
