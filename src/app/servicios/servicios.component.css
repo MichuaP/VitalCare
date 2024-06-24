@@ -27,7 +27,7 @@
 
 .btn:hover {
     background-color: #193126;
-}
+} 
 
 .btn i{
     padding-left: 10px;
@@ -130,6 +130,7 @@
     font-weight: bold;
     text-decoration: none;
     transition: all 0.3s ease;
+    cursor: pointer;
 }
 
 .btn-sm:hover {

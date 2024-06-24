@@ -5,13 +5,15 @@
                 <div class="col-7">
                     <h1 class="title-container">La mejor atención solo en <span class="highlight">Vital Care</span></h1>
                     <br>
-                    <p class="text-container">En nuestra clínica, nos enorgullece contar con los <span class="highlight">mejores especialistas médicos</span>. 
-                        Nuestro equipo de profesionales altamente calificados está aquí para cuidar de ti y de tu familia en cada etapa de tu vida..</p>
+                    <p class="text-container">En nuestra clínica, nos enorgullece contar con los <span
+                            class="highlight">mejores especialistas médicos</span>.
+                        Nuestro equipo de profesionales altamente calificados está aquí para cuidar de ti y de tu
+                        familia en cada etapa de tu vida..</p>
                 </div>
                 <div class="col-5">
-                    <img src="assets/img/doctoresEspe.png" alt="" width="600px" >
+                    <img src="assets/img/doctoresEspe.png" alt="" width="600px">
                 </div>
-                
+
             </div>
         </div>
     </div>
@@ -22,37 +24,44 @@
                     <div class="row">
                         <div class="col-12">
                             <h1 class="section-name">Registro de citas médicas</h1>
-                            <p class="style-text">Por favor, <span class="highlight"> completa el formulario </span>  a continuación para apartar tu cita médica con nuestros especialistas. </p>
+                            <p class="style-text">Por favor, <span class="highlight"> completa el formulario </span> a
+                                continuación para apartar tu cita médica con nuestros especialistas. </p>
                         </div>
                         <br>
-                        <div class="col-12">
-                            <h5>Información del paciente</h5>
+                        <div class="container-subtitle">
+                            <div class="title-services">Información del paciente</div>
                         </div>
                         <div class="col-6">
                             <label for="nomCita" class="form-label">Nombres</label>
-                            <input type="text" class="form-control" id="nomCita" required formControlName="nombre" [(ngModel)]="nombrePac">
+                            <input type="text" class="form-control" id="nomCita" required formControlName="nombre"
+                                [(ngModel)]="nombrePac">
                         </div>
                         <div class="col-6">
                             <label for="apeCita" class="form-label">Apellidos</label>
-                            <input type="text" class="form-control" id="apeCita" required formControlName="apellidos" [(ngModel)]="apellidosPac">
+                            <input type="text" class="form-control" id="apeCita" required formControlName="apellidos"
+                                [(ngModel)]="apellidosPac">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-12">
                             <label for="telCita" class="form-label">Teléfono</label>
-                            <input type="text" class="form-control" id="telCita" required formControlName="telefono" [(ngModel)]="telefonoPac">
+                            <input type="text" class="form-control" id="telCita" required formControlName="telefono"
+                                [(ngModel)]="telefonoPac">
                         </div>
                     </div>
                     <!-- Mostrar especialidades disponibles -->
                     <div class="container-doctor row">
                         <div class="col-12"><br>
-                            <h5>Información de la cita</h5>
+                            <div class="container-subtitle">
+                                <div class="title-services">Información de la cita</div>
+                            </div>
                             <label for="" class="form-label">Servicio requerido</label>
-                            <select class="form-select" #espe (change)="espSeleccionada(espe.value)" formControlName="especialidad">
+                            <select class="form-select" #espe (change)="espSeleccionada(espe.value)"
+                                formControlName="especialidad">
                                 <option selected disabled>Seleccionar...</option>
                                 @for (y of especialidades; track y;){
-                                    <!-- interpolación -->
-                                    <option value="{{y}}">{{y}} </option>
+                                <!-- interpolación -->
+                                <option value="{{y}}">{{y}} </option>
                                 }
                             </select>
                         </div>
@@ -65,32 +74,36 @@
                         </div>
                         <div class="col-6">
                             <label for="medicoCita" class="form-label">Médico asignado</label>
-                            <input type="text" disabled class="form-control" id="medicoCita" value="{{medicoAux.nombre}}">
+                            <input type="text" disabled class="form-control" id="medicoCita"
+                                value="{{medicoAux.nombre}}">
                         </div>
                     </div>
                     <div class="row container-FH">
                         <div class="col-md-6">
                             <label for="fechaCita" class="form-label">Fecha</label><br>
-                            <mat-form-field>
-                                <input formControlName="fecha" matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker"
-                                    (dateChange)="fechaSelec($event)" readonly>
-                                <mat-datepicker-toggle matIconSuffix [for]="picker" disabled="false"></mat-datepicker-toggle>
+                            <mat-form-field class="form-control fecha">
+                                <input formControlName="fecha" matInput [min]="minDate" [max]="maxDate"
+                                    [matDatepicker]="picker" (dateChange)="fechaSelec($event)" readonly>
+                                <mat-datepicker-toggle matIconSuffix [for]="picker"
+                                    disabled="false"></mat-datepicker-toggle>
                                 <mat-datepicker #picker disabled="false"></mat-datepicker>
                             </mat-form-field>
                         </div>
                         <div class="col-md-6">
                             <label for="horaCita" class="form-label">Hora</label><br>
-                            <mat-form-field>
+                            <mat-form-field class="form-control hora">
                                 <mat-label>Hora</mat-label>
-                        <select matNativeControl required #hor class="form-select" (change)="horaSelec(hor.value)" formControlName="hora">
+                                <select matNativeControl required #hor (change)="horaSelec(hor.value)"
+                                    formControlName="hora">
                                     <!-- Se recorre el array de fechas ocupadas y se compara con la obtenida en la fecha -->
                                     @if (fechaSelected) {
-                                        @for (h of hours; track h) {
-                                            <!-- hOcupada es función que desactiva las horas ocupadas -->
-                                            <option [disabled]="hOcupada(fechaSelected, h)" value="{{h}}"> {{h}} </option>
-                                        }
+                                    @for (h of hours; track h) {
+                                    <!-- hOcupada es función que desactiva las horas ocupadas -->
+                                    <option [disabled]="hOcupada(fechaSelected, h)" value="{{h}}"> {{h}} </option>
+                                    }
                                     } @else {
-                                        <option disabled value="">Ingrese una fecha para ver los horarios disponibles</option>
+                                    <option disabled value="">Ingrese una fecha para ver los horarios disponibles
+                                    </option>
                                     }
                                 </select>
                             </mat-form-field>
@@ -99,60 +112,67 @@
                 </div>
 
                 <div class="col-4 container-side">
-                        <div class="container-resumen">
-                            <div id="titResumen">
-                                <p>Resumen de la cita</p>
-                            </div>
-                                <!-- Comunicación padre a hijo (se manda boolean) -->
-                                <app-resumen [continuar]="continuar"></app-resumen>
-                                <div class="bot">
-                                    <!-- Funcion que valida el llenado completo del formulario-->
-                                    <button (click)="checkData()" class="btn btn-success btn-outline-light">Confirmar mi cita</button>
-                                </div>
+                    <div class="container-resumen">
+                        <div id="titResumen">
+                            <p>Resumen de la cita</p>
                         </div>
+                        <!-- Comunicación padre a hijo (se manda boolean) -->
+                        <app-resumen [continuar]="continuar"></app-resumen>
+                        <div class="bot">
+                            <!-- Funcion que valida el llenado completo del formulario-->
+                            <button (click)="checkData()" class="btn-sm">Confirmar mi cita</button>
+                        </div>
+                    </div>
                     <div class="row">
                         <div>
                             <!-- Mostramos los doctores de la especialidad seleccionada -->
                             @if(especialidad){
-                                <br>
-                                <div class="doctores">
-                                    <h5>Seleccione un Médico</h5>
-                                    <div id="carouselExample" class="carousel slide">
-                                        <div class="carousel-inner">
-                                            @for (x of misMedicos; track x;){
-                                                @if(x.especialidad===especialidad){
-                                                    <div class="carousel-item active">
-                                                        <div class="card">
-                                                            <img src="{{x.foto}}" alt="" class="card-img-top img-fluid" width="100px">
-                                                            <div class="card-body">
-                                                                <h5 class="card-title">{{x.nombre}}</h5>
-                                                                <p class="card-text">{{x.especialidad}}</p>
-                                                                <p class="card-text">{{x.universidad}}</p>
-                                                                <!-- Si se ha seleccionado algo -->
-                                                                @if(especialidad){
-                                                                    <div class="bot">
-                                                                        <a (click)="docSeleccionado(x, misMedicos.indexOf(x))" class="btn btn-success btn-outline-light">Seleccionar</a>
-                                                                    </div>
-                                                                }
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                }
-                                            }
-                                        </div>
-                                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                            <span class="visually-hidden">Previous</span>
-                                        </button>
-                                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                            <span class="visually-hidden">Next</span>
-                                        </button>
-                                    </div>
-                                    <div class="card-group" style="width: 18rem;">
-                                        
-                                    </div>
+                            <br>
+                            <div class="doctores">
+                                <div class="container-subtitle">
+                                    <div class="title-services">Seleccione un Médico</div>
                                 </div>
+                                <br>
+                                <div id="carouselExample" class="carousel slide">
+                                    <div class="carousel-inner">
+                                        @for (x of misMedicos; track x;){
+                                        @if(x.especialidad===especialidad){
+                                        <div class="carousel-item active">
+                                            <div class="card">
+                                                <img src="{{x.foto}}" alt="" class="card-img-top img-fluid"
+                                                    width="100px">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">{{x.nombre}}</h5>
+                                                    <p class="card-text">{{x.especialidad}}</p>
+                                                    <p class="card-text">{{x.universidad}}</p>
+                                                    <!-- Si se ha seleccionado algo -->
+                                                    @if(especialidad){
+                                                    <div class="bot">
+                                                        <a (click)="docSeleccionado(x, misMedicos.indexOf(x))"
+                                                            class="btn-sm">Seleccionar</a>
+                                                    </div>
+                                                    }
+                                                </div>
+                                            </div>
+                                        </div>
+                                        }
+                                        }
+                                    </div>
+                                    <button class="carousel-control-prev" type="button"
+                                        data-bs-target="#carouselExample" data-bs-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Previous</span>
+                                    </button>
+                                    <button class="carousel-control-next" type="button"
+                                        data-bs-target="#carouselExample" data-bs-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Next</span>
+                                    </button>
+                                </div>
+                                <div class="card-group" style="width: 18rem;">
+
+                                </div>
+                            </div>
                             }
                         </div>
                     </div>
