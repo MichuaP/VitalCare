@@ -7,6 +7,7 @@
   import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
   import Swal from 'sweetalert2';
   import { CommonModule } from '@angular/common';
+  import { MedicoService } from '../shared/medico.service';
 
   @Component({
     selector: 'app-reportes',
@@ -31,7 +32,7 @@
     citasAnteriores: CitaConID[] = []; // Arreglo para almacenar citas pasadas
     citasProximas: CitaConID[] = []; // Arreglo para almacenar citas futuras
 
-    constructor(public basedatos: AuthService, public user: UserService) {
+    constructor(public basedatos: AuthService, public user: UserService,public medicoservicio: MedicoService) {
       // Extraer la fecha actual del sistema
       this.fechaActual = new Date();
       console.log('La fecha actual es: ' + this.fechaActual.toLocaleDateString());
@@ -39,13 +40,16 @@
 
     ngOnInit(): void {
       this.obtenerCitas(); // Extrae las citas almacenadas en la base de datos
-      this.filtrarCitas(); // Se llama a la función para filtrar las citas entre pasadas y futuras
+      this.medicos=this.medicoservicio.getMedicos();
     }
 
     //Método para obtener las citas almacenadas en la base de datos
     obtenerCitas(){
+      console.log("Citas obtenidas");
       this.basedatos.getCitas().subscribe(citas => {
         this.citas = citas;
+        console.log(this.citas);
+        this.filtrarCitas(); // Se llama a la función para filtrar las citas entre pasadas y futuras
       }, error => {
         console.error("Error al obtener las citas:", error);
       });
@@ -80,11 +84,9 @@
 
     // Método para filtrar las citas entre pasadas y futuras
     filtrarCitas() {
-      console.log("Entré a FiltrarCitas");
       this.citas.forEach(cita => {
-        console.log("No llega aquí");
-        const fechaCita = new Date(cita.fecha); // Se convierte la fecha de la cita en un objeto Date
-        console.log("Fecha de la Cita:" + fechaCita);
+        // Transformar la fecha de dd/MM/yyyy a un objeto Date
+        const fechaCita = this.convertirFecha(cita.fecha);
         if (fechaCita < this.fechaActual) { // Si la fecha de la cita es anterior a la fecha actual
           this.citasAnteriores.push(cita); // Se añade la cita al arreglo de citas pasadas
           return this.citasAnteriores;
@@ -93,61 +95,83 @@
           return this.citasProximas;
         }
       });
+    }
 
-      console.log('Citas anteriores:', this.citasAnteriores);
-      console.log('Citas próximas:', this.citasProximas);
+    //Funcion para convertir fechas en formato dd/mm/aa a un tipo fecha
+    convertirFecha(fechaStr: string): Date {
+      const [day, month, year] = fechaStr.split('/').map(Number);
+      return new Date(year, month - 1, day);
     }
 
     // Método para filtrar las citas según el tipo seleccionado (próximas, anteriores o todas)
     tipoCita(event: any) {
       const tipo = event.target.value; // Se obtiene el valor seleccionado en el evento
       if (tipo === 'proximas') {
-          this.citas = this.citasProximas; // Si el tipo es "proximas", se muestran las citas próximas al arreglo de citas
+        console.log("Citas proximas");
+        this.citas = this.citasProximas; // Si el tipo es "proximas", se muestran las citas próximas al arreglo de citas
       } else if (tipo === 'anteriores') {
-          this.citas = this.citasAnteriores; // Si es "anteriores", se muestran las citas pasadas
+        console.log("Citas anteriores");
+        this.citas = this.citasAnteriores; // Si es "anteriores", se muestran las citas pasadas
       } else if (tipo === 'todas') {
-        this.citas = JSON.parse(localStorage.getItem('citas') || '[]'); // Si es "todas", se obtienen todas las citas del localStorage
+        this.obtenerCitas();
+        console.log("Todas");
       }
     }
 
-    tipoCitaMedicos(event: any) {
-      const selectedMedicoNombre = event.target.value;
-      this.citas = []; // Resetea la lista de citas
-  
-      if (selectedMedicoNombre == 'todas') {
-        this.citas = this.citasalmacen.slice(); // Copia todas las citas
-      } else {
-        this.citasalmacen.forEach(cita => {
-          if (cita.nombreDoctor == selectedMedicoNombre) {
-            this.citas.push(cita);
-          }
-        });
+    // Método para filtrar las citas según el tipo seleccionado
+    tipoConsulta(value: any) {
+      if (value=="todas"){
+        this.selectedTipoConsulta="todas";
+      }else if(value=="medico"){
+        this.selectedTipoConsulta = "medico";
+      }else if(value=="especialidad"){
+        this.selectedTipoConsulta="especialidad";
       }
     }
+
+    nombreMedico:any="";
+    especialidad:any="";
+
+    //Función que recibe el medico seleccionado
+    pormedicos(value:any): void {
+      this.nombreMedico = value;
+    }
+
+    //Función que recibe la especialidad seleccionada
+    porespecialidad(value:any):void{
+      this.especialidad = value;
+    }
+
+    // tipoCitaMedicos(event: any) {
+    //   const selectedMedicoNombre = event.target.value;
+    //   this.citas = []; // Resetea la lista de citas
   
-    tipoCitaEspecialidad(event: any) {
-      const selectedMedicoNombre = event.target.value;
-      this.citas = []; // Resetea la lista de citas
+    //   if (selectedMedicoNombre == 'todas') {
+    //     this.citas = this.citasalmacen.slice(); // Copia todas las citas
+    //   } else {
+    //     this.citasalmacen.forEach(cita => {
+    //       if (cita.nombreDoctor == selectedMedicoNombre) {
+    //         this.citas.push(cita);
+    //       }
+    //     });
+    //   }
+    // }
+  
+    // tipoCitaEspecialidad(event: any) {
+    //   const selectedMedicoNombre = event.target.value;
+    //   this.citas = []; // Resetea la lista de citas
     
-      if (selectedMedicoNombre == 'todas') {
-        this.citas = this.citasalmacen.slice(); // Copia todas las citas
-      } else {
-        this.citasalmacen.forEach(cita => {
-          if (cita.especialidad == selectedMedicoNombre) {
-            this.citas.push(cita);
-          }
-        });
-      }
+    //   if (selectedMedicoNombre == 'todas') {
+    //     this.citas = this.citasalmacen.slice(); // Copia todas las citas
+    //   } else {
+    //     this.citasalmacen.forEach(cita => {
+    //       if (cita.especialidad == selectedMedicoNombre) {
+    //         this.citas.push(cita);
+    //       }
+    //     });
+    //   }
       
-    }
-  
-    tipoConsulta(event1: any) {
-      this.citas= [];
-      const tipo = event1.target.value;
-      this.selectedTipoConsulta = tipo;
-      this.citas = this.citasalmacen;
-    }
-    
+    // }
 
     getNombreUsuario() {
       return this.user.loggeduser.nombre;

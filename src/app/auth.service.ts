@@ -254,6 +254,7 @@ export class AuthService {
     return from(promise);
   }
 
+  //Función para obtener las fechas ocupadas
   getFechasOcupadas(): Observable<FechaOcupada[]> {
     const horasRef = ref(this.database, 'horasOcupadas');
     const promise = get(horasRef).then((snapshot) => {
@@ -273,9 +274,10 @@ export class AuthService {
     return from(promise);
   }
 
+  //Funcion para guardar una fecha
   guardarFechasOcupadas(fechaOcupada: FechaOcupada): Observable<void> {
     const citasRef = ref(this.database, 'horasOcupadas');
-    const nuevaCitaRef = push(citasRef); // Crea una nueva referencia única para la nueva cita
+    const nuevaCitaRef = push(citasRef); //Crea un nuevo id
     const promise = set(nuevaCitaRef, fechaOcupada);
     return from(promise);
   }
