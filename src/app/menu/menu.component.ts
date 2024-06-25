@@ -4,6 +4,7 @@ import { LoginCorreoComponent } from '../login-correo/login-correo.component';
 import { LoginTelefonoComponent } from '../login-telefono/login-telefono.component';
 import { AuthService } from '../auth.service';
 import { Observable } from 'rxjs';
+import { LoadingService } from '../shared/loading.service';
 
 @Component({
   selector: 'app-menu',
@@ -20,7 +21,7 @@ export class MenuComponent {
   AdminMode:boolean;
   displayName: string;
 
-  constructor(private router:Router, public myAuth: AuthService) {
+  constructor(private router:Router, public myAuth: AuthService, private loadingService: LoadingService) {
     this.Logueado$ = myAuth.isAuthenticated();
     this.Logueado$.subscribe((revisar) => {
       this.Logueado=revisar;
@@ -29,7 +30,11 @@ export class MenuComponent {
   }
 
   Logout(){
-    this.myAuth.logout();
+    this.loadingService.show();
+    setTimeout(() => {
+      this.myAuth.logout();
+      this.loadingService.hide();
+    },5000);
   }
 
   cambioMetodo(){
