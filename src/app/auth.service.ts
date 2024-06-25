@@ -4,7 +4,7 @@ import { RecaptchaVerifier, createUserWithEmailAndPassword, signInWithEmailAndPa
 import { Database, get, push, ref, set, remove } from '@angular/fire/database';
 import { Observable, from, map } from 'rxjs';
 import { Paciente } from './paciente';
-import { Cita, CitaConID, FechaOcupada } from './medico';
+import { Cita, CitaConID, FechaOcupada, HorasOcupadas } from './medico';
 
 
 @Injectable({
@@ -236,6 +236,43 @@ export class AuthService {
         });
     });
     
+  }
+
+  //Obtener las fechas y horas ocupadas de las citas
+  getHorasOcupadas(): Observable<HorasOcupadas[]> {
+    const horasRef = ref(this.database, 'horasOcupadas');
+    const promise = get(horasRef).then((snapshot) => {
+      const horas: HorasOcupadas[] = [];
+      if (snapshot.exists()) {
+        //Obtenermos el array
+        snapshot.forEach((childSnapshot) => {
+          const horasData = childSnapshot.val();
+          horas.push({
+            id: childSnapshot.key,
+            fecha: horasData.fecha,
+            hora: horasData.hora,
+          });
+        });
+      }
+      return horas;
+    });
+    return from(promise);
+  }
+
+  eliminarHorasOcupadas(id: string): Observable<void> {
+    const horasRef = ref(this.database, `horasOcupadas/${id}`); //Referencia a eliminar
+
+    return new Observable<void>((observer) => {
+      remove(horasRef)
+        .then(() => {
+          observer.next(); //Operación exitosa
+          observer.complete(); //Completar Observable
+        })
+        .catch((error) => {
+          console.error('Error al eliminar la fecha y hora:', error);
+          observer.error(error);
+        });
+    });
   }
 
   //Función para registrar un usuario

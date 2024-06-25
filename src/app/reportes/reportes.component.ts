@@ -1,7 +1,7 @@
   import { Component } from '@angular/core';
   import { RouterModule } from '@angular/router';
   import { AuthService } from '../auth.service';
-  import { Cita, CitaConID, Medico } from '../medico';
+  import { Cita, CitaConID, HorasOcupadas, Medico } from '../medico';
   import { UserService } from '../user.service';
   import { Observable } from 'rxjs';
   import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
@@ -26,11 +26,12 @@
     ];
 
 
-    citasalmacen: CitaConID[] = []; // Arreglo para almacenar todas las citas y no se borren al cambiar la consulta
     citas: CitaConID[] = []; //Estructura del array de citas
     fechaActual: Date; // Variable para almacenar la fecha actual
     citasAnteriores: CitaConID[] = []; // Arreglo para almacenar citas pasadas
     citasProximas: CitaConID[] = []; // Arreglo para almacenar citas futuras
+
+    horasOcupadas: HorasOcupadas[];
 
     constructor(public basedatos: AuthService, public user: UserService,public medicoservicio: MedicoService) {
       // Extraer la fecha actual del sistema
@@ -40,6 +41,7 @@
 
     ngOnInit(): void {
       this.obtenerCitas(); // Extrae las citas almacenadas en la base de datos
+      this.obtenerHorasOcupadas(); //Obtener las fechas y horas ocupadas de las citas en la base de datos
       this.medicos=this.medicoservicio.getMedicos();
     }
 
@@ -55,7 +57,7 @@
       });
     }
 
-    borrarCita(id: string): void {
+    borrarCita(id: string, fecha: string, hora: string): void {
       Swal.fire({
         title: "¿Deseas borrar la cita?",
         showDenyButton: true,
@@ -66,7 +68,14 @@
         if (result.isConfirmed) {
           //Eliminar Cita
           this.basedatos.eliminarCita(id).subscribe(() => {
+            this.citas = [];
+            this.citasAnteriores = []; 
+            this.citasProximas = [];
+            this.horasOcupadas = [];
+
             this.obtenerCitas(); //Actualizar Citas
+            this.obtenerHorasOcupadas(); //Actualizar Horas Ocupadas
+
             Swal.fire({
               title: '¡Éxito!',
               text: 'Se ha eliminado la cita correctamente.',
@@ -76,14 +85,38 @@
           }, error => {
             Swal.fire({title: '¡Error!', icon: 'error', confirmButtonText: 'Continuar',});
           });
+
+          //Eliminar Hora Ocupada
+          for(let horas of this.horasOcupadas) {
+            if(fecha == horas.fecha && hora == horas.hora) {
+              this.basedatos.eliminarHorasOcupadas(horas.id).subscribe(() => {
+              }, error => {
+              });
+              break;
+            }
+          }
           //
+
         } else if (result.isDenied) {
         }
       });
     }
 
+    //Método para obtener las horas ocupadas d ela base de datos
+    obtenerHorasOcupadas(){
+      this.basedatos.getHorasOcupadas().subscribe(horas => {
+        this.horasOcupadas = horas;
+        console.log(this.horasOcupadas);
+      }, error => {
+        console.error("Error al obtener las fechas y horas ocupadas:", error);
+      });
+    }
+
     // Método para filtrar las citas entre pasadas y futuras
     filtrarCitas() {
+      this.citasAnteriores = []; 
+      this.citasProximas = [];
+
       this.citas.forEach(cita => {
         // Transformar la fecha de dd/MM/yyyy a un objeto Date
         const fechaCita = this.convertirFecha(cita.fecha);

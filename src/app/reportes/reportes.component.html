@@ -53,6 +53,7 @@
             }
 
             <!-- Administrador y Usuarios -->
+             @if(this.getCorreoUsuario() != "") {
             <div class="select-container col-5">
                 <label for="tipo-cita">Filtrar:</label>
                 <select id="tipo-cita" (change)="tipoCita($event)">
@@ -61,6 +62,7 @@
                     <option value="anteriores">Citas Anteriores</option>
                 </select>
             </div>
+            }
 
             <!-- Administrador -->
             @if(this.getCorreoUsuario() == "vitalcareclinicas@gmail.com") {            
@@ -230,7 +232,7 @@
                                     <td>{{ cita.fecha }}</td>
                                     <td>{{ cita.hora }}</td>
                                     <td> 
-                                        <button (click)="borrarCita(cita.id)" style="border: none; background-color: #FFFFFF;"> <i class="fa-solid fa-trash-can" style="color: #43ba7f;"></i> </button> 
+                                        <button (click)="borrarCita(cita.id, cita.fecha, cita.hora)" style="border: none; background-color: #FFFFFF;"> <i class="fa-solid fa-trash-can" style="color: #43ba7f;"></i> </button> 
                                     </td>
                                 </tr>
                                 }
