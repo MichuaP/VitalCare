@@ -28,6 +28,7 @@ label {
     font-size: 20px;
     margin-right: 12px;
     font-style: italic;
+    text-align: center;
 }
 
 #tipo-cita, #tipo-consulta {
@@ -39,15 +40,13 @@ label {
     border-radius: 18px;
     border: none;
     cursor: pointer;
-}
-
-#tipo-consulta {
     margin-right: 10px;
 }
 
 .select-container {
     display: flex;
     justify-content: end;
+    text-align: center;
 }
 
 /* ----------------------------------------------------------------- */

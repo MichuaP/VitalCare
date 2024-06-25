@@ -34,17 +34,17 @@
                 </li>                
                 @if(this.Logueado == false){
                 <li class="nav-item dropdown">
-                    <a class="nav-link white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a class="nav-link white icono" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="fa-solid fa-right-to-bracket fa-2xl"></i>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" [routerLink]="['/registro']"
+                        <li><a class="dropdown-item opciones" [routerLink]="['/registro']"
                                 routerLinkActive="active">Registrarse</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
                         <li>
-                            <button type="button" class="dropdown-item" data-bs-toggle="modal"
+                            <button type="button " class="dropdown-item opciones" data-bs-toggle="modal"
                                 data-bs-target="#staticBackdrop">
                                 Iniciar sesión
                             </button>
@@ -55,39 +55,39 @@
                 }@else{
                 @if(this.AdminMode){
                 <li class="nav-item dropdown">
-                    <a class="nav-link white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a class="nav-link white icono" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="fa-solid fa-circle-user fa-2xl"></i>
                     </a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item disabled" style="font-weight:bold;">Administración</a></li>
-                        <li><a class="dropdown-item" [routerLink]="['/graficos']" routerLinkActive="active">Gráficas</a>
+                        <li><a class="dropdown-item opciones" [routerLink]="['/graficos']" routerLinkActive="active">Gráficas</a>
                         </li>
-                        <li><a class="dropdown-item" [routerLink]="['/reportes']" routerLinkActive="active">Reporte de citas</a></li>
+                        <li><a class="dropdown-item opciones" [routerLink]="['/reportes']" routerLinkActive="active">Reporte de citas</a></li>
                         <li>
                         <!-- <li><a class="dropdown-item" [routerLink]="['/abc']" routerLinkActive="active">ABC</a></li> -->
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><button type="button" class="dropdown-item" (click)="Logout()">
+                        <li><button type="button" class="dropdown-item opciones" (click)="Logout()">
                                 Cerrar sesión
                             </button></li>
                     </ul>
                 </li>
                 }@else{
                 <li class="nav-item dropdown">
-                    <a class="nav-link white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a class="nav-link white icono" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="fa-solid fa-circle-user fa-2xl"></i>
                     </a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item disabled" style="font-weight:bold;">Bienvenid&#64;
                                 {{this.getNombre()}}</a></li>
-                        <li><a class="dropdown-item" [routerLink]="['/regCitas']" routerLinkActive="active">Agendar
+                        <li><a class="dropdown-item opciones" [routerLink]="['/regCitas']" routerLinkActive="active">Agendar
                                 cita</a></li>
-                        <li><a class="dropdown-item" [routerLink]="['/reportes']" routerLinkActive="active">Administrar citas</a></li>
+                        <li><a class="dropdown-item opciones" [routerLink]="['/reportes']" routerLinkActive="active">Administrar citas</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><button type="button" class="dropdown-item" (click)="Logout()">
+                        <li><button type="button" class="dropdown-item opciones" (click)="Logout()">
                                 Cerrar sesión
                             </button></li>
                     </ul>
@@ -126,10 +126,10 @@
             </div>
             <div class="modal-footer">
                 @if(!this.Metodo){
-                <button type="button" class="btn btn-primary" (click)="cambioMetodo()">Iniciar sesión con número de
+                <button type="button" class="btn cambiar" (click)="cambioMetodo()">Iniciar sesión con número de
                     teléfono</button>
                 }@else{
-                <button type="button" class="btn btn-primary" (click)="cambioMetodo()">Iniciar sesión con
+                <button type="button" class="btn cambiar" (click)="cambioMetodo()">Iniciar sesión con
                     correo</button>
                 }
             </div>

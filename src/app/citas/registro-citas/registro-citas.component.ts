@@ -12,6 +12,7 @@ import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ResumenComponent } from '../resumen/resumen.component';
+import { LoadingService } from '../../shared/loading.service';
 import { AngularFireModule } from "@angular/fire/compat";
 import { AngularFireDatabase, AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { AuthService } from '../../auth.service';
@@ -22,6 +23,7 @@ import { Paciente } from '../../paciente';
 import { CorreoService } from '../../correo.service';
 import { QRCodeModule } from 'angularx-qrcode';
 import { SafeUrl } from '@angular/platform-browser';
+import { QRService } from '../../qr.service';
 
 
 @Component({
@@ -104,7 +106,9 @@ export class RegistroCitasComponent implements OnInit {
   horaSelected:any="";
 
   //Cosntructor
-  constructor(public miservicio: MedicoService, private fb: FormBuilder, private router:Router, public basedatos:AuthService, public user: UserService, public correoService: CorreoService){
+
+  constructor(public miservicio: MedicoService, private fb: FormBuilder, private router:Router, public basedatos:AuthService, public user: UserService, public correoService: CorreoService, public qrservice: QRService, private loadingService: LoadingService){
+
     //Formulario
 
     this.citaForm = this.fb.group({
@@ -142,6 +146,12 @@ export class RegistroCitasComponent implements OnInit {
 
   //Verificar que todo el formulario se llenó
   checkData(){
+    const button = document.getElementById('btnConfirmarCita') as HTMLButtonElement;
+    button.innerHTML = `
+        <div class="spinner-border text-light" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      `;
     if(this.citaForm.valid){
       Swal.fire({
         title: "¿Deseas confirmar tu cita?",
@@ -153,9 +163,12 @@ export class RegistroCitasComponent implements OnInit {
           this.nuevaCita();
         } else if (result.isDenied) {
         }
+        button.innerHTML = `Confirmar cita`;
       });
     }else{
-      Swal.fire('¡Porfavor llene todos los campos!', '', 'error');
+      Swal.fire('¡Porfavor llene todos los campos!', '', 'error').then((result) => {
+        button.innerHTML = `Confirmar cita`;
+      });
     }
   }
 
@@ -184,6 +197,7 @@ export class RegistroCitasComponent implements OnInit {
 
   //ngOnInit
   ngOnInit():void{
+    this.loadingService.show();
     this.misMedicos=this.miservicio.getMedicos();
     //Obtenemos datos de local
     const fechasOcupadas = localStorage.getItem('ocupadas');
@@ -193,6 +207,7 @@ export class RegistroCitasComponent implements OnInit {
     }else{
       localStorage.setItem('ocupadas', JSON.stringify(this.horas));
     }
+    this.loadingService.hide();
   }
 
 //Función que recibe las horas ocupadas (para no seleccionar fecha ocupada)
@@ -250,10 +265,11 @@ obtenerHoras() {
     + "<br>Especialidad: " + this.especialidad + "<br>Fecha de la cita: " + this.fechaSelected 
     + "<br>Hora de la cita: " + this.horaSelected + "<br>Costo de la cita: $650<br>¡Recuerda llegar puntual a tu cita!<br>" + 
     "<h1>- VitalCare</h1>";
-    this.mensajeQR = "Informacion de tu cita\nDoctor/Doctora que te atenderá: " + this.medico 
-    + "\nEspecialidad: " + this.especialidad + "\nFecha de la cita: " + this.fechaSelected 
-    + "\nHora de la cita: " + this.horaSelected + "\nCosto de la cita: $650\n¡Recuerda llegar puntual a tu cita!\n" + 
-    "- VitalCare\n";
+    this.qrservice.sendConsulta(this.user.loggeduser.nombre, this.fechaSelected, this.horaSelected).subscribe((res) => {
+      this.mensajeQR = res;
+    }, (error) => {
+      this.mensajeQR = "Error en la consulta de la base de datos";
+    });
     if(newCita){
       this.correoService
       .sendCita(

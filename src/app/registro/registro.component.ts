@@ -13,6 +13,7 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { CommonModule } from '@angular/common';
 import { ResumenComponent } from '../citas/resumen/resumen.component';
 import { AuthService } from '../auth.service';
+import { LoadingService } from '../shared/loading.service';
 
 @Component({
   selector: 'app-registro',
@@ -55,7 +56,7 @@ export class RegistroComponent {
   horaSelected:any="";
 
   //Cosntructor
-  constructor(private fb: FormBuilder, private router:Router, public myAuth: AuthService){
+  constructor(private fb: FormBuilder, private router:Router, public myAuth: AuthService, private loadingService: LoadingService){
     //Formulario
     this.citaForm = this.fb.group({
       nombre: ['', [Validators.required]],
@@ -73,20 +74,32 @@ export class RegistroComponent {
 
   //Verificar que todo el formulario se llenó
   checkData(){
-    if(this.citaForm.valid){
+    this.loadingService.show();
+    const button = document.getElementById('botonRegistrar') as HTMLButtonElement;
+    button.innerHTML = `
+        <div class="spinner-border text-light" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      `;
+    if(this.citaForm.valid){   
+      this.loadingService.hide();   
       Swal.fire({
         title: "¿Deseas confirmar tu registro?",
         showDenyButton: true,
         confirmButtonText: "Confirmar",
         denyButtonText: `Cancelar`
       }).then((result) => {
-         if (result.isConfirmed) {
+        if (result.isConfirmed) {
           this.registrarPaciente();
         } else if (result.isDenied) {
         }
+        button.innerHTML = `¡Registrarse!`;
       });
     }else{
-      Swal.fire('¡Porfavor llene todos los campos!', '', 'error');
+      this.loadingService.hide();
+      Swal.fire('¡Porfavor llene todos los campos!', '', 'error').then((result) => {
+        button.innerHTML = `¡Registrarse!`;
+      });
     }
   }
 

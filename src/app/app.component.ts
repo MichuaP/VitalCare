@@ -6,13 +6,14 @@ import { HomeComponent } from "./home/home.component";
 import { FooterComponent } from "./footer/footer.component";
 import { AccesibilidadComponent } from './accesibilidad/accesibilidad.component';
 import { LectorService } from './shared/lector.service';
+import { LoadingScreenComponent } from './loading-screen/loading-screen.component';
 
 @Component({
     selector: 'app-root',
     standalone: true,
     templateUrl: './app.component.html',
     styleUrl: './app.component.css',
-    imports: [RouterOutlet, RouterModule, ServiciosComponent, MenuComponent, HomeComponent, FooterComponent, AccesibilidadComponent]
+    imports: [RouterOutlet, RouterModule, ServiciosComponent, MenuComponent, HomeComponent, FooterComponent, AccesibilidadComponent, LoadingScreenComponent]
 })
 export class AppComponent {
   title = 'VitalCare';
