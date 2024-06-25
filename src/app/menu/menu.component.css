@@ -33,3 +33,17 @@
 .nav-link{
     font-size: 13px;
 }
+
+.cambiar {
+    background-color: #657e711a;
+    padding: 4px 16px;
+    font-size: 20px;
+    color: #395347;
+    font-weight: bold;
+    border-radius: 18px;
+    border: none;
+    cursor: pointer;
+}
+.cambiar:hover {
+    background-color: #252e291a;
+}
