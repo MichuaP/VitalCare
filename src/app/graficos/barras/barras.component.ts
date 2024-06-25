@@ -4,6 +4,8 @@ import { Chart } from 'chart.js/auto';
 import { AuthService } from '../../auth.service';
 import { PieComponent } from '../pie/pie.component';
 import { LineComponent } from '../line/line.component';
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-barras',
@@ -109,7 +111,13 @@ export class BarrasComponent implements OnInit {
         });
       },
       (error) => {
-        alert('Error al ingresar');
+        console.error('Error al ingresar', error);
+        Swal.fire({
+        title: 'Error',
+        text: 'Error al ingresar los datos.',
+        icon: 'error',
+        confirmButtonText: 'Aceptar'
+      });
       }
     );
   }

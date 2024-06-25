@@ -2,6 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Chart } from 'chart.js/auto';
 import { AuthService } from '../../auth.service';
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-line',
@@ -100,7 +102,13 @@ export class LineComponent implements OnInit {
         });
       },
       (error) => {
-        alert('Error al ingresar');
+        console.error('Error al ingresar', error);
+        Swal.fire({
+        title: 'Error',
+        text: 'Error al ingresar los datos.',
+        icon: 'error',
+        confirmButtonText: 'Aceptar'
+      });
       }
     );
   }

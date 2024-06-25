@@ -146,7 +146,6 @@ export class RegistroCitasComponent implements OnInit {
       Swal.fire({
         title: "¿Deseas confirmar tu cita?",
         showDenyButton: true,
-        showCancelButton: true,
         confirmButtonText: "Confirmar",
         denyButtonText: `Cancelar`
       }).then((result) => {

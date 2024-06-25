@@ -77,7 +77,6 @@ export class RegistroComponent {
       Swal.fire({
         title: "¿Deseas confirmar tu registro?",
         showDenyButton: true,
-        showCancelButton: true,
         confirmButtonText: "Confirmar",
         denyButtonText: `Cancelar`
       }).then((result) => {
