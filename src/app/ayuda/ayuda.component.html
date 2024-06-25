@@ -1,14 +1,15 @@
 <div id="encabezado">
     <div>
-        <h1>{{ '¿En qué podemos' | uppercase }} <span class="highlight">{{ 'ayudarte' | uppercase }}</span>?</h1>
+        <h1>¿En qué podemos <span class="highlight">ayudarte</span>?</h1>
         <p>A continuación te mostramos las respuestas a las preguntas más frecuentes de nuestros clientes, 
             pero recuerda que siempre puedes contactar con nuestro equipo para lo que necesites.
         </p>
     </div>
     <img src="../../assets/img/Questions-bro.png" alt="">
 </div>
+<br>
 <div class="current-date">
-    <h2>{{ 'Fecha y hora actual' | uppercase }}</h2>
+    <h2> <span class="highlight"><strong>{{ 'Fecha y hora actual' | uppercase }}</strong></span></h2>
     <p>{{ currentDate | customDate }}</p>
 </div>
 <div id="preguntas">
@@ -21,8 +22,4 @@
             <div class="respuesta"> {{q.respuesta}} </div>
         </div>
     }
-</div>
-<div class="current-date">
-    <h2>{{ 'Fecha y hora actual' | uppercase }}</h2>
-    <p>{{ currentDate | customDate }}</p>
 </div>

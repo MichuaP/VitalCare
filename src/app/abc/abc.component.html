@@ -23,9 +23,9 @@
             <div class="select-container col-5">
                 <label for="tipo-consulta">Tipo de consulta:</label>
                 <select id="tipo-consulta" (change)="tipoConsulta($event)">
-                    <option value="todas" selected>citas por fecha</option>
-                    <option value="medico">Citas por medico</option>
-                    <option value="especialidad">Citas por especialidad</option>
+                    <option value="todas" selected>Citas por Fecha</option>
+                    <option value="medico">Citas por Médico</option>
+                    <option value="especialidad">Citas por Especialidad</option>
                 </select>
             </div>
         </div>
@@ -35,16 +35,15 @@
             <option value="anteriores">Citas Anteriores</option>
         </select>
 
-
         <!--medicos-->
         <select *ngIf="selectedTipoConsulta === 'medico'" id="tipo-cita" (change)="tipoCitaMedicos($event)">
-            <option value="todas" selected>Todos los medicos</option>
+            <option value="todas" selected>Todos los Médicos</option>
             <option *ngFor="let medico of medicos" [value]="medico.nombre">{{ medico.nombre }}</option>
         </select>
 
         <!--especialidad-->
         <select *ngIf="selectedTipoConsulta === 'especialidad'" id="tipo-cita" (change)="tipoCitaEspecialidad($event)">
-            <option value="todas" selected>Todas las especialidades</option>
+            <option value="todas" selected>Todas las Especialidades</option>
             <option *ngFor="let especialidad of especialidades" [value]="especialidad">{{ especialidad }}</option>
         </select>
 
