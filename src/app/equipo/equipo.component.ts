@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Desarrolladores } from '../medico';
 import { DesarrolladoresService } from '../shared/desarrolladores.service';
 import { CommonModule } from '@angular/common';
+import Swal from 'sweetalert2';
 
 @Component({
     selector: 'app-equipo',
@@ -20,14 +21,29 @@ export class EquipoComponent {
     ngOnInit(){
         this.recuperarDatos();
     }
-
+/*
     recuperarDatos(){
         this.desarrolladoresService.retornar().subscribe({
             next: this.successRequest.bind(this),
             error: (err) => {console.log(err)}
         });
     }
-
+*/
+recuperarDatos() {
+    this.desarrolladoresService.retornar().subscribe({
+      next: this.successRequest.bind(this),
+      error: (err) => {
+        console.log(err);
+        Swal.fire({
+          title: 'Error',
+          text: 'Error al recuperar los datos.',
+          icon: 'error',
+          confirmButtonText: 'Aceptar'
+        });
+      }
+    });
+  }
+  
     successRequest(data:any):void{
         console.log("data",data);
         this.array = data.desarrolladores;

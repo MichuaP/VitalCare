@@ -9,7 +9,7 @@
         </div>
         <br>
         @if(phone.length>10){
-            <a (click)="enviarCodigo()" class="btn btn-success">Enviar código</a>
+            <a (click)="enviarCodigo()" class="btn ingresar">Enviar código</a>
         }
         <div class="mb-3">
             <br>
@@ -17,5 +17,5 @@
             <input type="text" class="form-control" id="tel" name="codigo" [(ngModel)]="codigo" required>
         </div>
 
-        <a (click)="ingresarTel()" class="btn btn-success">Ingresar</a>
+        <a (click)="ingresarTel()" class="btn ingresar">Ingresar</a>
 </div>

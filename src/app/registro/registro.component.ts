@@ -122,29 +122,47 @@ export class RegistroComponent {
       // Email es válido
       return true;
     } else {
-      alert("The email is not valid");
+      Swal.fire({
+        title: 'Correo no válido',
+        text: 'El correo electrónico no es válido.',
+        icon: 'error',
+        confirmButtonText: 'Aceptar'
+      });
       return false;
     }
   }
   
+  
 
-  validate_password(pass:string):boolean{
-    if(pass.length < 6){
-      alert("The password has to be at least 6 characters");
+  validate_password(pass: string): boolean {
+    if (pass.length < 6) {
+      Swal.fire({
+        title: 'Contraseña no válida',
+        text: 'La contraseña debe tener al menos 6 caracteres.',
+        icon: 'error',
+        confirmButtonText: 'Aceptar'
+      });
       return false;
-    }else{
-      return true
-    }
-  }
-
-  validate_field(field:any):boolean{
-    if(field.length <= 0){
-      alert("A field is missing");
-      return false;
-    }else{
+    } else {
       return true;
     }
   }
+  
+
+  validate_field(field: any): boolean {
+    if (field.length <= 0) {
+      Swal.fire({
+        title: 'Campo faltante',
+        text: 'Falta un campo.',
+        icon: 'error',
+        confirmButtonText: 'Aceptar'
+      });
+      return false;
+    } else {
+      return true;
+    }
+  }
+  
 
   registrarPaciente(): void {
     console.log(this.nombrePac);

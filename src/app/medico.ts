@@ -31,6 +31,12 @@ export interface CitaConID {
   hora: string;
 }
 
+export interface HorasOcupadas {
+  id: string;
+  fecha: string;
+  hora: string;
+}
+
 export interface Servicio {
   nombreServicio: String;
   descripcion: String;

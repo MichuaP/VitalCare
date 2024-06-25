@@ -33,3 +33,34 @@
 .nav-link{
     font-size: 13px;
 }
+
+.nav-link:hover {
+    color: #166b42
+}
+
+.fa-right-to-bracket, .fa-circle-user {
+    color: white; 
+    transition: color 0.2s ease;
+}
+
+.icono:active .fa-right-to-bracket,
+.icono:focus .fa-right-to-bracket,
+.icono:hover .fa-right-to-bracket,
+.icono:active .fa-circle-user,
+.icono:focus .fa-circle-user,
+.icono:hover .fa-circle-user {
+    color: #166b42; 
+}
+.cambiar {
+    background-color: #657e711a;
+    padding: 4px 16px;
+    font-size: 20px;
+    color: #395347;
+    font-weight: bold;
+    border-radius: 18px;
+    border: none;
+    cursor: pointer;
+}
+.cambiar:hover {
+    background-color: #252e291a;
+}
