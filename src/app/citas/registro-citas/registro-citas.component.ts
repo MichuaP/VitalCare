@@ -146,6 +146,12 @@ export class RegistroCitasComponent implements OnInit {
 
   //Verificar que todo el formulario se llenó
   checkData(){
+    const button = document.getElementById('btnConfirmarCita') as HTMLButtonElement;
+    button.innerHTML = `
+        <div class="spinner-border text-light" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      `;
     if(this.citaForm.valid){
       Swal.fire({
         title: "¿Deseas confirmar tu cita?",
@@ -158,9 +164,12 @@ export class RegistroCitasComponent implements OnInit {
           this.nuevaCita();
         } else if (result.isDenied) {
         }
+        button.innerHTML = `Confirmar cita`;
       });
     }else{
-      Swal.fire('¡Porfavor llene todos los campos!', '', 'error');
+      Swal.fire('¡Porfavor llene todos los campos!', '', 'error').then((result) => {
+        button.innerHTML = `Confirmar cita`;
+      });
     }
   }
 
