@@ -13,7 +13,6 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   }
   
   .large-cursor {
-    cursor: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCIgdmlld0JveD0iMCAwIDY0IDY0Ij4KICAgIDxwb2x5Z29uIHBvaW50cz0iMzIsMCAwLDY0IDY0LDY0IiBmaWxsPSJibGFjayIvPgo8L3N2Zz4="),
-      auto;
+    cursor: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCIgdmlld0JveD0iMCAwIDY0IDY0Ij4KICAgIDxwb2x5Z29uIHBvaW50cz0iMzIsMCAwIDY0IDY0IDY0IiBzdHlsZT0iZmlsbDp3aGl0ZTsgc3Ryb2tlOmJsYWNrOyBzdHJva2Utd2lkdGg6MjsiLz4KPC9zdmc+"), auto;
   }
   
