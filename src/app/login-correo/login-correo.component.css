@@ -1,0 +1,13 @@
+.ingresar {
+    background-color: #43ba7f1a;
+    padding: 4px 16px;
+    font-size: 20px;
+    color: #238f5a;
+    font-weight: bold;
+    border-radius: 18px;
+    border: none;
+    cursor: pointer;
+}
+.ingresar:hover {
+    background-color: #138d501a;
+}
