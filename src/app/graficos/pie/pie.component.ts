@@ -2,6 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Chart, ChartType } from 'chart.js/auto';
 import { AuthService } from '../../auth.service';
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-pie',
@@ -99,7 +101,13 @@ export class PieComponent implements OnInit {
         });
       },
       (error) => {
-        alert('Error al ingresar');
+        console.error('Error al ingresar', error);
+        Swal.fire({
+        title: 'Error',
+        text: 'Error al ingresar los datos.',
+        icon: 'error',
+        confirmButtonText: 'Aceptar'
+      });
       }
     );
   }
