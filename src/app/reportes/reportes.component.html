@@ -9,8 +9,9 @@
                     <h1 class="title-container">Consulta el <span class="highlight">reporte</span> de citas médicas</h1>
                     <br>
                     <p class="text-container">Explora el historial médico y consulta las citas para mantener un mejor
-                        control sobre la institución. Consulta citas médicas anteriores y aquellas que están por cumplirse
-                        aquí.</p>                
+                        control sobre la institución. Consulta citas médicas anteriores y aquellas que están por
+                        cumplirse
+                        aquí.</p>
                     }
                     @else { <!-- Usuario -->
                     <h1 class="title-container">Consulta tu <span class="highlight">reporte</span> de citas médicas</h1>
@@ -34,28 +35,63 @@
 
             <!-- Administrador -->
             @if(this.getCorreoUsuario() == "vitalcareclinicas@gmail.com") {
-                <div class="col-7">
-                    <p class="section-name">Historial de citas <span class="highlight">médicas</span></p>
-                </div>
-                <div class="select-container col-5">
-                    <label for="tipo-consulta">Consultar:</label>
-                    <select id="tipo-consulta" #tipocons (change)="tipoConsulta(tipocons.value)">
-                        <option value="todas" selected>Todas las citas</option>
-                        <option value="medico">Citas por medico</option>
-                        <option value="especialidad">Citas por especialidad</option>
+            <div class="col-5">
+                <p class="section-name">Historial de citas <span class="highlight">médicas</span></p>
+            </div>
+            <div class="select-container col-7">
+                <div class="filtros">
+                    <label>Tipo de cita:</label>
+                    <select id="tipo-cita" (change)="tipoCita($event)">
+                        <option value="todas" selected>Todas las Citas</option>
+                        <option value="proximas">Citas Próximas</option>
+                        <option value="anteriores">Citas Anteriores</option>
                     </select>
                 </div>
-            }
-            @else {  <!-- Usuario -->
-                <div class="col-7">
-                    <p class="section-name">Historial de citas médicas <span class="highlight">personal</span></p>
+                <div class="filtros">
+                    <label>Filtrar por:</label>
+                    <select id="tipo-consulta" #tipocons (change)="tipoConsulta(tipocons.value)">
+                        <option value="todas" selected>Todas las Citas</option>
+                        <option value="medico">Citas por Médico</option>
+                        <option value="especialidad">Citas por Especialidad</option>
+                    </select>
                 </div>
+                <div class="filtros">
+                    <!-- Médicos-->
+                    @if(this.selectedTipoConsulta === 'medico') {
+                    <label>Médico:</label>
+                    <select id="tipo-cita" #doc (change)="pormedicos(doc.value)">
+                        <option selected disable>Seleccionar Médico</option>
+                        @for(x of medicos; track x){
+                        <option value="{{x.nombre}}">{{x.nombre}} </option>
+                        }
+                    </select>
+                    }
+
+                    <!--especialidad-->
+                    @if(this.selectedTipoConsulta === 'especialidad') {
+                    <label>Especialidad:</label>
+                    <select id="tipo-cita" #espe (change)="porespecialidad(espe.value)">
+                        <option selected disable>Seleccionar Especialidad</option>
+                        @for(y of especialidades; track y){
+                        <option value="{{y}}">{{y}} </option>
+                        }
+                    </select>
+                    }
+                    
+                </div>
+            </div>
+
+            }
+            @else { <!-- Usuario -->
+            <div class="col-7">
+                <p class="section-name">Historial de citas médicas <span class="highlight">personal</span></p>
+            </div>
             }
 
-            <!-- Administrador y Usuarios -->
-             @if(this.getCorreoUsuario() != "") {
+            <!--  Usuarios -->
+            @if(this.getCorreoUsuario() != "vitalcareclinicas@gmail.com") {
             <div class="select-container col-5">
-                <label for="tipo-cita">Filtrar:</label>
+                <label for="tipo-cita">Selecciona el tipo de citas:</label>
                 <select id="tipo-cita" (change)="tipoCita($event)">
                     <option value="todas" selected>Todas las Citas</option>
                     <option value="proximas">Citas Próximas</option>
@@ -64,183 +100,166 @@
             </div>
             }
 
-            <!-- Administrador -->
-            @if(this.getCorreoUsuario() == "vitalcareclinicas@gmail.com") {            
-                <!-- Médicos-->
-                @if(this.selectedTipoConsulta === 'medico') {
-                    <select id="tipo-cita" #doc (change)="pormedicos(doc.value)">
-                        <option selected disable >Seleccionar médico...</option>
-                        @for(x of medicos; track x){
-                            <option value="{{x.nombre}}">{{x.nombre}} </option>
-                        }
-                    </select>
-                }
 
-                <!--especialidad-->
-                @if(this.selectedTipoConsulta === 'especialidad') {
-                    <select id="tipo-cita" #espe (change)="porespecialidad(espe.value)">
-                        <option selected disable>Seleccionar especialidad...</option>
-                        @for(y of especialidades; track y){
-                            <option value="{{y}}">{{y}} </option>
-                        }
-                    </select>
-                }
-            }
         </div>
         <br>
 
         <div id="container-list">
-            @if (!this.getExisteUsuario() || !citas.length || (!this.getExisteCitaUsuario() && this.getCorreoUsuario() != "vitalcareclinicas@gmail.com")) {
-                <div class="row align-items-center text-center">
-                    <div class="col-7 msg">
-                        <p class="text">Ups... ¡No hay citas para mostrar!</p>
-                        <p style="font-size: 20px;">Parece que no hay citas para reportar. ¡No te preocupes, puedes
-                            programar una nueva
-                            cita cuando lo necesites! ¡Estamos aquí para ayudarte en cualquier momento!</p>
+            @if (!this.getExisteUsuario() || !citas.length || (!this.getExisteCitaUsuario() && this.getCorreoUsuario()
+            != "vitalcareclinicas@gmail.com")) {
+            <div class="row align-items-center text-center">
+                <div class="col-7 msg">
+                    <p class="text">Ups... ¡No hay citas para mostrar!</p>
+                    <p style="font-size: 20px;">Parece que no hay citas para reportar. ¡No te preocupes, puedes
+                        programar una nueva
+                        cita cuando lo necesites! ¡Estamos aquí para ayudarte en cualquier momento!</p>
 
-                            <!-- Usuarios -->
-                            @if(this.getCorreoUsuario() != "vitalcareclinicas@gmail.com") {
-                                <button class="btn btn-lg" [routerLink]="['/regCitas']">Reservar una cita
-                                    <i class="fa-solid fa-arrow-right fa-xl"></i>
-                                </button>
-                            }
-                    </div>
-                    <div class="col-5">
-                        <img src="assets/img/ups.png" alt="" width="550px">
-                    </div>
+                    <!-- Usuarios -->
+                    @if(this.getCorreoUsuario() != "vitalcareclinicas@gmail.com") {
+                    <button class="btn btn-lg" [routerLink]="['/regCitas']">Reservar una cita
+                        <i class="fa-solid fa-arrow-right fa-xl"></i>
+                    </button>
+                    }
                 </div>
+                <div class="col-5">
+                    <img src="assets/img/ups.png" alt="" width="550px">
+                </div>
+            </div>
             }
 
             @else {
 
-                <!-- Administrador -->
-                @if(this.getCorreoUsuario() == "vitalcareclinicas@gmail.com") { 
-                    @if(this.selectedTipoConsulta === 'todas') {
-                    <div>
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th scope="col">Paciente</th>
-                                <th scope="col">Teléfono</th>
-                                <th scope="col">Costo</th>
-                                <th scope="col">Médico</th>
-                                <th scope="col">Especialidad</th>
-                                <th scope="col">Fecha</th>
-                                <th scope="col">Hora</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @for (cita of citas; track cita;) {
-                            <tr>
-                                <td>{{ cita.nombrePaciente }}</td>
-                                <td>{{ cita.telefono }}</td>
-                                <td>{{ cita.costo }}</td>
-                                <td>{{ cita.nombreDoctor }}</td>
-                                <td>{{ cita.especialidad }}</td>
-                                <td>{{ cita.fecha }}</td>
-                                <td>{{ cita.hora }}</td>
-                            </tr>
-                            }
-                        </tbody>
-                    </table>
-                </div>
-                }
-                @else if(this.nombreMedico && this.selectedTipoConsulta=="medico") {
-                    <div>
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <!-- <th scope="col">Médico</th>
+            <!-- Administrador -->
+            @if(this.getCorreoUsuario() == "vitalcareclinicas@gmail.com") {
+            @if(this.selectedTipoConsulta === 'todas') {
+            <div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Paciente</th>
+                            <th scope="col">Teléfono</th>
+                            <th scope="col">Costo</th>
+                            <th scope="col">Médico</th>
+                            <th scope="col">Especialidad</th>
+                            <th scope="col">Fecha</th>
+                            <th scope="col">Hora</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (cita of citas; track cita;) {
+                        <tr>
+                            <td>{{ cita.nombrePaciente }}</td>
+                            <td>{{ cita.telefono }}</td>
+                            <td>{{ cita.costo }}</td>
+                            <td>{{ cita.nombreDoctor }}</td>
+                            <td>{{ cita.especialidad }}</td>
+                            <td>{{ cita.fecha }}</td>
+                            <td>{{ cita.hora }}</td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            }
+            @else if(this.nombreMedico && this.selectedTipoConsulta=="medico") {
+            <div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <!-- <th scope="col">Médico</th>
                                     <th scope="col">Especialidad</th> -->
-                                    <th scope="col">Fecha</th>
-                                    <th scope="col">Paciente</th>
-                                    <th scope="col">Teléfono</th>
-                                    <th scope="col">Costo</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @for (cita of citas; track cita;) {
-                                    @if(cita.nombreDoctor==this.nombreMedico){
-                                        <tr>
-                                            <td>{{ cita.fecha }}</td>
-                                            <td>{{ cita.nombrePaciente }}</td>
-                                            <td>{{ cita.telefono }}</td>
-                                            <td>{{ cita.costo }}</td>
-                                        </tr>
-                                    }
-                                }
-                            </tbody>
-                        </table>
-                    </div>
-                }
-                @else if(this.selectedTipoConsulta === 'especialidad' && this.especialidad) {
-                    <div>
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Especialidad</th>
-                                    <th scope="col">Médico</th>
-                                    <th scope="col">Paciente</th>
-                                    <th scope="col">Teléfono</th>           
-                                    <th scope="col">Fecha</th>
-                                    <th scope="col">Costo</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @for (cita of citas; track cita;) {
-                                    @if(cita.especialidad == this.especialidad){
-                                        <tr>
-                                            <td>{{ cita.especialidad }}</td>
-                                            <td>{{ cita.nombreDoctor }}</td>
-                                            <td>{{ cita.nombrePaciente }}</td>
-                                            <td>{{ cita.telefono }}</td>
-                                            <td>{{ cita.fecha }}</td>
-                                            <td>{{ cita.costo }}</td>
-                                        </tr>
-                                    }
-                                }
-                            </tbody>
-                        </table>
-                    </div>
-                }
-                }
+                            <th scope="col">Fecha</th>
+                            <th scope="col">Paciente</th>
+                            <th scope="col">Teléfono</th>
+                            <th scope="col">Costo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (cita of citas; track cita;) {
+                        @if(cita.nombreDoctor==this.nombreMedico){
+                        <tr>
+                            <td>{{ cita.fecha }}</td>
+                            <td>{{ cita.nombrePaciente }}</td>
+                            <td>{{ cita.telefono }}</td>
+                            <td>{{ cita.costo }}</td>
+                        </tr>
+                        }
+                        }
+                    </tbody>
+                </table>
+            </div>
+            }
+            @else if(this.selectedTipoConsulta === 'especialidad' && this.especialidad) {
+            <div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Especialidad</th>
+                            <th scope="col">Médico</th>
+                            <th scope="col">Paciente</th>
+                            <th scope="col">Teléfono</th>
+                            <th scope="col">Fecha</th>
+                            <th scope="col">Costo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (cita of citas; track cita;) {
+                        @if(cita.especialidad == this.especialidad){
+                        <tr>
+                            <td>{{ cita.especialidad }}</td>
+                            <td>{{ cita.nombreDoctor }}</td>
+                            <td>{{ cita.nombrePaciente }}</td>
+                            <td>{{ cita.telefono }}</td>
+                            <td>{{ cita.fecha }}</td>
+                            <td>{{ cita.costo }}</td>
+                        </tr>
+                        }
+                        }
+                    </tbody>
+                </table>
+            </div>
+            }
+            }
 
-                @else { <!-- Usuario -->
-                <div>
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th scope="col">Paciente</th>
-                                <th scope="col">Teléfono</th>
-                                <th scope="col">Costo</th>
-                                <th scope="col">Médico</th>
-                                <th scope="col">Especialidad</th>
-                                <th scope="col">Fecha</th>
-                                <th scope="col">Hora</th>
-                                <th scope="col">Eliminar</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @for (cita of citas; track cita;) {
-                                @if(this.getTelefonoUsuario() == cita.telefono && this.getNombreUsuario() == cita.nombrePaciente) {
-                                <tr>
-                                    <td>{{ cita.nombrePaciente }}</td>
-                                    <td>{{ cita.telefono }}</td>
-                                    <td>{{ cita.costo }}</td>
-                                    <td>{{ cita.nombreDoctor }}</td>
-                                    <td>{{ cita.especialidad }}</td>
-                                    <td>{{ cita.fecha }}</td>
-                                    <td>{{ cita.hora }}</td>
-                                    <td> 
-                                        <button (click)="borrarCita(cita.id, cita.fecha, cita.hora)" style="border: none; background-color: #FFFFFF;"> <i class="fa-solid fa-trash-can" style="color: #43ba7f;"></i> </button> 
-                                    </td>
-                                </tr>
-                                }
-                            }
-                        </tbody>
-                    </table>
-                </div>
-                }
+            @else { <!-- Usuario -->
+            <div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Paciente</th>
+                            <th scope="col">Teléfono</th>
+                            <th scope="col">Costo</th>
+                            <th scope="col">Médico</th>
+                            <th scope="col">Especialidad</th>
+                            <th scope="col">Fecha</th>
+                            <th scope="col">Hora</th>
+                            <th scope="col">Eliminar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (cita of citas; track cita;) {
+                        @if(this.getTelefonoUsuario() == cita.telefono && this.getNombreUsuario() ==
+                        cita.nombrePaciente) {
+                        <tr>
+                            <td>{{ cita.nombrePaciente }}</td>
+                            <td>{{ cita.telefono }}</td>
+                            <td>{{ cita.costo }}</td>
+                            <td>{{ cita.nombreDoctor }}</td>
+                            <td>{{ cita.especialidad }}</td>
+                            <td>{{ cita.fecha }}</td>
+                            <td>{{ cita.hora }}</td>
+                            <td>
+                                <button (click)="borrarCita(cita.id, cita.fecha, cita.hora)"
+                                    style="border: none; background-color: #FFFFFF;"> <i class="fa-solid fa-trash-can"
+                                        style="color: #43ba7f;"></i> </button>
+                            </td>
+                        </tr>
+                        }
+                        }
+                    </tbody>
+                </table>
+            </div>
+            }
             }
         </div>
     </div>
