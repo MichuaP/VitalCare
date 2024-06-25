@@ -12,6 +12,7 @@ import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ResumenComponent } from '../resumen/resumen.component';
+import { LoadingService } from '../../shared/loading.service';
 import { AngularFireModule } from "@angular/fire/compat";
 import { AngularFireDatabase, AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { AuthService } from '../../auth.service';
@@ -105,7 +106,9 @@ export class RegistroCitasComponent implements OnInit {
   horaSelected:any="";
 
   //Cosntructor
-  constructor(public miservicio: MedicoService, private fb: FormBuilder, private router:Router, public basedatos:AuthService, public user: UserService, public correoService: CorreoService, public qrservice: QRService){
+
+  constructor(public miservicio: MedicoService, private fb: FormBuilder, private router:Router, public basedatos:AuthService, public user: UserService, public correoService: CorreoService, public qrservice: QRService, private loadingService: LoadingService){
+
     //Formulario
 
     this.citaForm = this.fb.group({
@@ -186,6 +189,7 @@ export class RegistroCitasComponent implements OnInit {
 
   //ngOnInit
   ngOnInit():void{
+    this.loadingService.show();
     this.misMedicos=this.miservicio.getMedicos();
     //Obtenemos datos de local
     const fechasOcupadas = localStorage.getItem('ocupadas');
@@ -195,6 +199,7 @@ export class RegistroCitasComponent implements OnInit {
     }else{
       localStorage.setItem('ocupadas', JSON.stringify(this.horas));
     }
+    this.loadingService.hide();
   }
 
   //Función que recibe las horas ocupadas (para no seleccionar fecha ocupada)
