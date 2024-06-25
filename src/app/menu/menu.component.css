@@ -15,8 +15,9 @@
     font-weight: bold;
     /* color: red !important; */
 }
-.active{
+.active, .opciones:active{
     color: #166b42 !important;
+    background-color: #166b422d;
 }
 
 .logo{
