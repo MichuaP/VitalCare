@@ -5,11 +5,13 @@
     cursor: pointer;
     z-index: 1000;
     background-color: aliceblue;
+    border-radius: 20px;
 }
 
 .accessibility-icon img {
     width: 50px;
     height: 50px;
+    border-radius: 20px;
 }
 
 .accessibility-menu {

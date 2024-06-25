@@ -109,3 +109,7 @@
 .carousel-control-next {
   background-color: transparent;
 }
+
+.container-principal {
+    overflow-x: hidden;
+}

@@ -22,7 +22,7 @@ export class AccesibilidadComponent implements OnInit{
   constructor(private focusTrapFactory: FocusTrapFactory, private elementRef: ElementRef, private service: LectorService) {
     this.focusTrap = this.focusTrapFactory.create(this.elementRef.nativeElement);
   }
-
+/*
   increaseFontSize() {
     this.fontSize += 2;
     document.body.style.fontSize = `${this.fontSize}px`;
@@ -32,7 +32,17 @@ export class AccesibilidadComponent implements OnInit{
     this.fontSize = Math.max(12, this.fontSize - 2); 
     document.body.style.fontSize = `${this.fontSize}px`;
   }
+*/
 
+increaseFontSize() {
+  this.fontSize += 2;
+  document.documentElement.style.fontSize = `${this.fontSize}px`;
+}
+
+decreaseFontSize() {
+  this.fontSize = Math.max(12, this.fontSize - 2);
+  document.documentElement.style.fontSize = `${this.fontSize}px`;
+}
   toggleHighContrast() {
     this.highContrast = !this.highContrast;
     if (this.highContrast) {

@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { Cita, Medico } from '../../medico';
+import { Cita, FechaOcupada, Medico } from '../../medico';
 import { MedicoService } from '../../shared/medico.service';
 import {MatDatepickerInputEvent, MatDatepickerModule} from '@angular/material/datepicker';
 import {MatInputModule} from '@angular/material/input';
@@ -13,6 +13,17 @@ import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ResumenComponent } from '../resumen/resumen.component';
 import { LoadingService } from '../../shared/loading.service';
+import { AngularFireModule } from "@angular/fire/compat";
+import { AngularFireDatabase, AngularFireDatabaseModule } from '@angular/fire/compat/database';
+import { AuthService } from '../../auth.service';
+import { Observable } from 'rxjs';
+import { UserService } from '../../user.service';
+import { environment } from '../../../environments/environment.development';
+import { Paciente } from '../../paciente';
+import { CorreoService } from '../../correo.service';
+import { QRCodeModule } from 'angularx-qrcode';
+import { SafeUrl } from '@angular/platform-browser';
+import { QRService } from '../../qr.service';
 
 
 @Component({
@@ -27,7 +38,9 @@ import { LoadingService } from '../../shared/loading.service';
     ReactiveFormsModule,
     SweetAlert2Module,
     CommonModule,
-    ResumenComponent
+    ResumenComponent,
+    AngularFireDatabaseModule, 
+    QRCodeModule
   ],
   templateUrl: './registro-citas.component.html',
   styleUrl: './registro-citas.component.css'
@@ -57,11 +70,24 @@ export class RegistroCitasComponent implements OnInit {
   //Fechas formateadas
   fechaSelected:any="";
 
-  //Estructura del array de fechas ocupadas (localstorage)
-  horas=[
-    {"fecha":"30/4/2024","hora":"12:00"}
-    //dd/mm/yyyy
-  ];
+  //Recuperar los usuarios
+  users:Paciente[]=[];
+  //Recuperar usuario actual
+  usuario?:Paciente={
+    nombre: "",
+    apellido:"",
+    correo: "",
+    telefono:"",
+    fecha: ""
+  };
+
+  //Mensaje para el correo
+  mensaje:string="";
+  //Mensaje para el QR
+  mensajeQR:string="";
+  public qrCodeDownloadLink: SafeUrl = "";
+  //Estructura del array de fechas ocupadas
+  horas:FechaOcupada[]=[];
 
   //Horas del servicio
   hours: string[] = [
@@ -80,8 +106,11 @@ export class RegistroCitasComponent implements OnInit {
   horaSelected:any="";
 
   //Cosntructor
-  constructor(public miservicio: MedicoService, private fb: FormBuilder, private router:Router, private loadingService: LoadingService){
+
+  constructor(public miservicio: MedicoService, private fb: FormBuilder, private router:Router, public basedatos:AuthService, public user: UserService, public correoService: CorreoService, public qrservice: QRService, private loadingService: LoadingService){
+
     //Formulario
+
     this.citaForm = this.fb.group({
       nombre: ['', [Validators.required]],
       apellidos: ['', [Validators.required]],
@@ -96,6 +125,23 @@ export class RegistroCitasComponent implements OnInit {
     this.minDate = this.fechaAct;
     //Establecer la fecha máxima es diciembre de este año
     this.maxDate = new Date(this.fechaAct.getFullYear(), 11, 31);
+    //Obtener array de horas ocupadas de la base de datos
+    this.obtenerHoras();
+    this.UsuarioActual();
+    this.Autorrellenado();
+  }
+
+  UsuarioActual(){
+    this.usuario = this.user.getUser();
+  }
+
+  Autorrellenado(){
+    this.nombrePac = this.usuario.nombre;
+    this.apellidosPac = this.usuario.apellido;
+    this.telefonoPac = this.usuario.telefono;
+    this.citaForm.controls['nombre'].disable();
+    this.citaForm.controls['apellidos'].disable();
+    this.citaForm.controls['telefono'].disable();
   }
 
   //Verificar que todo el formulario se llenó
@@ -156,6 +202,16 @@ export class RegistroCitasComponent implements OnInit {
     this.loadingService.hide();
   }
 
+  //Función que recibe las horas ocupadas (para no seleccionar fecha ocupada)
+  obtenerHoras(){
+    this.basedatos.getFechasOcupadas().subscribe(fechas => {
+      this.horas = fechas;
+      console.log("Fechas ocupadas:", this.horas);
+    }, error => {
+      console.error("Error al obtener fechas ocupadas:", error);
+    });
+  }
+
   //Función que recibe la especialidad seleccionada
   espSeleccionada(value:string): void {
 		this.especialidad = value;
@@ -166,6 +222,10 @@ export class RegistroCitasComponent implements OnInit {
   docSeleccionado(doctor:any, indice:number):void{
     this.medicoAux = doctor;
     this.medico = this.misMedicos[indice].nombre;
+  }
+
+  onChangeURL(url: SafeUrl) {
+    this.qrCodeDownloadLink = url;
   }
 
   //Función para hacer una nueva cita
@@ -179,16 +239,44 @@ export class RegistroCitasComponent implements OnInit {
       fecha:this.fechaSelected,
       hora:this.horaSelected
     };
-    //Utilizar el servicio para agregar a cita al array de localStorage
-    this.miservicio.agregarCita(newCita);
-    //Agregar las horas ocupadas al array de citas ocupadas
-    this.horas.push({fecha:this.fechaSelected, hora:this.horaSelected});
-    localStorage.setItem('ocupadas', JSON.stringify(this.horas));
+    let nuevasHoras:FechaOcupada = {
+      fecha:this.fechaSelected,
+      hora:this.horaSelected
+    };
+    //Utilizar el servicio para agregar la cita a la base de datos "citas"
+    this.basedatos.agregarCita(newCita);
+    //Agregar las horas ocupadas a la base de datos "horasOcupadas"
+    this.basedatos.guardarFechasOcupadas(nuevasHoras);
+    this.mensaje = "Doctor/Doctora que te atenderá: " + this.medico 
+    + "<br>Especialidad: " + this.especialidad + "<br>Fecha de la cita: " + this.fechaSelected 
+    + "<br>Hora de la cita: " + this.horaSelected + "<br>Costo de la cita: $650<br>¡Recuerda llegar puntual a tu cita!<br>" + 
+    "<h1>- VitalCare</h1>";
+    this.qrservice.sendConsulta(this.user.loggeduser.nombre, this.fechaSelected, this.horaSelected).subscribe((res) => {
+      this.mensajeQR = res;
+    }, (error) => {
+      this.mensajeQR = "Error en la consulta de la base de datos";
+    });
     if(newCita){
+      this.correoService
+      .sendCita(
+        this.user.loggeduser.nombre + " " + this.user.loggeduser.apellido,
+        this.user.loggeduser.correo,
+        this.user.loggeduser.telefono,
+        "Informacion de tu cita",
+        this.mensaje
+      )
+      .subscribe(
+        (res) => {
+          console.log('¡Correo enviado correctamente!');
+        },
+        (error) => {
+          console.log('Error al enviar el correo:', error);
+        }
+      );
       Swal.fire({
         icon: "success",
         title: "Cita reservada con éxito",
-        text:"Puedes pagar al momento de asistir a tu cita",
+        html:'<div>Puedes pagar al momento de asistir a tu cita. Se te ha enviado un correo electronico con la información de tu cita.</div><div><button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdrop1">Generar codigo QR</button></div>',
         showDenyButton: true,
         denyButtonColor:"#3085d6",
         denyButtonText:"Ir a inicio",

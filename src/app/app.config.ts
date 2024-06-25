@@ -7,17 +7,21 @@ import { provideHttpClient } from '@angular/common/http';
 
 import { getAuth, provideAuth } from '@angular/fire/auth';
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
-import { provideDatabase } from '@angular/fire/database';
+import {
+  provideDatabase,
+  getDatabase as getDatabase_alias,
+} from '@angular/fire/database';
 import { getDatabase } from 'firebase/database';
+import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+import { getStorage, provideStorage } from '@angular/fire/storage';
+import { environment } from '../environments/environment.development';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
     provideAnimationsAsync(),
-    provideAnimationsAsync(),
     provideHttpClient(),
-    provideHttpClient(),
-    provideFirebaseApp(() => initializeApp(firebaseConfig)),
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideDatabase(() => getDatabase()),
   ],

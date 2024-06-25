@@ -2,76 +2,70 @@
     <div class="container-top">
         <div class="container">
             <div class="row align-items-center">
-                <div class="col-7">
-                    <h1 class="title-container">La mejor atención solo en <span class="highlight">Vital Care</span></h1>
+                <div class="title-cont">
+                    <h1 class="title-container">Regístrate <span class="highlight">aquí</span></h1>
                     <br>
-                    <p class="text-container">En nuestra clínica, nos enorgullece contar con los <span class="highlight">mejores especialistas médicos</span>. 
-                        Nuestro equipo de profesionales altamente calificados está aquí para cuidar de ti y de tu familia en cada etapa de tu vida..</p>
+                    <p class="text-container">Para acceder a nuestros servicios y agendar tus citas de manera rápida y sencilla, por favor <span class="highlight">completa tu registro</span>. ¡Te esperamos!. 
+                        </p>
                 </div>
-                <div class="col-5">
-                    <img src="assets/img/doctoresEspe.png" alt="" width="600px" >
-                </div>
-                
             </div>
         </div>
     </div>
     <div class="container-formulario container">
         <form class="" [formGroup]="citaForm">
             <div class="container-paciente row">
-                <div class="col-8">
+                <div>
                     <div class="row">
                         <div class="col-12">
                             <h1 class="section-name">Registro de paciente</h1>
                             <p class="style-text">Por favor, <span class="highlight"> completa el formulario </span>  a continuación para registrarte como paciente y atenderte mejor. </p>
                         </div>
                         <br>
-                        <div class="col-12">
-                            <h5>Información del paciente</h5>
+                        <div class="container-subtitle">
+                            <div class="title-contact">Información del Paciente</div>
+                        <br><br>  
+                        </div>
+                        
+                        <div class="col-6">
+                            <input type="text" class="form-control" id="nomCita" required formControlName="nombre" [(ngModel)]="nombrePac" placeholder="Nombres">
                         </div>
                         <div class="col-6">
-                            <label for="nomCita" class="form-label">Nombres</label>
-                            <input type="text" class="form-control" id="nomCita" required formControlName="nombre" [(ngModel)]="nombrePac">
-                        </div>
-                        <div class="col-6">
-                            <label for="apeCita" class="form-label">Apellidos</label>
-                            <input type="text" class="form-control" id="apeCita" required formControlName="apellidos" [(ngModel)]="apellidosPac">
+                            <input type="text" class="form-control" id="apeCita" required formControlName="apellidos" [(ngModel)]="apellidosPac" placeholder="Apellidos">
                         </div>
                     </div>
+                    <br>
                     <div class="row">
-                        <div class="col-12">
-                            <label for="telCita" class="form-label">Teléfono</label>
-                            <input type="text" class="form-control" id="telCita" required formControlName="telefono" [(ngModel)]="telefonoPac">
+                        <div class="col-6">
+                            <input type="text" class="form-control" id="telCita" required formControlName="telefono" [(ngModel)]="telefonoPac" placeholder="Teléfono (Ejemplo: +524495555555)">
                         </div>
-                    </div>
-                    <div class="row container-FH">
-                        <div class="col-md-6">
-                            <label for="fechaCita" class="form-label">Fecha de nacimiento</label><br>
-                            <mat-form-field>
-                                <input formControlName="fecha" matInput [max]="minDate" [matDatepicker]="picker" readonly (dateChange)="fechaSelec($event)">
+                        <div class="col-6">
+                            <mat-form-field class="form-control fecha">
+                                <input formControlName="fecha" matInput [max]="minDate" [matDatepicker]="picker" readonly (dateChange)="fechaSelec($event)" placeholder="Fecha de Nacimiento">
                                 <mat-datepicker-toggle matIconSuffix [for]="picker" disabled="false"></mat-datepicker-toggle>
                                 <mat-datepicker #picker disabled="false"></mat-datepicker>
                             </mat-form-field>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-7">
-                            <h1 class="section-name">Datos de sesión</h1>
-                            <p class="text-container">¡Recuerda guardarlos en un lugar seguro!</p>
+                        <div>
+                            <div class="container-subtitle">
+                                <br>
+                                <div class="title-contact">Datos de sesión</div>
+                            <br>
+                            </div>
+                            <p class="style-text">¡Recuerda guardarlos en un lugar seguro!</p>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-12">
-                            <label for="CorreoPac" class="form-label">Correo</label>
-                            <input type="mail" class="form-control" id="CorreoPac" required formControlName="correo" [(ngModel)]="correoPac">
+                        <div class="col-6">
+                            <input type="mail" class="form-control" id="CorreoPac" required formControlName="correo" [(ngModel)]="correoPac" placeholder="Correo Electrónico">
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <label for="ContraseñaPac" class="form-label">Nueva contraseña</label>
-                            <input type="password" class="form-control" id="ContraseñaPac" required formControlName="contraseña" [(ngModel)]="contrasenaPac">
+                    
+                        <div class="col-6">
+                            <input type="password" class="form-control" id="ContraseñaPac" required formControlName="contraseña" [(ngModel)]="contrasenaPac" placeholder="Contraseña">
                         </div>
                     </div><br>
-                    <div class="bot">
+                    <div class="col-12 d-flex justify-content-center">
                         <button (click)="checkData()" class="btn btn-success btn-outline-light" id="botonRegistrar">¡Registrarse!</button>
                     </div>
                     <br>
