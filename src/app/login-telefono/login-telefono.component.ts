@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { UserService } from '../user.service';
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-telefono',
@@ -13,7 +14,7 @@ import Swal from 'sweetalert2';
 })
 export class LoginTelefonoComponent {
 
-  constructor(public myAuth: AuthService, public user: UserService){}
+  constructor(public myAuth: AuthService, public user: UserService, public router: Router){}
   @ViewChild('captchaContainer', { static: false }) captchaContainer!: ElementRef;
 
   ngAfterViewInit(): void {
@@ -76,14 +77,16 @@ export class LoginTelefonoComponent {
   
   ingresarTel(): void {
     this.myAuth.loginSMS(this.codigo).subscribe(() => {
+      this.user.setUserSMS(this.phone);
+      this.Usuario.emit("OK");
       Swal.fire({
         title: 'Ingresado',
         text: 'Ingreso exitoso.',
         icon: 'success',
         confirmButtonText: 'Aceptar'
+      }).then(() => {
+        this.router.navigate(['/#']);
       });
-      this.user.setUserSMS(this.phone);
-      this.Usuario.emit("OK");
     }, error => {
       Swal.fire({
         title: 'Error',
