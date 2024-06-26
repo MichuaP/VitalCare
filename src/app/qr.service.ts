@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class QRService {
-  private qrUrl = 'http://localhost:3000/data'; // URL del endpoint
+  private qrUrl = 'https://us-central1-pruebafirebase-adf04.cloudfunctions.net/api/data'; // URL del endpoint
 
   constructor(private httpClient: HttpClient) { }
 

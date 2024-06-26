@@ -5,8 +5,8 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class CorreoService {
-  private emailUrl = 'http://localhost:3000/enviar-correo'; // URL del endpoint
-  private citaUrl = 'http://localhost:3000/enviar-cita'; // URL del endpoint para las citas
+  private emailUrl = 'https://us-central1-pruebafirebase-adf04.cloudfunctions.net/api/enviar-correo'; // URL del endpoint
+  private citaUrl = 'https://us-central1-pruebafirebase-adf04.cloudfunctions.net/api/enviar-cita'; // URL del endpoint para las citas
   constructor(private httpClient: HttpClient) { } // Inyectar el servicio
 
   // Este método toma como argumentos los datos del formulario de correo electrónico
