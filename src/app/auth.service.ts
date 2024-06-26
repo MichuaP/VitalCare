@@ -43,7 +43,7 @@ export class AuthService {
   }
 
   //Login con email and password
-  login(email:string, password:string):Observable<string>{
+  login(email:string, password:string):Observable<any>{
     const promise = signInWithEmailAndPassword(
       this.firebaseAuth,
       email,
@@ -58,19 +58,6 @@ export class AuthService {
   logout():Observable<void>{
     const promise = signOut(this.firebaseAuth);
     return from(promise);
-  }
-
-  //Obtener login
-  Obtenerlogin(){
-    if(this.firebaseAuth.authStateReady){
-      return true;
-    }else{
-      return false;
-    }
-  }
-
-  getDisplayName(){
-    return this.firebaseAuth.currentUser.displayName;
   }
 
   getDatos(): Observable<Paciente[]> {
