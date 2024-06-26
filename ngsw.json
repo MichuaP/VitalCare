@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1719373848520,
+  "timestamp": 1719374633505,
   "index": "https://MichuaP.github.io/ProyectoFinal_TecWeb/index.html",
   "assetGroups": [
     {
@@ -21,7 +21,7 @@
         "https://MichuaP.github.io/ProyectoFinal_TecWeb/chunk-YT5AF7SN.js",
         "https://MichuaP.github.io/ProyectoFinal_TecWeb/favicon.ico",
         "https://MichuaP.github.io/ProyectoFinal_TecWeb/index.html",
-        "https://MichuaP.github.io/ProyectoFinal_TecWeb/main-B3HR5YG5.js",
+        "https://MichuaP.github.io/ProyectoFinal_TecWeb/main-TKSWYQQ6.js",
         "https://MichuaP.github.io/ProyectoFinal_TecWeb/manifest.webmanifest",
         "https://MichuaP.github.io/ProyectoFinal_TecWeb/polyfills-6EAL64PA.js",
         "https://MichuaP.github.io/ProyectoFinal_TecWeb/scripts-FR7HA4WI.js",
@@ -283,8 +283,8 @@
     "https://MichuaP.github.io/ProyectoFinal_TecWeb/chunk-VNVFENBK.js": "c9785d9191fc84feae3bafc6b8be0d90d2d108c4",
     "https://MichuaP.github.io/ProyectoFinal_TecWeb/chunk-YT5AF7SN.js": "d33c3f6f686c3972312f109f01432f706c2c2d78",
     "https://MichuaP.github.io/ProyectoFinal_TecWeb/favicon.ico": "ffc10ed3c105f115c3f56dccefb472c92ed91886",
-    "https://MichuaP.github.io/ProyectoFinal_TecWeb/index.html": "5838935e7b71f2b6bfd1ecbe721d2a0f84618e92",
-    "https://MichuaP.github.io/ProyectoFinal_TecWeb/main-B3HR5YG5.js": "46a4e85f8635dbcbfc16d15a75986b5605b80b3d",
+    "https://MichuaP.github.io/ProyectoFinal_TecWeb/index.html": "a9de4b040af95ea61b9cf5af3fb6df43248d8b64",
+    "https://MichuaP.github.io/ProyectoFinal_TecWeb/main-TKSWYQQ6.js": "9ecca36b90caf5c0ee57bfbc99667832287f807e",
     "https://MichuaP.github.io/ProyectoFinal_TecWeb/manifest.webmanifest": "be5316d9bdeab9e642c911db7401e7224e2dc9f0",
     "https://MichuaP.github.io/ProyectoFinal_TecWeb/media/abrazo-ZNFKAPNR.png": "0dc2c884d3cb7408c8e40cc0fcc944cc9cbd534a",
     "https://MichuaP.github.io/ProyectoFinal_TecWeb/polyfills-6EAL64PA.js": "d874147a12a6570d9b44e99935e9de8b7f3cabbc",
