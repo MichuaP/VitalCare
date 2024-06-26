@@ -105,7 +105,12 @@
           }
         },
         "deploy": {
-          "builder": "angular-cli-ghpages:deploy"
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {
+            "prerender": false,
+            "spa": true,
+            "baseHref": "https://MichuaP.github.io/ProyectoFinal_TecWeb/"
+          }
         }
       }
     }
