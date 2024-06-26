@@ -275,7 +275,7 @@ export class AuthService {
     });
   }
 
-  //Función para registrar una cita
+  //Función para registrar un usuario
   agregarCita(infoCita: Cita): Observable<void> {
     const citasRef = ref(this.database, 'citas');
     const nuevaRef = push(citasRef);
