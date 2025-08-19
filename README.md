@@ -1,27 +1,28 @@
-# ProyectoFinal Web
+# VitalCare - WebSite
+Vital Care is an Angular and Firebase-powered web platform simulating a multi-specialty medical clinic. This demo application enables users to browse healthcare services, view doctor profiles with specialties, and book appointments through an integrated contact system. Leveraging Firebase for authentication, real-time database storage, and hosting, it delivers a responsive user experience that mimics real-world clinic operations.
+<br/><br/>
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.0.
+## Academic context
+Final project for web technologies (6th Semester).
 
-## Development server
+Degree: Computer Systems Engineering.
+<br/><br/>
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Tech Stack
+- Frontend: Angular.
+- Database and authentication: Firebase.
+<br/><br/>
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Usage instructions
+[Go to site](https://michuap.github.io/ProyectoFinal_TecWeb/inicio).
+<br/><br/>
+## Credits
+Collaborators: 
+- [Nadia Acosta](https://github.com/NadiaAcostaM).
+- [Jalkem Morales](https://github.com/JalkemMorales).
+- [Gaby SGtz](https://github.com/GabySGtz).
+- [Wallace Gaster](https://github.com/WallaceGaster).
+- [Gus git](https://github.com/GusGit2003).
+- [Luis Mtz](https://github.com/Luismtz31).
+- [NotLuffyJustPeter](https://github.com/NotLuffyJustPeter).
+- [Omi Hernandez](https://github.com/OmiHernandez).
